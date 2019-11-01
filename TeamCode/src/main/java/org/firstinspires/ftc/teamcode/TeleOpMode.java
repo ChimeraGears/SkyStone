@@ -61,6 +61,7 @@ public class TeleOpMode extends OpMode {
         Slide - left_bumper, right_bumper
         Claw - x, b
         Wrist - y, a
+
          */
 
         if (gamepad1.x)
