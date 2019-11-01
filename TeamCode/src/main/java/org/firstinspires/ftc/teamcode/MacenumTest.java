@@ -41,7 +41,6 @@ public class MacenumTest extends OpMode{
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
-
          */
     }
     @Override
@@ -90,5 +89,4 @@ public class MacenumTest extends OpMode{
         telemetry.addData("Claw Position", "position (%.2f)" ,claw.getPosition());
         telemetry.update();
     }
-
 }
