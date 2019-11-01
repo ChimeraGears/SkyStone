@@ -28,7 +28,7 @@ public class TeleOpMode extends OpMode {
     {
         robot.init(hardwareMap);
         robot.ClawServo.setPosition(REV_HOME);
-        robot.WristServo.setPosition(REV_HOME);
+        //robot.WristServo.setPosition(REV_HOME);
         robot.LazyServo.setPosition(REV_HOME);
         robot.HitchServo.setPosition(REV_HOME);
         robot.leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -74,16 +74,16 @@ public class TeleOpMode extends OpMode {
             robot.ClawServo.setPosition(REV_MIN);
         }
 
-        if (gamepad1.y)
+        /*if (gamepad1.y)
         {
             robot.WristServo.setPosition(REV_MAX);
         }
-
-        if (gamepad1.a)
+*/
+        /*if (gamepad1.a)
         {
             robot.WristServo.setPosition(REV_MIN);
         }
-
+*/
         if (gamepad1.dpad_right)
         {
             robot.LazyServo.setPosition(REV_MAX);
@@ -143,7 +143,7 @@ public class TeleOpMode extends OpMode {
         robot.SlideServo.setPower(0);
         robot.ArmServo.setPower(0);
         robot.ClawServo.setPosition(REV_HOME);
-        robot.WristServo.setPosition(REV_HOME);
+        //robot.WristServo.setPosition(REV_HOME);
         robot.LazyServo.setPosition(REV_HOME);
         robot.HitchServo.setPosition(REV_HOME);
     }

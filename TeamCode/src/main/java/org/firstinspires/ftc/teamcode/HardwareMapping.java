@@ -11,7 +11,7 @@ public class HardwareMapping {
     public CRServo SlideServo;
     public CRServo ArmServo;
     public Servo ClawServo;
-    public Servo WristServo;
+    //public Servo WristServo;
     public Servo LazyServo;
     public Servo HitchServo;
     public DcMotor leftFrontDrive = null;
@@ -33,7 +33,7 @@ public class HardwareMapping {
         SlideServo = hwMap.get(CRServo.class, "Slide");
         ArmServo = hwMap.get(CRServo.class, "Arm");
         ClawServo = hwMap.servo.get("Claw");
-        WristServo = hwMap.servo.get("Wrist");
+        //WristServo = hwMap.servo.get("Wrist");
         LazyServo = hwMap.servo.get("Lazy");
         HitchServo = hwMap.servo.get("Hitch");
         leftFrontDrive = hwMap.get(DcMotor.class,"front_left");
