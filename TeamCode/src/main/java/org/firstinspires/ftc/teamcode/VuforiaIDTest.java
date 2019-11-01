@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+/*package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -37,7 +37,7 @@ import java.util.List;
  *
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained in {@link ConceptVuforiaNavigation}.
- */
+ *
 
 @TeleOp(name="Concept: VuMark Id", group ="Concept")
 @Disabled
@@ -49,14 +49,14 @@ public class VuforiaIDTest extends LinearOpMode{
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
      * localization engine.
-     */
+     *
     VuforiaLocalizer vuforia;
 
     @Override public void runOpMode() {
 
         /*
          * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
-         */
+         *
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
@@ -69,12 +69,12 @@ public class VuforiaIDTest extends LinearOpMode{
          * We also indicate which camera on the RC that we wish to use.
          * Here we chose the back (HiRes) camera (for greater range), but
          * for a competition robot, the front camera might be more convenient.
-         */
+         *
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
 
         /**
          * Instantiate the Vuforia engine
-         */
+         *
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
 
@@ -83,7 +83,7 @@ public class VuforiaIDTest extends LinearOpMode{
          * in this data set: all three of the VuMarks in the game were created from this one template,
          * but differ in their instance id information.
          * @see VuMarkInstanceId
-         */
+         *
         VuforiaTrackables targetsSkyStone = this.vuforia.loadTrackablesFromAsset("Skystone");
 
         VuforiaTrackable stoneTarget = targetsSkyStone.get(0);
@@ -145,5 +145,6 @@ public class VuforiaIDTest extends LinearOpMode{
         return (transformationMatrix != null) ? transformationMatrix.formatAsTransform() : "null";
     }
 }
+*/
 
 
