@@ -44,10 +44,11 @@ public class TeleOpMode extends OpMode {
         double rightFrontPower;
         double leftBackPower;
         double rightBackPower;
-        double drive = gamepad1.left_stick_y;
-        double turn = gamepad1.right_stick_x;
-        double strafe = gamepad1.left_stick_x;
-
+        double drive = .8*gamepad1.left_stick_y;
+        double turn = .8*gamepad1.right_stick_x;
+        double strafe = .8*gamepad1.left_stick_x;
+        //possibly try .scale function
+        //End Coders let motors run to a set position.
 
         leftFrontPower = Range.clip(drive-strafe+turn,-1.0,1.0);
         leftBackPower = Range.clip(drive+strafe+turn,-1.0,1.0);
@@ -64,12 +65,12 @@ public class TeleOpMode extends OpMode {
 
          */
 
-        if (gamepad1.x)
+        if (gamepad2.a)
         {
             robot.ClawServo.setPosition(REV_MAX);
         }
 
-        if (gamepad1.b)
+        if (gamepad2.b)
         {
             robot.ClawServo.setPosition(REV_MIN);
         }
@@ -94,17 +95,36 @@ public class TeleOpMode extends OpMode {
             robot.LazyServo.setPosition(REV_MIN);
         }
 
-        if (gamepad1.right_trigger > 0.5)
+        if (gamepad1.dpad_up)
         {
             robot.HitchServo.setPosition(REV_MAX);
         }
 
-        if (gamepad1.left_trigger > 0.5)
+        if (gamepad1.dpad_down)
         {
             robot.HitchServo.setPosition(REV_MIN);
         }
-
-        if (gamepad1.dpad_up)
+        if(gamepad2.left_trigger > 0.50)
+        {
+            if(robot.ArmServo.getPosition()<1.00)
+            {
+                double armPosCheck = robot.ArmServo.getPosition();
+                armPosCheck += 0.10;
+                robot.ArmServo.setPosition(armPosCheck);
+                robot.WristServo.setPosition(-1*armPosCheck);
+            }
+        }
+        if(gamepad2.right_trigger > 0.50)
+        {
+            if(robot.ArmServo.getPosition()>0.00)
+            {
+                double armPosCheck = robot.ArmServo.getPosition();
+                armPosCheck -= 0.10;
+                robot.ArmServo.setPosition(armPosCheck);
+                robot.WristServo.setPosition(-1*armPosCheck);
+            }
+        }
+        /*if (gamepad1.dpad_up)
         {
             robot.ArmServo.setPower(.75);
         }
@@ -118,13 +138,13 @@ public class TeleOpMode extends OpMode {
         {
             robot.ArmServo.setPower(0);
         }
-
-        if (gamepad1.left_bumper)
+*/
+        if (gamepad2.dpad_up)
         {
             robot.SlideServo.setPower(.75);
         }
 
-        else if (gamepad1.right_bumper)
+        else if (gamepad2.dpad_down)
         {
             robot.SlideServo.setPower(-.75);
         }
@@ -141,7 +161,7 @@ public class TeleOpMode extends OpMode {
     public void stop ()
     {
         robot.SlideServo.setPower(0);
-        robot.ArmServo.setPower(0);
+        robot.ArmServo.setPosition(robot.ArmServo.getPosition());
         robot.ClawServo.setPosition(REV_HOME);
         //robot.WristServo.setPosition(REV_HOME);
         robot.LazyServo.setPosition(REV_HOME);
