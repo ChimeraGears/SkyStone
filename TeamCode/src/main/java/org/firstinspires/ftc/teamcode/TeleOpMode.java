@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.Range;
 public class TeleOpMode extends OpMode {
 
     HardwareMapping robot = new HardwareMapping();
-
+    SleepFunction sleep = new SleepFunction();
     // public final static double ARM_HOME = 0.5;
     // public final static double ARM_MIN = 0.0;
     // public final static double ARM_MAX = 1.0;
@@ -28,7 +28,7 @@ public class TeleOpMode extends OpMode {
     {
         robot.init(hardwareMap);
         robot.ClawServo.setPosition(REV_HOME);
-        //robot.WristServo.setPosition(REV_HOME);
+        robot.WristServo.setPosition(REV_HOME);
         robot.LazyServo.setPosition(REV_HOME);
         robot.HitchServo.setPosition(REV_HOME);
         robot.leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -47,6 +47,15 @@ public class TeleOpMode extends OpMode {
         double drive = .8*gamepad1.left_stick_y;
         double turn = .8*gamepad1.right_stick_x;
         double strafe = .8*gamepad1.left_stick_x;
+        boolean leftTriggerButton = false, rightTriggerButton = false;
+        if(gamepad2.left_trigger > 0.50)
+        {
+            leftTriggerButton = true;
+        }
+        if(gamepad2.right_trigger > 0.50)
+        {
+            rightTriggerButton = true;
+        }
         //possibly try .scale function
         //End Coders let motors run to a set position.
 
@@ -114,7 +123,22 @@ public class TeleOpMode extends OpMode {
                 robot.WristServo.setPosition(-1*armPosCheck);
             }
         }
-        if(gamepad2.right_trigger > 0.50)
+
+        if(leftTriggerButton)
+        {
+            robot.ArmMotor.setPower(0.10);
+            sleep.SleepyTime(1);
+            leftTriggerButton = false;
+        }
+        if(rightTriggerButton)
+        {
+            robot.ArmMotor.setPower(-0.10);
+            sleep.SleepyTime(1);
+            rightTriggerButton = false;
+        }
+
+
+        /*if(gamepad2.right_trigger > 0.50)
         {
             if(robot.ArmServo.getPosition()>0.00)
             {
@@ -123,7 +147,7 @@ public class TeleOpMode extends OpMode {
                 robot.ArmServo.setPosition(armPosCheck);
                 robot.WristServo.setPosition(-1*armPosCheck);
             }
-        }
+        }*/
         /*if (gamepad1.dpad_up)
         {
             robot.ArmServo.setPower(.75);

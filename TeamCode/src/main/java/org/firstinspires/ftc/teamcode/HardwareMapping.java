@@ -18,7 +18,7 @@ public class HardwareMapping {
     public DcMotor rightFrontDrive = null;
     public DcMotor leftBackDrive = null;
     public DcMotor rightBackDrive = null;
-
+    public DcMotor ArmMotor = null;
 
     HardwareMap hwMap = null;
     private ElapsedTime period = new ElapsedTime();
@@ -31,11 +31,12 @@ public class HardwareMapping {
         hwMap = ahwMap;
 
         SlideServo = hwMap.get(CRServo.class, "Slide");
-        ArmServo = hwMap.servo.get("Arm");
+        //ArmServo = hwMap.servo.get("Arm");
         ClawServo = hwMap.servo.get("Claw");
         WristServo = hwMap.servo.get("Wrist");
         LazyServo = hwMap.servo.get("Lazy");
         HitchServo = hwMap.servo.get("Hitch");
+        ArmMotor = hwMap.get(DcMotor.class, "Arm");
         leftFrontDrive = hwMap.get(DcMotor.class,"front_left");
         rightFrontDrive = hwMap.get(DcMotor.class,"front_right");
         leftBackDrive = hwMap.get(DcMotor.class,"back_left");
