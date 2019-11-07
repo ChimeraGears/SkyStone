@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+/*package org.firstinspires.ftc.teamcode;
 
 public class AACC {
     package org.firstinspires.ftc.robotcontroller.external.samples;
@@ -25,7 +25,7 @@ import java.util.Locale;
      *
      * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
      * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list.
-     */
+     *
     @TeleOp(name = "Sensor: REVColorDistance", group = "Sensor")
     //@Disabled                            // Comment this out to add to the opmode list
     public class SensorREVColorDistance extends LinearOpMode {
@@ -47,10 +47,10 @@ import java.util.Locale;
          * to the target object.  Note that the distance sensor saturates at around 2" (5 cm).
          *
          */
-        ColorSensor sensorColor;
+        /*ColorSensor sensorColor;
         DistanceSensor sensorDistance;
 
-        @Override
+        //@Override
         public void runOpMode() {
 
             // get a reference to the color sensor.
@@ -118,3 +118,4 @@ import java.util.Locale;
         }
     }
 }
+*/

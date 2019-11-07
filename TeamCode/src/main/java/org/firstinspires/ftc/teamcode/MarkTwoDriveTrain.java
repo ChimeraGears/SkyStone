@@ -40,9 +40,14 @@ public class MarkTwoDriveTrain extends OpMode{
         }
 
         leftFrontPower = Range.clip(drive+strafe+turn,-1.0,1.0);
-        leftBackPower = Range.clip(drive-strafe+turn,-1.0,1.0);
+        leftBackPower = Range.clip(drive+strafe-turn,-1.0,1.0);
         rightFrontPower = Range.clip(drive-strafe-turn,-1.0,1.0);
-        rightBackPower = Range.clip(drive+strafe-turn,-1.0,1.0);
+        rightBackPower = Range.clip(drive-strafe+turn,-1.0,1.0);
+
+        robot.leftFrontDrive.setPower(leftFrontPower);
+        robot.rightFrontDrive.setPower(rightFrontPower);
+        robot.leftBackDrive.setPower(leftBackPower);
+        robot.rightBackDrive.setPower(rightBackPower);
 
     telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
     telemetry.update();
