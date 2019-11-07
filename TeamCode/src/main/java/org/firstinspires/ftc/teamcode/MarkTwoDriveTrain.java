@@ -10,6 +10,8 @@ import com.qualcomm.robotcore.util.Range;
 public class MarkTwoDriveTrain extends OpMode{
     HardwareMapping robot = new HardwareMapping();
     SleepFunction sleep = new SleepFunction();
+    public final static double REV_MIN = 0.00;
+    public final static double REV_MAX = 1.00;
 
     public void init() {
         robot.init(hardwareMap);
@@ -26,6 +28,16 @@ public class MarkTwoDriveTrain extends OpMode{
         double drive = gamepad1.left_stick_y;
         double turn = gamepad1.right_stick_x;
         double strafe = gamepad1.left_stick_x;
+
+        if (gamepad1.dpad_up)
+        {
+            robot.HitchServo.setPosition(REV_MAX);
+        }
+
+        if (gamepad1.dpad_down)
+        {
+            robot.HitchServo.setPosition(REV_MIN);
+        }
 
         leftFrontPower = Range.clip(drive+strafe+turn,-1.0,1.0);
         leftBackPower = Range.clip(drive-strafe+turn,-1.0,1.0);
