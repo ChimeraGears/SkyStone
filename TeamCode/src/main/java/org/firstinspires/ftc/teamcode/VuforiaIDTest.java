@@ -1,4 +1,4 @@
-/*package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -145,6 +145,6 @@ public class VuforiaIDTest extends LinearOpMode{
         return (transformationMatrix != null) ? transformationMatrix.formatAsTransform() : "null";
     }
 }
-*/
+
 
 

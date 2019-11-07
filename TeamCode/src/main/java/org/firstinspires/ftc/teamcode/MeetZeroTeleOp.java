@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="TeleOp Mode")
+@TeleOp(name="TeleOp Mode!")
 public class MeetZeroTeleOp extends OpMode{
 
     HardwareMapping robot = new HardwareMapping();
@@ -16,7 +16,7 @@ public class MeetZeroTeleOp extends OpMode{
     // public final static double SLIDE_MIN = 0.0;
     // public final static double SLIDE_MAX = 1.0;
     //public final static double REV_HOME = 0.5;
-    public final static double REV_MIN = 0.0;
+    public final static double REV_MIN = 0.07;
     public final static double REV_MAX = 1.0;
     // public final double ARM_SPEED = 0.01;
     // public double armPosition = ARM_HOME;
@@ -34,9 +34,9 @@ public class MeetZeroTeleOp extends OpMode{
         double rightFrontPower;
         double leftBackPower;
         double rightBackPower;
-        double drive = .8*gamepad1.left_stick_y;
-        double turn = .8*gamepad1.right_stick_x;
-        double strafe = .8*gamepad1.left_stick_x;
+        double drive = gamepad1.left_stick_y;
+        double turn = gamepad1.right_stick_x;
+        double strafe = gamepad1.left_stick_x;
 
         //possibly try .scale function
         //End Coders let motors run to a set position.
@@ -53,8 +53,11 @@ public class MeetZeroTeleOp extends OpMode{
         Slide - left_bumper, right_bumper
         Claw - x, b
         Wrist - y, a
-
          */
+        robot.leftFrontDrive.setPower(leftFrontPower);
+        robot.rightFrontDrive.setPower(rightFrontPower);
+        robot.leftBackDrive.setPower(leftBackPower);
+        robot.rightBackDrive.setPower(rightBackPower);
 
         if (gamepad1.dpad_up)
         {
