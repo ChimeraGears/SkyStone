@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="TeleOpMode")
-public class TeleOpMode extends OpMode {
+@TeleOp(name="Ayden Code")
+public class AACC extends OpMode {
 
     HardwareMapping robot = new HardwareMapping();
     SleepFunction sleep = new SleepFunction();
@@ -24,9 +24,7 @@ public class TeleOpMode extends OpMode {
     // public double armPosition = ARM_HOME;
 
 
-    public void init ()
-
-    {
+    public void init() {
         robot.init(hardwareMap);
         robot.ClawServo.setPosition(REV_HOME);
         robot.WristServo.setPosition(REV_HOME);
@@ -38,7 +36,7 @@ public class TeleOpMode extends OpMode {
         robot.rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
     }
 
-    public void loop () {
+    public void loop() {
         double leftFrontPower;
         double rightFrontPower;
         double leftBackPower;
@@ -84,3 +82,4 @@ public class TeleOpMode extends OpMode {
 
         }
     }
+}
