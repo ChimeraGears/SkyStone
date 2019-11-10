@@ -33,10 +33,10 @@ public class HardwareMapping {
         //SlideServo = hwMap.get(CRServo.class, "Slide");
         //ArmServo = hwMap.servo.get("Arm");
         //ClawServo = hwMap.servo.get("Claw");
-        //WristServo = hwMap.servo.get("Wrist");
+        WristServo = hwMap.servo.get("Wrist");
         //LazyServo = hwMap.servo.get("Lazy");
         HitchServo = hwMap.servo.get("Hitch");
-        //ArmMotor = hwMap.get(DcMotor.class, "Arm");
+        ArmMotor = hwMap.get(DcMotor.class, "Arm");
         leftFrontDrive = hwMap.get(DcMotor.class, "front_left");
         rightFrontDrive = hwMap.get(DcMotor.class, "front_right");
         leftBackDrive = hwMap.get(DcMotor.class, "back_left");
@@ -51,7 +51,7 @@ public class HardwareMapping {
         rightFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
+        
 
     }
 
