@@ -1,8 +1,8 @@
 /* Gearful Dead
  *
- */
-/*
-package org.firstinspires.ftc.teamcode;
+ *
+*/
+package org.firstinspires.ftc.teamcode.OldCode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -13,8 +13,8 @@ import com.qualcomm.robotcore.util.Range;
 
 /*
  * Basic TeleOpMode Program to drive a two wheel robot with one joystick
- *
-
+ */
+@Deprecated
 @TeleOp(name="Basic Driving Mode", group="Linear Opmode")
 // @Disabled
 public class DriveRobot extends LinearOpMode {
@@ -69,4 +69,3 @@ public class DriveRobot extends LinearOpMode {
         }
     }
 }
-*/

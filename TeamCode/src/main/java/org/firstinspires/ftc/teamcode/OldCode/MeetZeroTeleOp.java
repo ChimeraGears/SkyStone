@@ -1,3 +1,4 @@
+package org.firstinspires.ftc.teamcode.OldCode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -5,7 +6,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 import org.firstinspires.ftc.teamcode.SleepFunction;
-
+@Deprecated
 @TeleOp(name="Old_TeleOp Mode!")
 public class MeetZeroTeleOp extends OpMode{
 

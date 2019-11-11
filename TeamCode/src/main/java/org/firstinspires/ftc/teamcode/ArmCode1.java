@@ -19,15 +19,14 @@ public class ArmCode1 extends OpMode{
         double armMotorPower;
         if (gamepad1.right_bumper)
         {
-            int iterPos = robot.ArmMotor.getCurrentPosition()+40;
+            int iterPos;
             if(robot.ArmMotor.getCurrentPosition()+40 <= 160) {
                 iterPos = robot.ArmMotor.getCurrentPosition()+40;
             } else {
                 iterPos = 160;
             }
-            robot.ArmMotor.setTargetPosition(iterPos);
-            robot.ArmMotor.setPower(0);
-            robot.ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            encMovement(robot.ArmMotor,1,iterPos);
+
         }
         if (gamepad1.left_bumper)
         {
@@ -37,9 +36,14 @@ public class ArmCode1 extends OpMode{
             } else{
                 iterPos = 0;
             }
-            robot.ArmMotor.setTargetPosition(iterPos);
-            robot.ArmMotor.setPower(0);
-            robot.ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            encMovement(robot.ArmMotor,1,iterPos);
+
         }
+    }
+
+    public void encMovement(DcMotor motorName, double motorPower, int targetPos){
+        motorName.setTargetPosition(motorName.getCurrentPosition()+ targetPos);
+        motorName.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorName.setPower(motorPower);
     }
 }

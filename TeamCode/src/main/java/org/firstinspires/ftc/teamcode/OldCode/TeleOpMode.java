@@ -1,3 +1,4 @@
+package org.firstinspires.ftc.teamcode.OldCode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -6,6 +7,7 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 import org.firstinspires.ftc.teamcode.SleepFunction;
 
+@Deprecated
 @TeleOp(name="Old_TeleOpMode")
 public class TeleOpMode extends OpMode {
 
@@ -25,7 +27,6 @@ public class TeleOpMode extends OpMode {
 
 
     public void init ()
-
     {
         robot.init(hardwareMap);
         robot.ClawServo.setPosition(REV_HOME);

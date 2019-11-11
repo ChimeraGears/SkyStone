@@ -1,3 +1,5 @@
+package org.firstinspires.ftc.teamcode.OldCode;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -7,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 import static java.lang.Thread.sleep;
-
+@Deprecated
 @TeleOp(name="Old_MacenumTest", group="Opmode")
 
 public class MacenumTest extends OpMode{
