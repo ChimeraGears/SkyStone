@@ -7,9 +7,8 @@ import com.qualcomm.robotcore.util.Range;
 
 @TeleOp(name="Mark Two TeleOp")
 //12.1211 inches per rotation--JB
-public class MarkTwoDriveTrain extends OpMode{
+public class RobotMaster extends OpMode{
     HardwareMapping robot = new HardwareMapping();
-    SleepFunction sleep = new SleepFunction();
     public final static double REV_MIN = 0.00;
     public final static double REV_MAX = 1.00;
 
@@ -19,12 +18,15 @@ public class MarkTwoDriveTrain extends OpMode{
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         robot.rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
+        robot.ArmMotor.setDirection(DcMotor.Direction.REVERSE);
     }
+
     public void loop() {
         double leftFrontPower;
         double rightFrontPower;
         double leftBackPower;
         double rightBackPower;
+        double armMotorPower;
         double drive = gamepad1.left_stick_y;
         double turn = gamepad1.right_stick_x;
         double strafe = gamepad1.left_stick_x;
