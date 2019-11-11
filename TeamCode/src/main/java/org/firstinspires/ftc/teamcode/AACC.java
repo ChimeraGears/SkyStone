@@ -71,13 +71,13 @@ public class AACC extends OpMode {
 
         if (gamepad1.a) {
             robot.LazyServo.setPosition(REV_MAX);
-            sleep.SleepyTime(1);
+            sleep.SleepyTime(2);
             robot.ClawServo.setPosition(REV_MAX);
         }
 
         if (gamepad1.b) {
             robot.LazyServo.setPosition(REV_MIN);
-            sleep.SleepyTime(1);
+            sleep.SleepyTime(2);
             robot.ClawServo.setPosition(REV_MIN);
 
         }
