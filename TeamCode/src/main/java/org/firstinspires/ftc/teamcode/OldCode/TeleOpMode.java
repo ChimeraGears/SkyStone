@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 import org.firstinspires.ftc.teamcode.SleepFunction;
 
-@TeleOp(name="TeleOpMode")
+@TeleOp(name="Old_TeleOpMode")
 public class TeleOpMode extends OpMode {
 
     HardwareMapping robot = new HardwareMapping();

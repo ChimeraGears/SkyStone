@@ -40,6 +40,28 @@ public class RobotMaster extends OpMode{
         {
             robot.HitchServo.setPosition(REV_MIN);
         }
+        if (gamepad1.right_bumper)
+        {
+            int iterPos = robot.ArmMotor.getCurrentPosition()+40;
+            if(robot.ArmMotor.getCurrentPosition()+40 <= 160) {
+                iterPos = robot.ArmMotor.getCurrentPosition()+40;
+            } else {
+                iterPos = 160;
+            }
+            robot.ArmMotor.setTargetPosition(iterPos);
+            robot.ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        if (gamepad1.left_bumper)
+        {
+            int iterPos;
+            if(robot.ArmMotor.getCurrentPosition()>= 0 && robot.ArmMotor.getCurrentPosition()-40 >= 0){
+                iterPos = robot.ArmMotor.getCurrentPosition()-40;
+            } else{
+                iterPos = 0;
+            }
+            robot.ArmMotor.setTargetPosition(iterPos);
+            robot.ArmMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
 
         leftFrontPower = Range.clip(drive+strafe+turn,-1.0,1.0);
         leftBackPower = Range.clip(drive+strafe-turn,-1.0,1.0);

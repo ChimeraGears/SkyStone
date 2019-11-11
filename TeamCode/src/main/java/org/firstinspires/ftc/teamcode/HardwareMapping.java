@@ -33,25 +33,26 @@ public class HardwareMapping {
         //SlideServo = hwMap.get(CRServo.class, "Slide");
         //ArmServo = hwMap.servo.get("Arm");
         //ClawServo = hwMap.servo.get("Claw");
-        WristServo = hwMap.servo.get("Wrist");
+        //WristServo = hwMap.servo.get("Wrist");
         //LazyServo = hwMap.servo.get("Lazy");
-        HitchServo = hwMap.servo.get("Hitch");
+        //HitchServo = hwMap.servo.get("Hitch");
         ArmMotor = hwMap.get(DcMotor.class, "Arm");
-        leftFrontDrive = hwMap.get(DcMotor.class, "front_left");
-        rightFrontDrive = hwMap.get(DcMotor.class, "front_right");
-        leftBackDrive = hwMap.get(DcMotor.class, "back_left");
-        rightBackDrive = hwMap.get(DcMotor.class, "back_right");
+        //leftFrontDrive = hwMap.get(DcMotor.class, "front_left");
+        //rightFrontDrive = hwMap.get(DcMotor.class, "front_right");
+        //leftBackDrive = hwMap.get(DcMotor.class, "back_left");
+        //rightBackDrive = hwMap.get(DcMotor.class, "back_right");
 
-        leftFrontDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightFrontDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftBackDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightBackDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //leftFrontDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //rightFrontDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //leftBackDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //rightBackDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        ArmMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        leftFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        leftBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        
+        //leftFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //rightFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //leftBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ArmMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
 

@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import static java.lang.Thread.sleep;
 
-@TeleOp(name="MacenumTest", group="Opmode")
+@TeleOp(name="Old_MacenumTest", group="Opmode")
 
 public class MacenumTest extends OpMode{
     public DcMotor armMotor = null;
