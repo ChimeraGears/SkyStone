@@ -11,13 +11,13 @@ public class ArmCode1 {
 
     public boolean armOut(int brickLevel){
         int iter = 0;
-        if (brickLevel == 0){
+        if (brickLevel/4 == 0){
             robot.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
         robot.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         switch (iter){
             case 0:
-                robot.armMotor.setTargetPosition(brickLevel);
+                robot.armMotor.setTargetPosition(brickLevel/4);
                 robot.armMotor.setPower(.15);
                 iter++;
                 break;

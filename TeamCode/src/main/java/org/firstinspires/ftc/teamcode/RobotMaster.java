@@ -72,7 +72,7 @@ public class RobotMaster extends OpMode {
             robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.armMotor.setPower(.5);
         }*/
-
+        //Driving controls and maths
             leftFrontPower = Range.clip(drive + strafe + turn, -1.0, 1.0);
             leftBackPower = Range.clip(drive + strafe - turn, -1.0, 1.0);
             rightFrontPower = Range.clip(drive - strafe - turn, -1.0, 1.0);
@@ -83,9 +83,9 @@ public class RobotMaster extends OpMode {
             robot.rightFrontDrive.setPower(rightFrontPower);
             robot.leftBackDrive.setPower(leftBackPower);
             robot.rightBackDrive.setPower(rightBackPower);
-
+        //Telemetry readings
             telemetry.addData("Motor", "left (%.2f), right(%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
-            telemetry.addData("Arm Position:","(%.2d)");
+            telemetry.addData("Arm Position:","(%.2d)", brickLevel);
             telemetry.update();
         }
     }
