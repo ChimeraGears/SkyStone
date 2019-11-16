@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.util.ElapsedTime;
-@Deprecated
+/*
 public class teleOp3 extends OpMode{
     public DcMotor leftFrontDrive = null;
     public DcMotor rightFrontDrive = null;
@@ -49,3 +49,4 @@ public class teleOp3 extends OpMode{
 
     }
 }
+*/

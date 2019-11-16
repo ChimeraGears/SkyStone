@@ -6,8 +6,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 import org.firstinspires.ftc.teamcode.SleepFunction;
-@Deprecated
-@TeleOp(name="Old_TeleOp Mode!")
+/*
 public class MeetZeroTeleOp extends OpMode{
 
     HardwareMapping robot = new HardwareMapping();
@@ -56,7 +55,7 @@ public class MeetZeroTeleOp extends OpMode{
         Slide - left_bumper, right_bumper
         Claw - x, b
         Wrist - y, a
-         */
+         *
         robot.leftFrontDrive.setPower(leftFrontPower);
         robot.rightFrontDrive.setPower(rightFrontPower);
         robot.leftBackDrive.setPower(leftBackPower);
@@ -77,3 +76,4 @@ public class MeetZeroTeleOp extends OpMode{
     }
 
 }
+*/

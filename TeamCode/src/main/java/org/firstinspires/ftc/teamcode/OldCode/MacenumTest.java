@@ -1,5 +1,5 @@
 package org.firstinspires.ftc.teamcode.OldCode;
-
+/*
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -17,10 +17,10 @@ public class MacenumTest extends OpMode{
     /*public DcMotor leftFrontDrive = null;
     public DcMotor rightFrontDrive = null;
     public DcMotor leftBackDrive = null;
-    public DcMotor rightBackDrive = null;*/
+    public DcMotor rightBackDrive = null;*
     public Servo susan;
     public Servo claw;
-    @Override
+
     public void init() {
                 //servo declaration
         //susan = hardwareMap.get(Servo.class, "lazy_susan");
@@ -35,14 +35,14 @@ public class MacenumTest extends OpMode{
         leftBackDrive = hardwareMap.get(DcMotor.class,"back_left");
         rightBackDrive = hardwareMap.get(DcMotor.class,"back_right");
         //this is the part determining directions!
-        */
+        *
         armMotor.setDirection(DcMotor.Direction.FORWARD);
         /*
         leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
-         */
+         *
     }
     @Override
     public void loop(){
@@ -81,7 +81,7 @@ public class MacenumTest extends OpMode{
         /*leftFrontDrive.setPower(leftFrontPower);
         rightFrontDrive.setPower(rightFrontPower);
         leftBackDrive.setPower(leftBackPower);
-        rightBackDrive.setPower(rightBackPower);*/
+        rightBackDrive.setPower(rightBackPower);*
         armMotor.setPower(armMotorPower);
 
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
@@ -91,3 +91,4 @@ public class MacenumTest extends OpMode{
         telemetry.update();
     }
 }
+*/
