@@ -87,5 +87,21 @@ public class RobotMaster extends OpMode {
             telemetry.addData("Motor", "left (%.2f), right(%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
             telemetry.addData("Arm Position:","(%.2d)", brickLevel);
             telemetry.update();
+
+
+        double motor1power;
+        DcMotor motor1 = null;
+        double motor2power;
+        DcMotor motor2 = null;
+
+        motor1power = motor1.getPower();
+        motor2power = motor2.getPower();
+        if(motor1power != motor2power) {
+            if (motor1power < motor2power) {
+                motor1.setPower(motor1power + (motor2power - motor1power));
+            } else if (motor2power < motor1power) {
+                motor2.setPower(motor2power + (motor1power - motor2power));
+            }
+        }
         }
     }
