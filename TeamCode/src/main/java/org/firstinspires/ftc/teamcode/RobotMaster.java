@@ -15,9 +15,9 @@ public class RobotMaster extends OpMode {
 
     public void init() {
         robot.init(hardwareMap);
-        robot.leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        robot.leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        robot.leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
+        robot.leftBackDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
             //robot.armMotor.setDirection(DcMotor.Direction.REVERSE);
             //robot.collectorLeft.setDirection(DcMotor.Direction.REVERSE);
@@ -30,11 +30,18 @@ public class RobotMaster extends OpMode {
         double leftBackPower;
         double rightBackPower;
         double drive = gamepad1.left_stick_y;
-        double turn = gamepad1.right_stick_x;
-        double strafe = gamepad1.left_stick_x;
-        int brickLevel = 0;
-        double leftCollectorPower = 0;
-        double rightCollectorPower = -1*leftCollectorPower;
+        double turn = gamepad1.left_stick_x;
+        double strafe = gamepad1.right_stick_x;
+
+        //int brickLevel;
+        //double leftCollectorPower;
+        //double rightCollectorPower = -1*leftCollectorPower;
+        if (gamepad2.a){
+            robot.blockGrabber.setPosition(REV_MAX);
+        }
+        if (gamepad2.b){
+            robot.blockGrabber.setPosition(REV_MIN);
+        }
         /*
         if (gamepad1.right_bumper){
             leftCollectorPower = 1.00;
@@ -88,7 +95,7 @@ public class RobotMaster extends OpMode {
             rightFrontPower = Range.clip(drive - strafe - turn, -1.0, 1.0);
             rightBackPower = Range.clip(drive - strafe + turn, -1.0, 1.0);
             //armMotorPower = Range.clip(armPowerUp - armPowerDown, -1.0, 1.0);
-            
+
             robot.leftFrontDrive.setPower(leftFrontPower);
             robot.rightFrontDrive.setPower(rightFrontPower);
             robot.leftBackDrive.setPower(leftBackPower);

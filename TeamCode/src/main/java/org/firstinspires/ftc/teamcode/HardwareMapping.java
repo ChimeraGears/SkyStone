@@ -15,6 +15,7 @@ public class HardwareMapping {
     //public Servo WristServo;
     //public Servo LazyServo;
         //public Servo HitchServo;
+    public Servo blockGrabber;
     public DcMotor leftFrontDrive = null;
     public DcMotor rightFrontDrive = null;
     public DcMotor leftBackDrive = null;
@@ -45,19 +46,20 @@ public class HardwareMapping {
         rightFrontDrive = hwMap.get(DcMotor.class, "front_right");
         leftBackDrive = hwMap.get(DcMotor.class, "back_left");
         rightBackDrive = hwMap.get(DcMotor.class, "back_right");
+        blockGrabber = hwMap.servo.get("block_grabber");
             //collectorLeft = hwMap.get(DcMotor.class,"Collector_left");
             //collectorRight = hwMap.get(DcMotor.class,"Collector_right");
 
-        leftFrontDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightFrontDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftBackDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightBackDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //leftFrontDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //rightFrontDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //leftBackDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //rightBackDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             //armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        leftFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        leftBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //leftFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //rightFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //leftBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             //armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
