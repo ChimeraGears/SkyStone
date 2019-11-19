@@ -111,6 +111,7 @@ public class AutonomousBlue extends OpMode {
 
         robot.leftFrontDrive.setPower(leftFrontPower);
         robot.rightFrontDrive.setPower(rightFrontPower);
+        //if(robot.leftFrontDrive.get)
         robot.leftBackDrive.setPower(leftBackPower);
         robot.rightBackDrive.setPower(rightBackPower);
     }

@@ -14,8 +14,7 @@ import com.qualcomm.robotcore.util.Range;
 /*
  * Basic TeleOpMode Program to drive a two wheel robot with one joystick
  */
-@Deprecated
-@TeleOp(name="Basic Driving Mode", group="Linear Opmode")
+/*
 // @Disabled
 public class DriveRobot extends LinearOpMode {
 
@@ -69,3 +68,4 @@ public class DriveRobot extends LinearOpMode {
         }
     }
 }
+ */

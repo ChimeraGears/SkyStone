@@ -1,4 +1,5 @@
-package org.firstinspires.ftc.teamcode.AydenCode;
+package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -27,10 +28,10 @@ public class AACC extends OpMode {
 
     public void init() {
         robot.init(hardwareMap);
-        robot.ClawServo.setPosition(REV_HOME);
-        robot.WristServo.setPosition(REV_HOME);
-        robot.LazyServo.setPosition(REV_HOME);
-        robot.HitchServo.setPosition(REV_HOME);
+            //robot.ClawServo.setPosition(REV_HOME);
+        //robot.WristServo.setPosition(REV_HOME);
+        //robot.LazyServo.setPosition(REV_HOME);
+        //robot.HitchServo.setPosition(REV_HOME);
         robot.leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -70,7 +71,7 @@ public class AACC extends OpMode {
 
          */
 
-        if (gamepad1.a) {
+        /*if (gamepad1.a) {
             robot.LazyServo.setPosition(REV_MAX);
             sleep.SleepyTime(1);
             robot.ClawServo.setPosition(REV_MAX);
@@ -81,6 +82,6 @@ public class AACC extends OpMode {
             sleep.SleepyTime(1);
             robot.ClawServo.setPosition(REV_MIN);
 
-        }
+        }*/
     }
 }

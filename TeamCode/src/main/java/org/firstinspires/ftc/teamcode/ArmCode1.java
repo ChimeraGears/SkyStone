@@ -1,49 +1,57 @@
 package org.firstinspires.ftc.teamcode;
-
+/*
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.Range;
+//import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp(name="Arm Op")
-public class ArmCode1 extends OpMode{
+public class ArmCode1 {
     HardwareMapping robot = new HardwareMapping();
-    public final static double REV_MIN = 0.00;
-    public final static double REV_MAX = 1.00;
 
-    public void init() {
-        robot.init(hardwareMap);
-        robot.ArmMotor.setDirection(DcMotor.Direction.REVERSE);
-    }
-    public void loop(){
-        double armMotorPower;
-        if (gamepad1.right_bumper)
-        {
-            int iterPos;
-            if(robot.ArmMotor.getCurrentPosition()+40 <= 160) {
-                iterPos = robot.ArmMotor.getCurrentPosition()+40;
-            } else {
-                iterPos = 160;
-            }
-            encMovement(robot.ArmMotor,1,iterPos);
-
+    public boolean armOut(int brickLevel){
+        int iter = 0;
+        if (brickLevel/4 == 0){
+            robot.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
-        if (gamepad1.left_bumper)
-        {
-            int iterPos;
-            if(robot.ArmMotor.getCurrentPosition()>= 0 && robot.ArmMotor.getCurrentPosition()-40 >= 0){
-                iterPos = robot.ArmMotor.getCurrentPosition()-40;
-            } else{
-                iterPos = 0;
-            }
-            encMovement(robot.ArmMotor,1,iterPos);
-
+        robot.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        switch (iter){
+            case 0:
+                robot.armMotor.setTargetPosition(brickLevel/4);
+                robot.armMotor.setPower(.15);
+                iter++;
+                break;
+            case 1:
+                robot.ArmServo1.setPosition(1.00);
+                iter++;
+                break;
+            case 2:
+                robot.ArmServo2.setPosition(1.00);
+                iter++;
+                break;
+            case 3:
+                robot.ClawServo.setPosition(0.00);
+                break;
+            case 4:
+        }
+        return true;
+    }
+    public void armIn(){
+        int iter = 0;
+        switch (iter){
+            case 0:
+                robot.ArmServo2.setPosition(0.00);
+                iter++;
+                break;
+            case 1:
+                robot.ArmServo1.setPosition(0.00);
+                iter++;
+                break;
+            case 2:
+                robot.armMotor.setTargetPosition(0);
+                robot.armMotor.setPower(.15);
+                break;
         }
     }
-
-    public void encMovement(DcMotor motorName, double motorPower, int targetPos){
-        motorName.setTargetPosition(motorName.getCurrentPosition()+ targetPos);
-        motorName.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorName.setPower(motorPower);
-    }
-}
+}*/

@@ -1,4 +1,6 @@
+
 package org.firstinspires.ftc.teamcode.OldCode;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -7,7 +9,8 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 import org.firstinspires.ftc.teamcode.SleepFunction;
 
-@Deprecated
+
+/*
 @TeleOp(name="Old_TeleOpMode")
 public class TeleOpMode extends OpMode {
 
@@ -30,8 +33,8 @@ public class TeleOpMode extends OpMode {
     {
         robot.init(hardwareMap);
         robot.ClawServo.setPosition(REV_HOME);
-        robot.WristServo.setPosition(REV_HOME);
-        robot.LazyServo.setPosition(REV_HOME);
+        //robot.WristServo.setPosition(REV_HOME);
+        //robot.LazyServo.setPosition(REV_HOME);
         robot.HitchServo.setPosition(REV_HOME);
         robot.leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -74,7 +77,7 @@ public class TeleOpMode extends OpMode {
         Claw - x, b
         Wrist - y, a
 
-         */
+
 
         if (gamepad2.a)
         {
@@ -86,17 +89,17 @@ public class TeleOpMode extends OpMode {
             robot.ClawServo.setPosition(REV_MIN);
         }
 
-        /*if (gamepad1.y)
+        if (gamepad1.y)
         {
             robot.WristServo.setPosition(REV_MAX);
         }
-*/
+
         /*if (gamepad1.a)
         {
             robot.WristServo.setPosition(REV_MIN);
         }
-*/
-        if (gamepad1.dpad_right)
+
+        /*if (gamepad1.dpad_right)
         {
             robot.LazyServo.setPosition(REV_MAX);
         }
@@ -149,7 +152,7 @@ public class TeleOpMode extends OpMode {
                 robot.ArmServo.setPosition(armPosCheck);
                 robot.WristServo.setPosition(-1*armPosCheck);
             }
-        }*/
+        }
         /*if (gamepad1.dpad_up)
         {
             robot.ArmServo.setPower(.75);
@@ -164,7 +167,7 @@ public class TeleOpMode extends OpMode {
         {
             robot.ArmServo.setPower(0);
         }
-*/
+
         if (gamepad2.dpad_up)
         {
             robot.SlideServo.setPower(.75);
@@ -196,4 +199,4 @@ public class TeleOpMode extends OpMode {
 
 
 }
-
+*/
