@@ -12,27 +12,90 @@ public class RobotMaster extends OpMode {
         //ArmCode1 arm = new ArmCode1();
     public final static double REV_MIN = 0.00;
     public final static double REV_MAX = 1.00;
-
+    public boolean doSlowControls = false;
     public void init() {
         robot.init(hardwareMap);
-        robot.leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+        robot.leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        robot.leftBackDrive.setDirection(DcMotor.Direction.FORWARD);
+        robot.leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         robot.rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
             //robot.armMotor.setDirection(DcMotor.Direction.REVERSE);
             //robot.collectorLeft.setDirection(DcMotor.Direction.REVERSE);
             //robot.collectorRight.setDirection(DcMotor.Direction.FORWARD);
     }
 
+
     public void loop() {
+        double fastPower = .8;
+        double slowPower = .4;
         double leftFrontPower;
         double rightFrontPower;
         double leftBackPower;
         double rightBackPower;
-        double drive = gamepad1.left_stick_y;
-        double turn = gamepad1.left_stick_x;
-        double strafe = gamepad1.right_stick_x;
+        double totalPower;
+        double rotate = gamepad1.right_stick_x;
+        boolean moveForward = gamepad1.dpad_up;
+        boolean moveBackward = gamepad1.dpad_down;
+        boolean strafeLeft = gamepad1.dpad_left;
+        boolean strafeRight = gamepad1.dpad_right;
 
+        //speed toggle--untested
+        if(gamepad1.right_bumper){
+            doSlowControls = !doSlowControls;
+        }
+        double speedToggle = (doSlowControls)?slowPower:fastPower;
+        totalPower = speedToggle;
+
+        //Move Forward
+        if(moveForward){
+            leftFrontPower = totalPower;
+            rightFrontPower = totalPower;
+            leftBackPower = totalPower;
+            rightBackPower = totalPower;
+            //Move Backward
+        } else if(moveBackward){
+            leftFrontPower = -totalPower;
+            rightFrontPower = -totalPower;
+            leftBackPower = -totalPower;
+            rightBackPower = -totalPower;
+            //Strafe Light
+        } else if(strafeLeft){
+            rightFrontPower = totalPower;
+            leftBackPower = totalPower;
+            leftFrontPower = -totalPower;
+            rightBackPower = -totalPower;
+            //Strafe Right
+        } else if(strafeRight){
+            rightFrontPower = -totalPower;
+            leftBackPower = -totalPower;
+            leftFrontPower = totalPower;
+            rightBackPower = totalPower;
+            //When Busy Stuffs
+        } else {
+            leftFrontPower = totalPower-totalPower;
+            rightFrontPower = totalPower-totalPower;
+            leftBackPower = totalPower-totalPower;
+            rightBackPower = totalPower-totalPower;
+        }
+        //rotation
+        if (rotate >= 0.25 && rotate <= 1.00) {
+            leftFrontPower = totalPower;
+            rightFrontPower = -totalPower-totalPower;
+            leftBackPower = totalPower-totalPower;
+            rightBackPower = -totalPower-totalPower;
+        } else if (rotate <= -.25 && rotate >= -1.00) {
+            leftFrontPower = -totalPower-totalPower;
+            rightFrontPower = totalPower-totalPower;
+            leftBackPower = -totalPower-totalPower;
+            rightBackPower = totalPower-totalPower;
+        }
+
+
+
+        robot.leftFrontDrive.setPower(leftFrontPower);
+        robot.rightFrontDrive.setPower(rightFrontPower);
+        robot.leftBackDrive.setPower(leftBackPower);
+        robot.rightBackDrive.setPower(rightBackPower);
         //int brickLevel;
         //double leftCollectorPower;
         //double rightCollectorPower = -1*leftCollectorPower;
@@ -90,16 +153,10 @@ public class RobotMaster extends OpMode {
             robot.armMotor.setPower(.5);
         }*/
         //Driving controls and maths
-            leftFrontPower = Range.clip(drive + strafe + turn, -1.0, 1.0);
-            leftBackPower = Range.clip(drive + strafe - turn, -1.0, 1.0);
-            rightFrontPower = Range.clip(drive - strafe - turn, -1.0, 1.0);
-            rightBackPower = Range.clip(drive - strafe + turn, -1.0, 1.0);
+
             //armMotorPower = Range.clip(armPowerUp - armPowerDown, -1.0, 1.0);
 
-            robot.leftFrontDrive.setPower(leftFrontPower);
-            robot.rightFrontDrive.setPower(rightFrontPower);
-            robot.leftBackDrive.setPower(leftBackPower);
-            robot.rightBackDrive.setPower(rightBackPower);
+
             /*robot.collectorLeft.setPower(leftCollectorPower);
             robot.collectorRight.setPower(rightCollectorPower);
             */
