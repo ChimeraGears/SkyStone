@@ -35,6 +35,8 @@ public class AutonomousBlue extends OpMode {
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         robot.rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
+        robot.collectorDrop.setPosition(1.00);
+        //CONSULT RULES ON THIS ^
         state = 0;
         telemetry.addData("starting targets:","lf (%d), rf (%d), lb (%d), rb (%d)", robot.leftFrontDrive.getCurrentPosition(), robot.rightFrontDrive.getCurrentPosition(), robot.leftBackDrive.getCurrentPosition(), robot.rightBackDrive.getCurrentPosition());
 
@@ -48,12 +50,15 @@ public class AutonomousBlue extends OpMode {
         double drive = 0.50;
         double turn = 0.00;
         double strafe = 0.00;
-
+        //figure out power problem
 
         leftFrontPower = Range.clip(drive-strafe+turn,-1.0,1.0);
         leftBackPower = Range.clip(drive+strafe+turn,-1.0,1.0);
         rightFrontPower = Range.clip(drive+strafe-turn,-1.0,1.0);
         rightBackPower = Range.clip(drive-strafe-turn,-1.0,1.0);
+
+
+
 
         //encoder_drive(leftFrontPower, rightFrontPower, leftBackPower, rightBackPower, 4);
         switch (state) {

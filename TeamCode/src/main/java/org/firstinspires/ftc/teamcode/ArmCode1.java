@@ -1,5 +1,5 @@
 package org.firstinspires.ftc.teamcode;
-/*
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -12,13 +12,16 @@ public class ArmCode1 {
 
     public boolean armOut(int brickLevel){
         int iter = 0;
-        if (brickLevel/4 == 0){
+        if (brickLevel == 0){
             robot.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
-        robot.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        else {
+            robot.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
         switch (iter){
             case 0:
-                robot.armMotor.setTargetPosition(brickLevel/4);
+                robot.armMotor.setTargetPosition(brickLevel);
                 robot.armMotor.setPower(.15);
                 iter++;
                 break;
@@ -33,7 +36,6 @@ public class ArmCode1 {
             case 3:
                 robot.ClawServo.setPosition(0.00);
                 break;
-            case 4:
         }
         return true;
     }
@@ -54,4 +56,4 @@ public class ArmCode1 {
                 break;
         }
     }
-}*/
+}

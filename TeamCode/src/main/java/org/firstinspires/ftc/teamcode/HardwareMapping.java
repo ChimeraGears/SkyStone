@@ -9,9 +9,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class HardwareMapping {
 
     //public CRServo SlideServo;
-        //public Servo ArmServo1;
-        //public Servo ArmServo2;
-        //public Servo ClawServo;
+        public Servo ArmServo1;
+        public Servo ArmServo2;
+        public Servo ClawServo;
+        public Servo collectorDrop;
     //public Servo WristServo;
     //public Servo LazyServo;
         //public Servo HitchServo;
@@ -20,9 +21,9 @@ public class HardwareMapping {
     public DcMotor rightFrontDrive = null;
     public DcMotor leftBackDrive = null;
     public DcMotor rightBackDrive = null;
-        //public DcMotor armMotor = null;
-        //public DcMotor collectorLeft = null;
-        //public DcMotor collectorRight = null;
+        public DcMotor armMotor = null;
+        public DcMotor collectorLeft = null;
+        public DcMotor collectorRight = null;
 
     HardwareMap hwMap = null;
     private ElapsedTime period = new ElapsedTime();
@@ -35,20 +36,21 @@ public class HardwareMapping {
         hwMap = ahwMap;
 
         //SlideServo = hwMap.get(CRServo.class, "Slide");
-            //ArmServo1 = hwMap.servo.get("Arm_Wrist_1");
-            //ArmServo2 = hwMap.servo.get("Arm_Wrist_2");
-            //ClawServo = hwMap.servo.get("Claw");
+            ArmServo1 = hwMap.servo.get("Arm_Wrist_1");
+            ArmServo2 = hwMap.servo.get("Arm_Wrist_2");
+            ClawServo = hwMap.servo.get("Claw");
+            collectorDrop = hwMap.servo.get("front_servo");
         //WristServo = hwMap.servo.get("Wrist");
         //LazyServo = hwMap.servo.get("Lazy");
             //HitchServo = hwMap.servo.get("Hitch");
-            //armMotor = hwMap.get(DcMotor.class, "Arm");
+            armMotor = hwMap.get(DcMotor.class, "Arm");
         leftFrontDrive = hwMap.get(DcMotor.class, "front_left");
         rightFrontDrive = hwMap.get(DcMotor.class, "front_right");
         leftBackDrive = hwMap.get(DcMotor.class, "back_left");
         rightBackDrive = hwMap.get(DcMotor.class, "back_right");
         blockGrabber = hwMap.servo.get("block_grabber");
-            //collectorLeft = hwMap.get(DcMotor.class,"Collector_left");
-            //collectorRight = hwMap.get(DcMotor.class,"Collector_right");
+            collectorLeft = hwMap.get(DcMotor.class,"collector_left");
+            collectorRight = hwMap.get(DcMotor.class,"collector_right");
 
         //leftFrontDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         //rightFrontDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

@@ -9,10 +9,12 @@ import com.qualcomm.robotcore.util.Range;
 //12.1211 inches per rotation--JB
 public class RobotMaster extends OpMode {
     HardwareMapping robot = new HardwareMapping();
-        //ArmCode1 arm = new ArmCode1();
+        ArmCode1 arm = new ArmCode1();
     public final static double REV_MIN = 0.00;
     public final static double REV_MAX = 1.00;
     public boolean doSlowControls = false;
+    public int brickLevel = 0;
+    public boolean lieDetector;
     public void init() {
         robot.init(hardwareMap);
         robot.leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -33,6 +35,7 @@ public class RobotMaster extends OpMode {
         double leftBackPower;
         double rightBackPower;
         double totalPower;
+
         double rotate = gamepad1.right_stick_x;
         boolean moveForward = gamepad1.dpad_up;
         boolean moveBackward = gamepad1.dpad_down;
@@ -45,6 +48,9 @@ public class RobotMaster extends OpMode {
         }
         double speedToggle = (doSlowControls)?slowPower:fastPower;
         totalPower = speedToggle;
+
+        double leftCollectorPower = totalPower;
+        double rightCollectorPower = -1*totalPower;
 
         //Move Forward
         if(moveForward){
@@ -91,33 +97,29 @@ public class RobotMaster extends OpMode {
         }
 
 
-
         robot.leftFrontDrive.setPower(leftFrontPower);
         robot.rightFrontDrive.setPower(rightFrontPower);
         robot.leftBackDrive.setPower(leftBackPower);
         robot.rightBackDrive.setPower(rightBackPower);
-        //int brickLevel;
-        //double leftCollectorPower;
-        //double rightCollectorPower = -1*leftCollectorPower;
+
         if (gamepad2.a){
             robot.blockGrabber.setPosition(REV_MAX);
         }
         if (gamepad2.b){
             robot.blockGrabber.setPosition(REV_MIN);
         }
-        /*
+
         if (gamepad1.right_bumper){
             leftCollectorPower = 1.00;
         }
         if (gamepad1.left_bumper){
             leftCollectorPower = -1.00;
         }
-        if (gamepad1.dpad_up) {
-            robot.HitchServo.setPosition(REV_MAX);
-        }
-        if (gamepad1.dpad_down) {
-            robot.HitchServo.setPosition(REV_MIN);
-        }
+
+        robot.collectorLeft.setPower(leftCollectorPower);
+        robot.collectorRight.setPower(-1*leftCollectorPower);
+        /*
+         */
         //Arm Movement--see ArmCode1 for method details
         int brickStackTurnary = 0;
         if (gamepad2.right_bumper){
@@ -126,14 +128,17 @@ public class RobotMaster extends OpMode {
         if (gamepad2.left_bumper){
             brickStackTurnary = (brickLevel-- > 0)?brickLevel--:brickLevel;
         }
+
         if (gamepad2.a){
-            robot.ClawServo.setPosition(0);
-            boolean x = arm.armOut(brickStackTurnary);
-            if (x) {
-                arm.armIn();
-            }
+            robot.ClawServo.setPosition(1);
+            lieDetector = arm.armOut(brickStackTurnary);
         }
-        */
+        if (gamepad2.b && lieDetector == true){
+            arm.armIn();
+        }
+        //Use gamepad2.(something) for up-down
+        //Check encoder values for brickLevel nums (see diff for num)
+
         //old arm code attempts--mark_1
         /*if (gamepad1.right_bumper) {
             int iterPos = 0;
@@ -162,7 +167,7 @@ public class RobotMaster extends OpMode {
             */
         //Telemetry readings
             telemetry.addData("Motor", "left (%.2f), right(%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
-            //telemetry.addData("Arm Position:","(%.2d)", brickLevel);
+            telemetry.addData("Arm Position:","(%.2d)", brickLevel);
             //telemetry.addData("Intake:","left (%.2f), right(%.2f)",leftCollectorPower,rightCollectorPower);
             telemetry.update();
 
