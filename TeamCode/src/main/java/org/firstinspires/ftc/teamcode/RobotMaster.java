@@ -10,16 +10,18 @@ import com.qualcomm.robotcore.util.Range;
 //2240 ticks per rotation
 public class RobotMaster extends OpMode {
     HardwareMapping robot = new HardwareMapping();
-        ArmCode1 arm = new ArmCode1();
+    ArmCode1 arm = new ArmCode1();
     public final static double REV_MIN = 0.00;
     public final static double REV_MAX = 1.00;
     public boolean doSlowControls = false;
     public int brickLevel = 0;
     public boolean lieDetector;
     public int brickStackTurnary = 0;
+
+
     public void init() {
         robot.init(hardwareMap);
-        arm.init();
+    //    arm.init();
         robot.leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.leftBackDrive.setDirection(DcMotor.Direction.REVERSE);

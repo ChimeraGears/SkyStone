@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class ArmCode1 {
-
+    public int iterable = 0;
     HardwareMapping robot = new HardwareMapping();
     public ArmCode1(){
 
@@ -21,7 +21,7 @@ public class ArmCode1 {
     }
      */
     public boolean armOut(int brickLevel){
-        int iter = 0;
+
         if (brickLevel == 0){
             //robot.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
@@ -29,19 +29,19 @@ public class ArmCode1 {
             //robot.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             //robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
-        switch (iter){
+        switch (iterable){
             case 0:
                 //robot.armMotor.setTargetPosition(brickLevel);
                 robot.armMotor.setPower(.15);
-                iter++;
+                iterable++;
                 break;
             case 1:
                 robot.ArmServo1.setPosition(1.00);
-                iter++;
+                iterable++;
                 break;
             case 2:
                 robot.ArmServo2.setPosition(1.00);
-                iter++;
+                iterable++;
                 break;
             case 3:
                 robot.ClawServo.setPosition(0.00);
