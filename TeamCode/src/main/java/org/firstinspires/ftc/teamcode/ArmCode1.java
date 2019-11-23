@@ -8,20 +8,30 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class ArmCode1 {
-    HardwareMapping robot = new HardwareMapping();
 
+    HardwareMapping robot = new HardwareMapping();
+    public ArmCode1(){
+
+    }
+
+    /*public void init(){
+
+        robot.init(hardwareMap);
+        //robot.init(hardwareMap);
+    }
+     */
     public boolean armOut(int brickLevel){
         int iter = 0;
         if (brickLevel == 0){
-            robot.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            //robot.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
         else {
-            robot.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            //robot.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            //robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
         switch (iter){
             case 0:
-                robot.armMotor.setTargetPosition(brickLevel);
+                //robot.armMotor.setTargetPosition(brickLevel);
                 robot.armMotor.setPower(.15);
                 iter++;
                 break;
