@@ -10,16 +10,16 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class ArmCode1 {
     public int iterable = 0;
     HardwareMapping robot = new HardwareMapping();
+
     public ArmCode1(){
-
     }
 
-    /*public void init(){
-
-        robot.init(hardwareMap);
-        //robot.init(hardwareMap);
+    public void armServoTest(){
+        robot.ClawServo.setPosition(1.00);
+        robot.ClawServo.setPosition(0.00);
+        robot.ClawServo.setPosition(1.00);
+        robot.ClawServo.setPosition(0.00);
     }
-     */
     public boolean armOut(int brickLevel){
 
         if (brickLevel == 0){

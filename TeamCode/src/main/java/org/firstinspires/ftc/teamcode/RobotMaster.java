@@ -10,18 +10,16 @@ import com.qualcomm.robotcore.util.Range;
 //2240 ticks per rotation
 public class RobotMaster extends OpMode {
     HardwareMapping robot = new HardwareMapping();
-    ArmCode1 arm = new ArmCode1();
     public final static double REV_MIN = 0.00;
     public final static double REV_MAX = 1.00;
     public boolean doSlowControls = false;
     public int brickLevel = 0;
     public boolean lieDetector;
     public int brickStackTurnary = 0;
-
+    public int iterable;
 
     public void init() {
         robot.init(hardwareMap);
-    //    arm.init();
         robot.leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -31,7 +29,58 @@ public class RobotMaster extends OpMode {
             //robot.collectorRight.setDirection(DcMotor.Direction.FORWARD);
     }
 
+    public void armServoTest(){
+        robot.ClawServo.setPosition(1.00);
+        robot.ClawServo.setPosition(0.00);
+        robot.ClawServo.setPosition(1.00);
+        robot.ClawServo.setPosition(0.00);
+    }
+    public boolean armOut(int brickLevel){
 
+        if (brickLevel == 0){
+            //robot.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        }
+        else {
+            //robot.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            //robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        switch (iterable){
+            case 0:
+                //robot.armMotor.setTargetPosition(brickLevel);
+                robot.armMotor.setPower(.15);
+                iterable++;
+                break;
+            case 1:
+                robot.ArmServo1.setPosition(1.00);
+                iterable++;
+                break;
+            case 2:
+                robot.ArmServo2.setPosition(1.00);
+                iterable++;
+                break;
+            case 3:
+                robot.ClawServo.setPosition(0.00);
+                break;
+        }
+        return true;
+    }
+    public void armIn(){
+        int iter = 0;
+        switch (iter){
+            case 0:
+                robot.ArmServo2.setPosition(0.00);
+                iter++;
+                break;
+            case 1:
+                robot.ArmServo1.setPosition(0.00);
+                iter++;
+                break;
+            case 2:
+                robot.armMotor.setTargetPosition(0);
+                robot.armMotor.setPower(.15);
+                break;
+        }
+    }
 
     public void loop() {
         double fastPower = .8;
@@ -108,8 +157,14 @@ public class RobotMaster extends OpMode {
         robot.leftBackDrive.setPower(leftBackPower);
         robot.rightBackDrive.setPower(rightBackPower);
 
-        if (gamepad2.a){
+        if (gamepad1.a){
             robot.blockGrabber.setPosition(REV_MAX);
+        }
+        if (gamepad2.a){
+            robot.ClawServo.setPosition(1.00);
+            robot.ClawServo.setPosition(0.00);
+            robot.ClawServo.setPosition(1.00);
+            robot.ClawServo.setPosition(0.00);
         }
         if (gamepad2.b){
             robot.blockGrabber.setPosition(REV_MIN);
@@ -131,20 +186,27 @@ public class RobotMaster extends OpMode {
          */
         //Arm Movement--see ArmCode1 for method details
 
-        if (gamepad2.right_bumper){
+        /*if (gamepad2.right_bumper){
             brickStackTurnary = (brickLevel+560 < 2240)?brickLevel+560:brickLevel;
         }
         if (gamepad2.left_bumper){
             brickStackTurnary = (brickLevel-560 > 0)?brickLevel-560:brickLevel;
         }
 
+
+
         if (gamepad2.a){
             robot.ClawServo.setPosition(1);
             lieDetector = arm.armOut(brickStackTurnary);
         }
+
+
         if (gamepad2.b && lieDetector){
             arm.armIn();
         }
+
+         */
+
         //Use gamepad2.(something) for up-down
         //Check encoder values for brickLevel nums (see diff for num)
 
