@@ -81,14 +81,14 @@ public class driveTrainTeleOp extends OpMode {
         //rotation
         if (rotate >= 0.25 && rotate <= 1.00) {
             leftFrontPower = totalPower;
-            rightFrontPower = -totalPower-totalPower;
-            leftBackPower = totalPower-totalPower;
-            rightBackPower = -totalPower-totalPower;
+            rightFrontPower = -totalPower;
+            leftBackPower = totalPower;
+            rightBackPower = -totalPower;
         } else if (rotate <= -.25 && rotate >= -1.00) {
-            leftFrontPower = -totalPower-totalPower;
-            rightFrontPower = totalPower-totalPower;
-            leftBackPower = -totalPower-totalPower;
-            rightBackPower = totalPower-totalPower;
+            leftFrontPower = -totalPower;
+            rightFrontPower = totalPower;
+            leftBackPower = -totalPower;
+            rightBackPower = totalPower;
         }
 
         robot.leftFrontDrive.setPower(leftFrontPower);
