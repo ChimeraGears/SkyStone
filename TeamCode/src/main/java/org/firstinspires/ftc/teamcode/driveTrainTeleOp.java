@@ -61,16 +61,16 @@ public class driveTrainTeleOp extends OpMode {
             rightBackPower = -totalPower;
             //Strafe Light
         } else if(strafeLeft){
-            rightFrontPower = totalPower;
-            leftBackPower = totalPower;
-            leftFrontPower = -totalPower;
-            rightBackPower = -totalPower;
-            //Strafe Right
-        } else if(strafeRight){
             rightFrontPower = -totalPower;
             leftBackPower = -totalPower;
             leftFrontPower = totalPower;
             rightBackPower = totalPower;
+            //Strafe Right
+        } else if(strafeRight){
+            rightFrontPower = totalPower;
+            leftBackPower = totalPower;
+            leftFrontPower = -totalPower;
+            rightBackPower = -totalPower;
             //When Busy Stuffs
         } else {
             leftFrontPower = totalPower-totalPower;
