@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.Range;
 public class RobotMaster extends OpMode {
     HardwareMapping robot = new HardwareMapping();
     public final static double REV_MIN = 0.00;
-    public final static double REV_MAX = 1.00;
+    public final static double REV_MAX = 0.75;
     public boolean doSlowControls = false;
     public int brickLevel = 0;
     public boolean lieDetector;
@@ -161,10 +161,7 @@ public class RobotMaster extends OpMode {
             robot.blockGrabber.setPosition(REV_MAX);
         }
         if (gamepad2.a){
-            robot.ClawServo.setPosition(1.00);
-            robot.ClawServo.setPosition(0.00);
-            robot.ClawServo.setPosition(1.00);
-            robot.ClawServo.setPosition(0.00);
+            robot.ClawServo.setPosition(REV_MAX);
         }
         if (gamepad2.b){
             robot.blockGrabber.setPosition(REV_MIN);
@@ -238,6 +235,7 @@ public class RobotMaster extends OpMode {
             */
         //Telemetry readings
             telemetry.addData("Motor", "left (%.2f), right(%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
+            telemetry.addData("Servo Pos","claw (%2f)",robot.ClawServo.getPosition());
             //telemetry.addData("Arm Position:","(%.2d)", brickLevel);
             //telemetry.addData("Intake:","left (%.2f), right(%.2f)",leftCollectorPower,rightCollectorPower);
             telemetry.update();
