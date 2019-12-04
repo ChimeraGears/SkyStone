@@ -109,10 +109,6 @@ public class roboTest extends OpMode {
         if (!gamepad1.left_bumper && !gamepad1.right_bumper){
             leftCollectorPower = 0.00;
         }
-
-        robot.collectorLeft.setPower(leftCollectorPower);
-        robot.collectorRight.setPower(-1*leftCollectorPower);
-
         //Telemetry readings
         telemetry.addData("Motor", "left (%.2f), right(%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
         telemetry.addData("Servo Pos","claw (%2f)",robot.ClawServo.getPosition());

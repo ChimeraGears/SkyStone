@@ -177,8 +177,6 @@ public class RobotMaster extends OpMode {
             leftCollectorPower = 0.00;
         }
 
-        robot.collectorLeft.setPower(leftCollectorPower);
-        robot.collectorRight.setPower(-1*leftCollectorPower);
         /*
          */
         //Arm Movement--see ArmCode1 for method details
