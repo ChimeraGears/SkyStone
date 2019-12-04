@@ -140,6 +140,7 @@ public class Mark6 extends OpMode {
                     break;
             }
         }
+
         //These commands set power to each motor.
         robot.leftFrontDrive.setPower(leftFrontPower);
         robot.rightFrontDrive.setPower(rightFrontPower);

@@ -41,7 +41,7 @@ public class AutonomousBlue extends OpMode {
         telemetry.addData("starting targets:","lf (%d), rf (%d), lb (%d), rb (%d)", robot.leftFrontDrive.getCurrentPosition(), robot.rightFrontDrive.getCurrentPosition(), robot.leftBackDrive.getCurrentPosition(), robot.rightBackDrive.getCurrentPosition());
 
     }
-
+  
     public void loop() {
         double leftFrontPower;
         double rightFrontPower;
