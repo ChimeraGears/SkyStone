@@ -1,4 +1,3 @@
-package org.firstinspires.ftc.teamcode;
 /*
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -15,10 +14,10 @@ public class ArmCode1 {
     }
 
     public void armServoTest(){
-        robot.ClawServo.setPosition(1.00);
-        robot.ClawServo.setPosition(0.00);
-        robot.ClawServo.setPosition(1.00);
-        robot.ClawServo.setPosition(0.00);
+        robot.clawServo.setPosition(1.00);
+        robot.clawServo.setPosition(0.00);
+        robot.clawServo.setPosition(1.00);
+        robot.clawServo.setPosition(0.00);
     }
     public boolean armOut(int brickLevel){
 
@@ -36,15 +35,15 @@ public class ArmCode1 {
                 iterable++;
                 break;
             case 1:
-                robot.ArmServo1.setPosition(1.00);
+                robot.armServo1.setPosition(1.00);
                 iterable++;
                 break;
             case 2:
-                robot.ArmServo2.setPosition(1.00);
+                robot.armServo2.setPosition(1.00);
                 iterable++;
                 break;
             case 3:
-                robot.ClawServo.setPosition(0.00);
+                robot.clawServo.setPosition(0.00);
                 break;
         }
         return true;
@@ -53,11 +52,11 @@ public class ArmCode1 {
         int iter = 0;
         switch (iter){
             case 0:
-                robot.ArmServo2.setPosition(0.00);
+                robot.armServo2.setPosition(0.00);
                 iter++;
                 break;
             case 1:
-                robot.ArmServo1.setPosition(0.00);
+                robot.armServo1.setPosition(0.00);
                 iter++;
                 break;
             case 2:

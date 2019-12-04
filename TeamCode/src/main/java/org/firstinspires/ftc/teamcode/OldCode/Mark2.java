@@ -1,13 +1,5 @@
 
 package org.firstinspires.ftc.teamcode.OldCode;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.Range;
-
-import org.firstinspires.ftc.teamcode.HardwareMapping;
-import org.firstinspires.ftc.teamcode.SleepFunction;
 
 
 /*
@@ -32,7 +24,7 @@ public class TeleOpMode extends OpMode {
     public void init ()
     {
         robot.init(hardwareMap);
-        robot.ClawServo.setPosition(REV_HOME);
+        robot.clawServo.setPosition(REV_HOME);
         //robot.WristServo.setPosition(REV_HOME);
         //robot.LazyServo.setPosition(REV_HOME);
         robot.HitchServo.setPosition(REV_HOME);
@@ -81,12 +73,12 @@ public class TeleOpMode extends OpMode {
 
         if (gamepad2.a)
         {
-            robot.ClawServo.setPosition(REV_MAX);
+            robot.clawServo.setPosition(REV_MAX);
         }
 
         if (gamepad2.b)
         {
-            robot.ClawServo.setPosition(REV_MIN);
+            robot.clawServo.setPosition(REV_MIN);
         }
 
         if (gamepad1.y)
@@ -191,7 +183,7 @@ public class TeleOpMode extends OpMode {
     {
         robot.SlideServo.setPower(0);
         robot.ArmServo.setPosition(robot.ArmServo.getPosition());
-        robot.ClawServo.setPosition(REV_HOME);
+        robot.clawServo.setPosition(REV_HOME);
         //robot.WristServo.setPosition(REV_HOME);
         robot.LazyServo.setPosition(REV_HOME);
         robot.HitchServo.setPosition(REV_HOME);

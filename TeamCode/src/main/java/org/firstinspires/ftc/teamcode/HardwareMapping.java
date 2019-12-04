@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -9,9 +8,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class HardwareMapping {
 
     //public CRServo SlideServo;
-        public Servo ArmServo1;
-        public Servo ArmServo2;
-        public Servo ClawServo;
+        public Servo armServo1;
+        public Servo armServo2;
+        public Servo clawServo;
         public Servo collectorDrop;
     //public Servo WristServo;
     //public Servo LazyServo;
@@ -35,14 +34,14 @@ public class HardwareMapping {
         hwMap = ahwMap;
 
         //SlideServo = hwMap.get(CRServo.class, "Slide");
-            ArmServo1 = hwMap.servo.get("Arm_Wrist_1");
-            ArmServo2 = hwMap.servo.get("Arm_Wrist_2");
-            ClawServo = hwMap.servo.get("Claw");
+            armServo1 = hwMap.servo.get("wrist");
+            armServo2 = hwMap.servo.get("elbow");
+            clawServo = hwMap.servo.get("claw");
             //collectorDrop = hwMap.servo.get("front_servo");
         //WristServo = hwMap.servo.get("Wrist");
         //LazyServo = hwMap.servo.get("Lazy");
             //HitchServo = hwMap.servo.get("Hitch");
-            armMotor = hwMap.get(DcMotor.class, "Arm");
+            armMotor = hwMap.get(DcMotor.class, "arm");
         leftFrontDrive = hwMap.get(DcMotor.class, "lf");
         rightFrontDrive = hwMap.get(DcMotor.class, "rf");
         leftBackDrive = hwMap.get(DcMotor.class, "lb");
