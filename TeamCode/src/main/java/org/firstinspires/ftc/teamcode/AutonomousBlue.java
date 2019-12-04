@@ -15,7 +15,6 @@ public class AutonomousBlue extends OpMode {
     public final static double REV_MIN = 0.07;
     public final static double REV_MAX = 1.0;
     HardwareMapping robot = new HardwareMapping();
-    SleepFunction sleep = new SleepFunction();
     public final static double TICKS_PER_ROTATION = 2240;
     public final static double WHEEL_DIAMETER_INCHES = 4.0;
     public final static double TICKS_PER_INCH = (TICKS_PER_ROTATION)/(WHEEL_DIAMETER_INCHES*(Math.PI));
@@ -41,7 +40,7 @@ public class AutonomousBlue extends OpMode {
         telemetry.addData("starting targets:","lf (%d), rf (%d), lb (%d), rb (%d)", robot.leftFrontDrive.getCurrentPosition(), robot.rightFrontDrive.getCurrentPosition(), robot.leftBackDrive.getCurrentPosition(), robot.rightBackDrive.getCurrentPosition());
 
     }
-  
+
     public void loop() {
         double leftFrontPower;
         double rightFrontPower;
