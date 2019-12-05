@@ -9,13 +9,14 @@ import com.qualcomm.robotcore.util.Range;
 
 @Autonomous
 public class Mark2Auto extends OpMode{
+    Jerry jerry = new Jerry();
     public int Robotx = 0;
     public int Roboty = 0;
     public int obstacle = 1;
     public int robotLocation;
     public int locationArray[][] = new int[48][48];
-    public Object robot;
     public void init(){
+        locationArray[0][13] = 4;
         robotLocation = locationArray[Robotx][Roboty];
 
     }

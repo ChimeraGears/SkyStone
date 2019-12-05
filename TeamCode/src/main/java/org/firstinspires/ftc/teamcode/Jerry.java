@@ -2,10 +2,12 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 public class Jerry{
+    ElapsedTime clock = new ElapsedTime();
     public Jerry(){
     }
     public int xCoord;
     public int yCoord;
+    public int Location[][] = new int[48][48];
     //Location can be red box, red triangle, blue box, or blue triangle
     public void init(String location){
         if(location.equals("red box")){

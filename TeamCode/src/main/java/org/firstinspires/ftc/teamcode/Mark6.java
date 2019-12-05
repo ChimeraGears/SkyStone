@@ -38,7 +38,7 @@ public class Mark6 extends OpMode {
         robot.leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         robot.rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.armMotor.setDirection(DcMotor.Direction.REVERSE);
-        robot.collector.setDirection(DcMotor.Direction.REVERSE);
+        robot.collector.setDirection(DcMotor.Direction.FORWARD);
         //robot.collectorLeft.setDirection(DcMotor.Direction.REVERSE);
     }
 
@@ -52,7 +52,7 @@ public class Mark6 extends OpMode {
         boolean moveBackward = gamepad1.dpad_down;
         boolean strafeLeft = gamepad1.dpad_left;
         boolean strafeRight = gamepad1.dpad_right;
-        boolean collectorSwitch = gamepad2.b;
+        boolean collectorSwitch = gamepad2.x;
         boolean slowItDown = gamepad1.right_bumper;
 
         //This if statement is crucial. it allows us to
@@ -103,6 +103,7 @@ public class Mark6 extends OpMode {
             leftBackPower = totalPower-totalPower;
             rightBackPower = totalPower-totalPower;
         }
+
         //robot rotation!
         if (rotate >= 0.25 && rotate <= 1.00) {
             leftFrontPower = totalPower;
@@ -115,30 +116,23 @@ public class Mark6 extends OpMode {
             leftBackPower = -totalPower;
             rightBackPower = totalPower;
         }
-        //this will be the arm code. UNTESTED
+        //this will be the arm code. it works! (mostly)
         if (gamepad2.right_trigger > 0.60){
             armPower = gamepad2.right_trigger;
-        } else if (gamepad2.left_trigger > .60){
+        } else if (gamepad2.left_trigger > .30){
             armPower = -gamepad2.left_trigger;
         } else {
             armPower = 0.00;
         }
 
-        if ((armPower >= 0.60 && armPower <= 1.00)&&(gamepad2.a)){
-            int operation = 1;
-            switch(operation){
-                case 1:
-                    robot.clawServo.setPosition(0.80);
-                    operation++;
-                    break;
-                case 2:
-                    robot.armServo2.setPosition(0.80);
-                    operation++;
-                    break;
-                case 3:
-                    robot.armServo1.setPosition(0.80);
-                    break;
-            }
+        if (gamepad2.a){
+            robot.clawServo.setPosition(0.25);
+            robot.armServo2.setPosition(0.65);
+            robot.armServo1.setPosition(0.00);
+        }
+        if (gamepad2.b){
+            robot.armServo2.setPosition(0.00);
+            robot.armServo1.setPosition(0.00);
         }
 
         //These commands set power to each motor.
@@ -147,9 +141,35 @@ public class Mark6 extends OpMode {
         robot.leftBackDrive.setPower(leftBackPower);
         robot.rightBackDrive.setPower(rightBackPower);
         robot.armMotor.setPower(armPower);
+        robot.collector.setPower(collectorPower);
         //This is data for the drivers to see.
         telemetry.addData("Motor", "left (%.2f), right(%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
         telemetry.update();
 
+    }
+    public boolean ClawToggle  (String toggle) {
+        if (toggle.equals("Open")){
+            robot.clawServo.setPosition(0.00);
+        } else if (toggle.equals("Close")){
+            robot.clawServo.setPosition(0.75);
+        }
+        return true;
+    }
+    public boolean ElbowToggle (String toggle) {
+        if (toggle.equals("Open")){
+            robot.armServo2.setPosition(0.00);
+        } else if (toggle.equals("Close")){
+            robot.armServo2.setPosition(-0.50);
+        }
+        return true;
+    }
+    public boolean WristToggle (String toggle) {
+        if (toggle.equals("Open")){
+            robot.armServo1.setPosition(0.00);
+        }
+        if (toggle.equals("Closed")){
+            robot.armServo1.setPosition(0.75);
+        }
+        return true;
     }
 }
