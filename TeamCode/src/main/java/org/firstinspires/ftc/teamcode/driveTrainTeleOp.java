@@ -18,7 +18,7 @@ public class driveTrainTeleOp extends OpMode {
     public double rightFrontPower;
     public double leftBackPower;
     public double rightBackPower;
-
+    
     public void init() {
         robot.init(hardwareMap);
         robot.leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -61,16 +61,16 @@ public class driveTrainTeleOp extends OpMode {
             rightBackPower = -totalPower;
             //Strafe Light
         } else if(strafeLeft){
-            rightFrontPower = totalPower;
-            leftBackPower = totalPower;
-            leftFrontPower = -totalPower;
-            rightBackPower = -totalPower;
-            //Strafe Right
-        } else if(strafeRight){
             rightFrontPower = -totalPower;
             leftBackPower = -totalPower;
             leftFrontPower = totalPower;
             rightBackPower = totalPower;
+            //Strafe Right
+        } else if(strafeRight){
+            rightFrontPower = totalPower;
+            leftBackPower = totalPower;
+            leftFrontPower = -totalPower;
+            rightBackPower = -totalPower;
             //When Busy Stuffs
         } else {
             leftFrontPower = totalPower-totalPower;
