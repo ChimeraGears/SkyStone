@@ -1,18 +1,14 @@
-package org.firstinspires.ftc.teamcode;
-
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.HardwareMapping;
-import org.firstinspires.ftc.teamcode.SleepFunction;
 
 @TeleOp(name="Ayden Code")
 public class AACC extends OpMode {
 
     HardwareMapping robot = new HardwareMapping();
-    SleepFunction sleep = new SleepFunction();
     // public final static double ARM_HOME = 0.5;
     // public final static double ARM_MIN = 0.0;
     // public final static double ARM_MAX = 1.0;
@@ -28,7 +24,7 @@ public class AACC extends OpMode {
 
     public void init() {
         robot.init(hardwareMap);
-            //robot.ClawServo.setPosition(REV_HOME);
+            //robot.clawServo.setPosition(REV_HOME);
         //robot.WristServo.setPosition(REV_HOME);
         //robot.LazyServo.setPosition(REV_HOME);
         //robot.HitchServo.setPosition(REV_HOME);
@@ -74,13 +70,13 @@ public class AACC extends OpMode {
         /*if (gamepad1.a) {
             robot.LazyServo.setPosition(REV_MAX);
             sleep.SleepyTime(1);
-            robot.ClawServo.setPosition(REV_MAX);
+            robot.clawServo.setPosition(REV_MAX);
         }
 
         if (gamepad1.b) {
             robot.LazyServo.setPosition(REV_MIN);
             sleep.SleepyTime(1);
-            robot.ClawServo.setPosition(REV_MIN);
+            robot.clawServo.setPosition(REV_MIN);
 
         }*/
     }
