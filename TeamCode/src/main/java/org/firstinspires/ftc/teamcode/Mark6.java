@@ -18,7 +18,7 @@ public class Mark6 extends OpMode {
     //and realized that if ewe made them global they would actually
     //function. This was a small hurdle that took weeks to see.
     public boolean doSlowControls = false;
-    public boolean doCollection = false;
+    public int doCollection = 0;
     public double totalPower;
     public double fastPower = .9;
     public double slowPower = fastPower/2;
@@ -52,25 +52,31 @@ public class Mark6 extends OpMode {
         boolean moveBackward = gamepad1.dpad_down;
         boolean strafeLeft = gamepad1.dpad_left;
         boolean strafeRight = gamepad1.dpad_right;
-        boolean collectorSwitch = gamepad2.x;
+        boolean collectorIn = gamepad2.x;
+        boolean collectorOut = gamepad2.y;
         boolean slowItDown = gamepad1.right_bumper;
-
+        boolean speedItUp = gamepad2.left_bumper;
         //This if statement is crucial. it allows us to
         //slow down or speed up driving with a single button.
         if(slowItDown){
-            doSlowControls = !doSlowControls;
+            doSlowControls = true;
+        } else if (speedItUp){
+            doSlowControls = false;
         }
         //This piece of code allows us to turn on and off the collector
-        //with one button.
-        if(collectorSwitch){
-            doCollection = !doCollection;
+        if(collectorIn){
+            doCollection = 2;
+            collectorPower = 0.90;
+        } else if (gamepad2.right_stick_button){
+            doCollection = 1;
+            collectorPower = 0.00;
+        } else if (collectorOut){
+            doCollection = 0;
+            collectorPower = -0.90;
         }
 
-        //This stuff works! But the collector is UNTESTED
-        double collectorToggle = (doCollection)?1.00:0.00;
         double speedToggle = (doSlowControls)?slowPower:fastPower;
         totalPower = speedToggle;
-        collectorPower = collectorToggle;
         //Drive forward
         if(moveForward){
             leftFrontPower = totalPower;
@@ -84,13 +90,13 @@ public class Mark6 extends OpMode {
             leftBackPower = -totalPower;
             rightBackPower = -totalPower;
             //This chunk of code allows our robot to strafe.
-        } else if(strafeLeft){
+        } else if(strafeRight){
             rightFrontPower = -totalPower;
             leftBackPower = -totalPower;
             leftFrontPower = totalPower;
             rightBackPower = totalPower;
 
-        } else if(strafeRight){
+        } else if(strafeLeft){
             rightFrontPower = totalPower;
             leftBackPower = totalPower;
             leftFrontPower = -totalPower;
@@ -145,8 +151,8 @@ public class Mark6 extends OpMode {
         //This is data for the drivers to see.
         telemetry.addData("Motor", "left (%.2f), right(%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
         telemetry.update();
-
     }
+
     public boolean ClawToggle  (String toggle) {
         if (toggle.equals("Open")){
             robot.clawServo.setPosition(0.00);
