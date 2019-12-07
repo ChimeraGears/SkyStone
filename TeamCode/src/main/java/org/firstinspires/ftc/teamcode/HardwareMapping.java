@@ -8,10 +8,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class HardwareMapping {
 
     //public CRServo SlideServo;
-        public Servo armServo1;
-        public Servo armServo2;
-        public Servo clawServo;
-        public Servo collectorDrop;
+    public Servo armServo1;
+    public Servo armServo2;
+    public Servo clawServo;
+    public Servo collectorDrop;
+    public Servo flipBlock;
     //public Servo WristServo;
     //public Servo LazyServo;
         public Servo HitchServo;
@@ -20,7 +21,7 @@ public class HardwareMapping {
     public DcMotor rightFrontDrive = null;
     public DcMotor leftBackDrive = null;
     public DcMotor rightBackDrive = null;
-        public DcMotor armMotor = null;
+    public DcMotor armMotor = null;
     public DcMotor collector = null;
 
     HardwareMap hwMap = null;
@@ -33,15 +34,16 @@ public class HardwareMapping {
 
         hwMap = ahwMap;
 
-        //SlideServo = hwMap.get(CRServo.class, "Slide");
-            armServo1 = hwMap.servo.get("wrist");
-            armServo2 = hwMap.servo.get("elbow");
-            clawServo = hwMap.servo.get("claw");
-            //collectorDrop = hwMap.servo.get("front_servo");
+            //SlideServo = hwMap.get(CRServo.class, "Slide");
+        armServo1 = hwMap.servo.get("wrist");
+        armServo2 = hwMap.servo.get("elbow");
+        clawServo = hwMap.servo.get("claw");
+        flipBlock = hwMap.servo.get("flip");
+        collectorDrop = hwMap.servo.get("drop");
         //WristServo = hwMap.servo.get("Wrist");
         //LazyServo = hwMap.servo.get("Lazy");
             //HitchServo = hwMap.servo.get("Hitch");
-            armMotor = hwMap.get(DcMotor.class, "arm");
+        armMotor = hwMap.get(DcMotor.class, "arm");
         leftFrontDrive = hwMap.get(DcMotor.class, "lf");
         rightFrontDrive = hwMap.get(DcMotor.class, "rf");
         leftBackDrive = hwMap.get(DcMotor.class, "lb");
