@@ -138,7 +138,6 @@ public class Mark7 extends OpMode {
         if(singleLoopRun == 0){
             robot.collectorDrop.setPosition(1.00);
             robot.clawServo.setPosition(1.00);
-            robot.clawServo.setPosition(1.00);
             singleLoopRun = 1;
         }
         //This if statement is crucial. it allows us to
@@ -268,7 +267,7 @@ public class Mark7 extends OpMode {
 
     public void retractArm(){
         robot.armServo1.setPosition(0.00);
-        robot.armServo2.setPosition(-0.10);
+        robot.armServo2.setPosition(-0.05);
     }
     public void extendArm(){
         robot.armServo1.setPosition(0.46);
