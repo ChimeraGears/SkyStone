@@ -83,8 +83,7 @@ public class AutonomousBlue extends OpMode {
                 robot.rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 break;
         }
-
-
+        
         telemetry.addData("Motors", "left , right ", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
         telemetry.addData("encoderPosition", "lf (%d), rf (%d), lb (%d), rb (%d)", LFpos,RFpos,LBpos,RBpos);
         telemetry.addData("encoder targets","lf (%d), rf (%d), lb (%d), rb (%d)",targetFL,targetFR,targetBL,targetBR);
