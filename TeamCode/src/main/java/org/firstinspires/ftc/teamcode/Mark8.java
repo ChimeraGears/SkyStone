@@ -8,15 +8,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 //12.1211 inches per rotation--JB
 //2240 ticks per rotation
 public class Mark8 extends OpMode{
-    public HardwareMapping robot  = new HardwareMapping();
+    public HardwareMapping robot    = new HardwareMapping();
     //We had a lot of difficulty in making power controls that worked,
     //and realized that if we made them global they would actually
     //function. This was a small hurdle that took weeks to see.
-    public boolean doSlowControls = false;
-    public int     doCollection   = 0;
-    public double  totalPower     = 0;
-    public double  fastPower      = .9;
-    public double  slowPower      = fastPower/2;
+    public boolean doSlowControls   = false;
+    public int     doCollection     = 0;
+    public double  totalPower       = 0;
+    public double  fastPower        = .9;
+    public double  slowPower        = fastPower/2;
     public double  leftFrontPower;
     public double  rightFrontPower;
     public double  leftBackPower;

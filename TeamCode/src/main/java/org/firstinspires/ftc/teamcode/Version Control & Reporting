@@ -80,9 +80,21 @@ Hardware Mapping--
     of our motors, servos, and other mechanical components.
     Created for modularity.
 ------------------------------------------
+------------------------------------------
 VuforiaIDTest--
     Our first usage of the Vuforia color sensor.
     Sensors are hard!
+------------------------------------------
+------------------------------------------
+AutoCommands--
+    A file containing the bare bones of the necessary
+    commands for autonomous. In reference, it is called as
+    cmd.*
+------------------------------------------
+-----------------------------------------
+AutonomousFile--
+    Runnable autonomous file.
+------------------------------------------
 ------------------------------------------
 AACC--
     A team-member's side-project, put in the same

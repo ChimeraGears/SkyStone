@@ -1,24 +1,21 @@
 package org.firstinspires.ftc.teamcode;
 //A tick is .0056 inches
 //1 inch is 178.57 ticks
-import java.util.Timer;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Hardware;
 import com.qualcomm.robotcore.util.Range;
 
 @Autonomous (name="Blue Auto 1")
-public class AutonomousBlue extends OpMode {
+public class AutonomousFile extends OpMode {
 
     public final static double REV_MIN = 0.07;
     public final static double REV_MAX = 1.0;
     HardwareMapping robot = new HardwareMapping();
-    AutoFuncts cmd = new AutoFuncts();
-    public final static double TICKS_PER_ROTATION = 2240;
+    AutoCommands cmd        = new AutoCommands();
+    public final static double TICKS_PER_ROTATION    = 2240;
     public final static double WHEEL_DIAMETER_INCHES = 4.0;
-    public final static double TICKS_PER_INCH = (TICKS_PER_ROTATION)/(WHEEL_DIAMETER_INCHES*(Math.PI));
+    public final static double TICKS_PER_INCH        = (TICKS_PER_ROTATION)/(WHEEL_DIAMETER_INCHES*(Math.PI));
     public int state;
     public int targetFL = 0;
     public int targetFR = 0;
@@ -32,47 +29,52 @@ public class AutonomousBlue extends OpMode {
     public double rightFrontPower;
     public double leftBackPower;
     public double rightBackPower;
-    public double drive = 0.50;
-    public double turn = 0.00;
+    public double drive  = 0.50;
+    public double turn   = 0.00;
     public double strafe = 0.00;
     public void init() {
         robot.init(hardwareMap);
-        cmd.init(4,WHEEL_DIAMETER_INCHES,TICKS_PER_ROTATION);
-        robot.leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        cmd  .init(4,WHEEL_DIAMETER_INCHES,TICKS_PER_ROTATION);
+        robot.leftFrontDrive .setDirection(DcMotor.Direction.REVERSE);
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        robot.leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
-        robot.rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
-        robot.collectorDrop.setPosition(1.00);
+        robot.leftBackDrive  .setDirection(DcMotor.Direction.REVERSE);
+        robot.rightBackDrive .setDirection(DcMotor.Direction.FORWARD);
+        robot.collectorDrop  .setPosition(1.00);
         //CONSULT RULES ON THIS ^
         state = 0;
         telemetry.addData("starting targets:","lf (%d), rf (%d), lb (%d), rb (%d)", robot.leftFrontDrive.getCurrentPosition(), robot.rightFrontDrive.getCurrentPosition(), robot.leftBackDrive.getCurrentPosition(), robot.rightBackDrive.getCurrentPosition());
-
     }
-
+    public void single_Loop() {
+        int runOnce = 0;
+        robot.collectorDrop.setPosition(1.00);
+        robot.clawServo    .setPosition(1.00);
+        runOnce = 1;
+    }
     public void loop() {
         double leftFrontPower;
         double rightFrontPower;
         double leftBackPower;
         double rightBackPower;
-        double drive = 0.50;
-        double turn = 0.00;
-        double strafe = 0.00;
+        double drive    = 0.50;
+        double turn     = 0.00;
+        double strafe   = 0.00;
         //figure out power problem
-
-        leftFrontPower = Range.clip(drive-strafe+turn,-1.0,1.0);
-        leftBackPower = Range.clip(drive+strafe+turn,-1.0,1.0);
+        leftFrontPower  = Range.clip(drive-strafe+turn,-1.0,1.0);
+        leftBackPower   = Range.clip(drive+strafe+turn,-1.0,1.0);
         rightFrontPower = Range.clip(drive+strafe-turn,-1.0,1.0);
-        rightBackPower = Range.clip(drive-strafe-turn,-1.0,1.0);
+        rightBackPower  = Range.clip(drive-strafe-turn,-1.0,1.0);
+
+        single_Loop();
 
         boolean tester = requestAction();
         telemetry.addData("case","%d", tester);
-        telemetry.update();
+        telemetry.update     ();
         if(tester){
             tester = doAction();
             telemetry.addData("case","%d", tester);
-            telemetry.update();
+            telemetry.update ();
             if (tester){
-                resetMotors();
+                resetMotors  ();
             }
         }
 
@@ -107,8 +109,7 @@ public class AutonomousBlue extends OpMode {
         telemetry.addData("encoderPosition", "lf (%d), rf (%d), lb (%d), rb (%d)", LFpos,RFpos,LBpos,RBpos);
         telemetry.addData("encoder targets","lf (%d), rf (%d), lb (%d), rb (%d)",targetFL,targetFR,targetBL,targetBR);
         telemetry.addData("case","%d", tester);
-        telemetry.update();
-
+        telemetry.update ();
     }
 
     public boolean targetsReached(){
