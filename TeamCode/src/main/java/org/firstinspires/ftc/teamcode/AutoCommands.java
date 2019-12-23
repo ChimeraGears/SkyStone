@@ -7,7 +7,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class AutoFuncts extends AutonomousBlue{
     public int motorNum = 0;
     public double ticksPerInch = 0;
-
+    public double drive = 0;
+    public double turn = 0;
+    public double strafe = 0;
     public AutoFuncts(){
     }
 
@@ -37,7 +39,7 @@ public class AutoFuncts extends AutonomousBlue{
         robot.rightBackDrive.setPower(rightBackPower);
     }
     public void rotate(double leftFrontPower, double rightFrontPower, double leftBackPower, double rightBackPower, double angleInInches){
-
+        //IMPORTANT: Use negatives for left, and positives for right
         targetFL=robot.leftFrontDrive.getCurrentPosition()+(int)(angleInInches*TICKS_PER_INCH);
         targetBL=robot.leftBackDrive.getCurrentPosition()+(int)(angleInInches*TICKS_PER_INCH);
         targetFR=robot.rightFrontDrive.getCurrentPosition()+(int)(-angleInInches*TICKS_PER_INCH);
@@ -70,4 +72,6 @@ public class AutoFuncts extends AutonomousBlue{
     public boolean targetsReached(){
         return((LFpos>=targetFL && RBpos>=targetBR) || (LFpos>=targetFL && RFpos>=targetFR) || (LBpos>=targetBL && RFpos>=targetFR) || (LBpos>=targetBL && RBpos >=targetBL));
     }
+
+
 }

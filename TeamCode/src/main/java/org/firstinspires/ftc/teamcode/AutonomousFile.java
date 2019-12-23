@@ -28,7 +28,13 @@ public class AutonomousBlue extends OpMode {
     public int RFpos;
     public int LBpos;
     public int RBpos;
-
+    public double leftFrontPower;
+    public double rightFrontPower;
+    public double leftBackPower;
+    public double rightBackPower;
+    public double drive = 0.50;
+    public double turn = 0.00;
+    public double strafe = 0.00;
     public void init() {
         robot.init(hardwareMap);
         cmd.init(4,WHEEL_DIAMETER_INCHES,TICKS_PER_ROTATION);
@@ -58,13 +64,25 @@ public class AutonomousBlue extends OpMode {
         rightFrontPower = Range.clip(drive+strafe-turn,-1.0,1.0);
         rightBackPower = Range.clip(drive-strafe-turn,-1.0,1.0);
 
-        switch (state) {
+        boolean tester = requestAction();
+        telemetry.addData("case","%d", tester);
+        telemetry.update();
+        if(tester){
+            tester = doAction();
+            telemetry.addData("case","%d", tester);
+            telemetry.update();
+            if (tester){
+                resetMotors();
+            }
+        }
+
+        /** switch (state) {
             case 0:
                 cmd.drive(leftFrontPower,rightFrontPower,leftBackPower,rightBackPower, 5);
                 state++;
                 break;
             case 1:
-                if(targetsReached()) {
+                if(targetsReached()){
                     state++;
                 }
                 LFpos = robot.leftFrontDrive.getCurrentPosition();
@@ -83,16 +101,35 @@ public class AutonomousBlue extends OpMode {
                 robot.rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 break;
         }
-        
+        */
+
         telemetry.addData("Motors", "left , right ", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
         telemetry.addData("encoderPosition", "lf (%d), rf (%d), lb (%d), rb (%d)", LFpos,RFpos,LBpos,RBpos);
         telemetry.addData("encoder targets","lf (%d), rf (%d), lb (%d), rb (%d)",targetFL,targetFR,targetBL,targetBR);
-        telemetry.addData("case","%d", state);
+        telemetry.addData("case","%d", tester);
         telemetry.update();
 
     }
 
     public boolean targetsReached(){
         return((LFpos>=targetFL && RBpos>=targetBR) || (LFpos>=targetFL && RFpos>=targetFR) || (LBpos>=targetBL && RFpos>=targetFR) || (LBpos>=targetBL && RBpos >=targetBL));
+    }
+
+    public boolean requestAction() {
+        cmd.drive(leftFrontPower,rightFrontPower,leftBackPower,rightBackPower,5);
+        return true;
+    }
+    public boolean doAction()      {
+        return targetsReached();
+    }
+    public void resetMotors()      {
+        robot.leftFrontDrive.setPower(0);
+        robot.rightFrontDrive.setPower(0);
+        robot.leftBackDrive.setPower(0);
+        robot.rightBackDrive.setPower(0);
+        robot.leftFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.leftBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.rightFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 }
