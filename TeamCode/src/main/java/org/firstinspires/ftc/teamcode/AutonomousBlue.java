@@ -15,6 +15,7 @@ public class AutonomousBlue extends OpMode {
     public final static double REV_MIN = 0.07;
     public final static double REV_MAX = 1.0;
     HardwareMapping robot = new HardwareMapping();
+    AutoFuncts cmd = new AutoFuncts();
     public final static double TICKS_PER_ROTATION = 2240;
     public final static double WHEEL_DIAMETER_INCHES = 4.0;
     public final static double TICKS_PER_INCH = (TICKS_PER_ROTATION)/(WHEEL_DIAMETER_INCHES*(Math.PI));
@@ -30,6 +31,7 @@ public class AutonomousBlue extends OpMode {
 
     public void init() {
         robot.init(hardwareMap);
+        cmd.init(4,WHEEL_DIAMETER_INCHES,TICKS_PER_ROTATION);
         robot.leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -56,17 +58,13 @@ public class AutonomousBlue extends OpMode {
         rightFrontPower = Range.clip(drive+strafe-turn,-1.0,1.0);
         rightBackPower = Range.clip(drive-strafe-turn,-1.0,1.0);
 
-
-
-
-        //encoder_drive(leftFrontPower, rightFrontPower, leftBackPower, rightBackPower, 4);
         switch (state) {
             case 0:
-                encoder_drive(leftFrontPower,rightFrontPower,leftBackPower,rightBackPower, 5);
+                cmd.drive(leftFrontPower,rightFrontPower,leftBackPower,rightBackPower, 5);
                 state++;
                 break;
             case 1:
-                if(targets_reached()) {
+                if(targetsReached()) {
                     state++;
                 }
                 LFpos = robot.leftFrontDrive.getCurrentPosition();
@@ -86,6 +84,7 @@ public class AutonomousBlue extends OpMode {
                 break;
         }
 
+
         telemetry.addData("Motors", "left , right ", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
         telemetry.addData("encoderPosition", "lf (%d), rf (%d), lb (%d), rb (%d)", LFpos,RFpos,LBpos,RBpos);
         telemetry.addData("encoder targets","lf (%d), rf (%d), lb (%d), rb (%d)",targetFL,targetFR,targetBL,targetBR);
@@ -93,30 +92,8 @@ public class AutonomousBlue extends OpMode {
         telemetry.update();
 
     }
-    public boolean targets_reached(){
-        return ((LFpos > targetFL - 50 && LFpos < targetFL)&&(RFpos > targetFR - 50 && RFpos < targetFR)&&(LBpos > targetBL - 50 && LBpos < targetBL)&&(RBpos > targetBR - 50 && RBpos < targetBR));
-    }
-    public void encoder_drive(double leftFrontPower, double rightFrontPower, double leftBackPower, double rightBackPower, double inches){
 
-        targetFL=robot.leftFrontDrive.getCurrentPosition()+(int)(inches*TICKS_PER_INCH);
-        targetFR=robot.rightFrontDrive.getCurrentPosition()+(int)(inches*TICKS_PER_INCH);
-        targetBL=robot.leftBackDrive.getCurrentPosition()+(int)(inches*TICKS_PER_INCH);
-        targetBR=robot.rightBackDrive.getCurrentPosition()+(int)(inches*TICKS_PER_INCH);
-
-        robot.leftFrontDrive.setTargetPosition(targetFL);
-        robot.rightFrontDrive.setTargetPosition(targetFR);
-        robot.leftBackDrive.setTargetPosition(targetBL);
-        robot.rightBackDrive.setTargetPosition(targetBR);
-
-        robot.leftFrontDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.rightFrontDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.leftBackDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.rightBackDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        robot.leftFrontDrive.setPower(leftFrontPower);
-        robot.rightFrontDrive.setPower(rightFrontPower);
-        //if(robot.leftFrontDrive.get)
-        robot.leftBackDrive.setPower(leftBackPower);
-        robot.rightBackDrive.setPower(rightBackPower);
+    public boolean targetsReached(){
+        return((LFpos>=targetFL && RBpos>=targetBR) || (LFpos>=targetFL && RFpos>=targetFR) || (LBpos>=targetBL && RFpos>=targetFR) || (LBpos>=targetBL && RBpos >=targetBL));
     }
 }

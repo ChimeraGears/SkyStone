@@ -1,13 +1,14 @@
+/*import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.Range;
 
-package org.firstinspires.ftc.teamcode.OldCode;
+import org.firstinspires.ftc.teamcode.HardwareMapping;
 
-
-/*
-@TeleOp(name="Old_TeleOpMode")
-public class TeleOpMode extends OpMode {
+@TeleOp(name="Mark2")
+public class Mark2 extends OpMode {
 
     HardwareMapping robot = new HardwareMapping();
-    SleepFunction sleep = new SleepFunction();
     // public final static double ARM_HOME = 0.5;
     // public final static double ARM_MIN = 0.0;
     // public final static double ARM_MAX = 1.0;
@@ -68,7 +69,7 @@ public class TeleOpMode extends OpMode {
         Slide - left_bumper, right_bumper
         Claw - x, b
         Wrist - y, a
-
+        *
 
 
         if (gamepad2.a)
@@ -81,16 +82,6 @@ public class TeleOpMode extends OpMode {
             robot.clawServo.setPosition(REV_MIN);
         }
 
-        if (gamepad1.y)
-        {
-            robot.WristServo.setPosition(REV_MAX);
-        }
-
-        /*if (gamepad1.a)
-        {
-            robot.WristServo.setPosition(REV_MIN);
-        }
-
         /*if (gamepad1.dpad_right)
         {
             robot.LazyServo.setPosition(REV_MAX);
@@ -100,6 +91,7 @@ public class TeleOpMode extends OpMode {
         {
             robot.LazyServo.setPosition(REV_MIN);
         }
+         *
 
         if (gamepad1.dpad_up)
         {
@@ -112,54 +104,50 @@ public class TeleOpMode extends OpMode {
         }
         if(gamepad2.left_trigger > 0.50)
         {
-            if(robot.ArmServo.getPosition()<1.00)
+            if(robot.armServo1.getPosition()<1.00)
             {
-                double armPosCheck = robot.ArmServo.getPosition();
+                double armPosCheck = robot.armServo1.getPosition();
                 armPosCheck += 0.10;
-                robot.ArmServo.setPosition(armPosCheck);
-                robot.WristServo.setPosition(-1*armPosCheck);
+                robot.armServo1.setPosition(armPosCheck);
             }
         }
 
         if(leftTriggerButton)
         {
-            robot.ArmMotor.setPower(0.10);
-            sleep.SleepyTime(1);
+            robot.armMotor.setPower(0.10);
             leftTriggerButton = false;
         }
         if(rightTriggerButton)
         {
-            robot.ArmMotor.setPower(-0.10);
-            sleep.SleepyTime(1);
+            robot.armMotor.setPower(-0.10);
             rightTriggerButton = false;
         }
 
 
-        /*if(gamepad2.right_trigger > 0.50)
+        if(gamepad2.right_trigger > 0.50)
         {
-            if(robot.ArmServo.getPosition()>0.00)
+            if(robot.armServo1.getPosition()>0.00)
             {
-                double armPosCheck = robot.ArmServo.getPosition();
+                double armPosCheck = robot.armServo1.getPosition();
                 armPosCheck -= 0.10;
-                robot.ArmServo.setPosition(armPosCheck);
-                robot.WristServo.setPosition(-1*armPosCheck);
+                robot.armServo1.setPosition(armPosCheck);
             }
         }
-        /*if (gamepad1.dpad_up)
+        if (gamepad1.dpad_up)
         {
-            robot.ArmServo.setPower(.75);
+            robot.armServo1.setPosition(.75);
         }
 
         else if (gamepad1.dpad_down)
         {
-            robot.ArmServo.setPower(-.75);
+            robot.armServo1.setPosition(-.75);
         }
 
         else
         {
-            robot.ArmServo.setPower(0);
+            robot.armServo1.setPosition(0);
         }
-
+        /*
         if (gamepad2.dpad_up)
         {
             robot.SlideServo.setPower(.75);
@@ -174,6 +162,7 @@ public class TeleOpMode extends OpMode {
         {
             robot.SlideServo.setPower(0);
         }
+        *
 
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
         telemetry.update();
@@ -181,14 +170,15 @@ public class TeleOpMode extends OpMode {
 
     public void stop ()
     {
-        robot.SlideServo.setPower(0);
-        robot.ArmServo.setPosition(robot.ArmServo.getPosition());
+        //robot.SlideServo.setPower(0);
+        //robot.ArmServo.setPosition(robot.ArmServo.getPosition());
         robot.clawServo.setPosition(REV_HOME);
         //robot.WristServo.setPosition(REV_HOME);
-        robot.LazyServo.setPosition(REV_HOME);
+        //robot.LazyServo.setPosition(REV_HOME);
         robot.HitchServo.setPosition(REV_HOME);
     }
-
-
 }
-*/
+
+*
+
+ */

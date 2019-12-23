@@ -10,30 +10,30 @@ the code very much.
 ------------------------------------------
 Contributors-- JB & SB
 ------------------------------------------
-Mark 1 teleOp--
+Mark 1 teleOp-- (sep 13)
     We learned how to make a motor move!
     We are both new to Programming robots, especially
     with First's unique jargon.
 ------------------------------------------
-Mark 2 teleOp--
+Mark 2 teleOp-- (sep 27)
     We tested out several different strategies, in order
     to learn the coding style better.
 ------------------------------------------
-Mark 3 teleOp--
+Mark 3 teleOp-- (oct 14)
     A lot of progress has happened since last time. We
     figured out a basic, four wheel, tank drive teleOp!
 ------------------------------------------
-Mark 4 teleOp--
+Mark 4 teleOp-- (oct 19)
     We recently purchased mecanum wheels. They are small,
     but allow for a more dynamic robot. We are brainstorming
     how to code a lazy-susan, but we speculate that it will
     be unnecessary (the robot can now turn in place!)
 ------------------------------------------
-Mark 4.5 teleOp-- (Meet Zero)
+Mark 4.5 teleOp-- (Meet Zero) (nov 2)
     There were major, necessary edits to the code. Some of it
     does not work. We will be using a push-bot for this competition.
 ------------------------------------------
-Mark 5 teleOp-- (Meets One and Two)
+Mark 5 teleOp-- (Meets One and Two) (nov 16)(dec 7)
     This competition, we once again had to make major cuts. We will,
     once again, be reduced to a push bot. The lazy susan has been
     removed, and new arm designs are being brainstormed.
@@ -43,7 +43,7 @@ Mark 6 is just a cleaner, more organized Mark 5. There is no
 separate Mark 5 file.
 ------------------------------------------
 ------------------------------------------
-Mark 6 teleOp--
+Mark 6 teleOp-- (November 9)
     With the new arm built, new wheels put on, and streamlined
     controls, we can finally start to move on to auto. This code
     requires more testing. Many new features, including:
@@ -55,6 +55,24 @@ Mark 6 teleOp--
         * Added comments
      *And other, minor bug fixes
 ------------------------------------------
+------------------------------------------
+Mark 7 teleOp-- (November 29)
+    With major cleanup issues, we now have a clunky (working) robot.
+    These features include:
+    * Clear statement of each function
+    * Some modularization
+    * minor bug fixes
+    * deletion of dysfunctional code
+------------------------------------------
+------------------------------------------
+Mark 8 teleOp (December 21, 2019)--
+    Many changes, including optimization of current code. As the robot's
+    function has been updated, so has the code.
+    These features include:
+    * Even spacing of code pieces
+    * Optimization updates
+    * bug fixes
+    * new organizational fixes
 ------------------------------------------
 ------------------------------------------
 Hardware Mapping--

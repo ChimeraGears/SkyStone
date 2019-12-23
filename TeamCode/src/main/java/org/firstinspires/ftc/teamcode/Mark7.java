@@ -1,3 +1,4 @@
+
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -73,8 +74,6 @@ public class Mark7 extends OpMode {
      * -- x button      - Flip in block
      **/
 
-
-
     //////////////////////////////////////
 
     public void loop() {
@@ -143,7 +142,7 @@ public class Mark7 extends OpMode {
         //This if statement is crucial. it allows us to
         //slow down or speed up driving, for better precision in-game.
 
-        //Gamepad1://
+        //Gamepad1:
         //Speed controls
         if(slowItDown){
             doSlowControls = true;
