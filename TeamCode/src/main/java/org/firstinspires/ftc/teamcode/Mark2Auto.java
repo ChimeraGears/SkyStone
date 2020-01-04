@@ -17,12 +17,8 @@ public class Mark2Auto extends OpMode{
     public int robotLocation;
     public int locationArray[][] = new int[48][48];
     public double a = 90;
-    public double b;
-    public double c;
-    public double A;
-    public double B;
-    public double C;
-
+    public double b, c, A, B, C;
+    public double currentDirection;
     public void init(){
         locationArray[0][13] = 4;
         robotLocation = locationArray[Robotx][Roboty];
@@ -42,6 +38,14 @@ public class Mark2Auto extends OpMode{
             if(Roboty<17){
                 cmd.rotate(.75,.75,.75,.75,round(travelAngle));
                 cmd.drive(.75,.75,.75,.75,checkerDist);
+            } else {
+                //THIS WON'T WORK BUT IT IS THE BASIC PRINCIPLE
+                double directionClone = currentDirection;
+                double directionSetter = 90-directionClone;
+                double angleCorrection = directionSetter+directionClone;
+                double courseCorrection = robotLocation - Math.abs(17-robotLocation);
+                cmd.rotate(.75,.75,.75,.75,angleCorrection);
+                cmd.drive(.75,.75,.75,.75,courseCorrection);
             }
         }
     }

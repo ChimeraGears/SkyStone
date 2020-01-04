@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class AutoCommands extends AutonomousFile {
+    public Mark2Auto navi = new Mark2Auto();
     public int    motorNum     = 0;
     public double ticksPerInch = 0;
     public double drive        = 0;
@@ -58,6 +59,8 @@ public void rotate(double leftFrontPower, double rightFrontPower, double leftBac
     robot.rightFrontDrive.setPower(rightFrontPower);
     robot.leftBackDrive  .setPower(leftBackPower);
     robot.rightBackDrive .setPower(rightBackPower);
+
+    navi.currentDirection = angleInInches;
 }
 public void utility(DcMotor motor, double motorPower){
         motor.setPower(motorPower);
