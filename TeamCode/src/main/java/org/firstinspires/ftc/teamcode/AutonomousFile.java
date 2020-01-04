@@ -6,13 +6,13 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
-@Autonomous (name="Blue Auto 1")
+@Autonomous (name="Auto")
 public class AutonomousFile extends OpMode {
 
     public final static double REV_MIN = 0.07;
     public final static double REV_MAX = 1.0;
     HardwareMapping robot = new HardwareMapping();
-    AutoCommands cmd        = new AutoCommands();
+    AutoCommands cmd      = new AutoCommands();
     public final static double TICKS_PER_ROTATION    = 2240;
     public final static double WHEEL_DIAMETER_INCHES = 4.0;
     public final static double TICKS_PER_INCH        = (TICKS_PER_ROTATION)/(WHEEL_DIAMETER_INCHES*(Math.PI));
@@ -39,8 +39,6 @@ public class AutonomousFile extends OpMode {
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.leftBackDrive  .setDirection(DcMotor.Direction.REVERSE);
         robot.rightBackDrive .setDirection(DcMotor.Direction.FORWARD);
-        robot.collectorDrop  .setPosition(1.00);
-        //CONSULT RULES ON THIS ^
         state = 0;
         telemetry.addData("starting targets:","lf (%d), rf (%d), lb (%d), rb (%d)", robot.leftFrontDrive.getCurrentPosition(), robot.rightFrontDrive.getCurrentPosition(), robot.leftBackDrive.getCurrentPosition(), robot.rightBackDrive.getCurrentPosition());
     }
@@ -55,9 +53,7 @@ public class AutonomousFile extends OpMode {
         double rightFrontPower;
         double leftBackPower;
         double rightBackPower;
-        double drive    = 0.50;
-        double turn     = 0.00;
-        double strafe   = 0.00;
+
         //figure out power problem
         leftFrontPower  = Range.clip(drive-strafe+turn,-1.0,1.0);
         leftBackPower   = Range.clip(drive+strafe+turn,-1.0,1.0);
@@ -66,11 +62,11 @@ public class AutonomousFile extends OpMode {
 
         single_Loop();
 
-        boolean tester = requestAction();
+        boolean tester = doAction();
         telemetry.addData("case","%d", tester);
         telemetry.update     ();
         if(tester){
-            tester = doAction();
+            tester = isComplete();
             telemetry.addData("case","%d", tester);
             telemetry.update ();
             if (tester){
@@ -84,7 +80,7 @@ public class AutonomousFile extends OpMode {
                 state++;
                 break;
             case 1:
-                if(targetsReached()){
+                if(isComplete()){
                     state++;
                 }
                 LFpos = robot.leftFrontDrive.getCurrentPosition();
@@ -112,18 +108,16 @@ public class AutonomousFile extends OpMode {
         telemetry.update ();
     }
 
-    public boolean targetsReached(){
+    public boolean isComplete(){
         return((LFpos>=targetFL && RBpos>=targetBR) || (LFpos>=targetFL && RFpos>=targetFR) || (LBpos>=targetBL && RFpos>=targetFR) || (LBpos>=targetBL && RBpos >=targetBL));
     }
 
-    public boolean requestAction() {
+    //for testing purposes--will probably be string based eventually
+    public boolean doAction()    {
         cmd.drive(leftFrontPower,rightFrontPower,leftBackPower,rightBackPower,5);
         return true;
     }
-    public boolean doAction()      {
-        return targetsReached();
-    }
-    public void resetMotors()      {
+    public void resetMotors()    {
         robot.leftFrontDrive.setPower(0);
         robot.rightFrontDrive.setPower(0);
         robot.leftBackDrive.setPower(0);

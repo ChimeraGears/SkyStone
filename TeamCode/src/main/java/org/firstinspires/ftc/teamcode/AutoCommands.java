@@ -68,7 +68,7 @@ public void utility(DcMotor motor, double motorPower, int targetMotorPosition){
 public void utility(Servo servo, double servoPosition){
         servo.setPosition(servoPosition);
     }
-public boolean targetsReached(){
+public boolean isComplete(){
         return((LFpos>=targetFL && RBpos>=targetBR) || (LFpos>=targetFL && RFpos>=targetFR) || (LBpos>=targetBL && RFpos>=targetFR) || (LBpos>=targetBL && RBpos >=targetBL));
     }
 }
