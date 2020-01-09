@@ -7,9 +7,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Hardware;
 import com.qualcomm.robotcore.util.Range;
 
-@Autonomous
-public class Mark2Auto extends OpMode{
-    AutoCommands cmd = new AutoCommands();
+@Autonomous (name = "Mark Two Auto")
+public class Navigation extends OpMode{
     Jerry jerry = new Jerry();
     public int Robotx = 0;
     public int Roboty = 0;
@@ -29,7 +28,7 @@ public class Mark2Auto extends OpMode{
     }
     public void stop(){
     }
-    public void instruct(String targetLocation, int directionInInches){
+    /*public void instruct(String targetLocation, int directionInInches){
         if(targetLocation.equals("BluePlatform.left")){
             int newerX = 11;
             int newerY = 5;
@@ -49,6 +48,7 @@ public class Mark2Auto extends OpMode{
             }
         }
     }
+     */
 
     public void instruct(String targetLocation){
 

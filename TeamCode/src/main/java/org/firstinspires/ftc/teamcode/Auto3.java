@@ -1,29 +1,24 @@
 package org.firstinspires.ftc.teamcode;
-//A tick is .0056 inches
-//1 inch is 178.57 ticks
-/*import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
-*/
-//@Autonomous (name="Autonomous File 1")
-/*public class AutonomousFile extends OpMode {
 
+@Autonomous (name = "Auto 3")
+public class Auto3 extends OpMode {
     public final static double REV_MIN = 0.07;
     public final static double REV_MAX = 1.0;
-    HardwareMapping robot = new HardwareMapping();
-    AutoCommands cmd      = new AutoCommands();
-    public final static double TICKS_PER_ROTATION    = 2240;
-    public final static double WHEEL_DIAMETER_INCHES = 4.0;
-    public final static double TICKS_PER_INCH        = (TICKS_PER_ROTATION)/(WHEEL_DIAMETER_INCHES*(Math.PI));
+    HardwareMapping robot    = new HardwareMapping();
+    private AutoCommands cmd = new AutoCommands();
+    private final static double TICKS_PER_ROTATION    = 2240;
+    private final static double WHEEL_DIAMETER_INCHES = 4.0;
+    public final static double TICKS_PER_INCH         = (TICKS_PER_ROTATION)/(WHEEL_DIAMETER_INCHES*(Math.PI));
     int targetFL = 0;
     int targetFR = 0;
     int targetBL = 0;
     int targetBR = 0;
-    int LFpos;
-    int RFpos;
-    int LBpos;
-    int RBpos;
+
     public double leftFrontPower;
     public double rightFrontPower;
     public double leftBackPower;
@@ -38,9 +33,10 @@ import com.qualcomm.robotcore.util.Range;
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.leftBackDrive  .setDirection(DcMotor.Direction.REVERSE);
         robot.rightBackDrive .setDirection(DcMotor.Direction.FORWARD);
-        int state = 0;
-        telemetry.addData("starting targets:","lf (%d), rf (%d), lb (%d), rb (%d)", robot.leftFrontDrive.getCurrentPosition(), robot.rightFrontDrive.getCurrentPosition(), robot.leftBackDrive.getCurrentPosition(), robot.rightBackDrive.getCurrentPosition());
+
+        //telemetry.addData("starting targets:","lf (%d), rf (%d), lb (%d), rb (%d)", robot.leftFrontDrive.getCurrentPosition(), robot.rightFrontDrive.getCurrentPosition(), robot.leftBackDrive.getCurrentPosition(), robot.rightBackDrive.getCurrentPosition());
     }
+
     private void single_Loop() {
         int runOnce = 0;
         while(runOnce == 0) {
@@ -49,6 +45,7 @@ import com.qualcomm.robotcore.util.Range;
             runOnce = 1;
         }
     }
+
     public void loop() {
 
         //figure out power problem
@@ -57,38 +54,71 @@ import com.qualcomm.robotcore.util.Range;
         rightFrontPower = Range.clip(drive+strafe-turn,-1.0,1.0);
         rightBackPower  = Range.clip(drive-strafe-turn,-1.0,1.0);
 
-        single_Loop();
+        int LFpos = cmd.LFpos;
+        int RFpos = cmd.RFpos;
+        int LBpos = cmd.LBpos;
+        int RBpos = cmd.RBpos;
 
-        boolean tester = doAction();
-        telemetry.addData("case","%d", tester);
-        telemetry.update();
-        if(tester){
-            tester = isComplete();
+        single_Loop();
+        int i = 1;
+        if(i == 1){
+            doAction();
+            int tester = 1;
             telemetry.addData("case","%d", tester);
-            telemetry.update ();
-            if (tester){
-                resetMotors  ();
-            }
+            telemetry.update();
+            isComplete(LFpos,RFpos,LBpos,RBpos);
+            tester = 2;
+            telemetry.update();
+            resetMotors();
+            tester = 3;
+            telemetry.update();
+            i = i+1;
         }
 
-
+        /** switch (state) {
+         case 0:
+         cmd.drive(leftFrontPower,rightFrontPower,leftBackPower,rightBackPower, 5);
+         state++;
+         break;
+         case 1:
+         if(isComplete()){
+         state++;
+         }
+         LFpos = robot.leftFrontDrive.getCurrentPosition();
+         RFpos = robot.rightFrontDrive.getCurrentPosition();
+         LBpos = robot.leftBackDrive.getCurrentPosition();
+         RBpos = robot.rightBackDrive.getCurrentPosition();
+         break;
+         case 2:
+         robot.leftFrontDrive.setPower(0);
+         robot.rightFrontDrive.setPower(0);
+         robot.leftBackDrive.setPower(0);
+         robot.rightBackDrive.setPower(0);
+         robot.leftFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+         robot.leftBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+         robot.rightFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+         robot.rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+         break;
+         }
+         */
 
         telemetry.addData("Motors", "left , right ", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
         telemetry.addData("encoderPosition", "lf (%d), rf (%d), lb (%d), rb (%d)", LFpos,RFpos,LBpos,RBpos);
         telemetry.addData("encoder targets","lf (%d), rf (%d), lb (%d), rb (%d)",targetFL,targetFR,targetBL,targetBR);
-        telemetry.addData("case","%d", tester);
         telemetry.update ();
     }
 
-    public boolean isComplete()  {
-        return((LFpos>=targetFL && RBpos>=targetBR) || (LFpos>=targetFL && RFpos>=targetFR) || (LBpos>=targetBL && RFpos>=targetFR) || (LBpos>=targetBL && RBpos >=targetBL));
-    }
     //for testing purposes--will probably be string based eventually
     public boolean doAction()    {
         cmd.drive(leftFrontPower,rightFrontPower,leftBackPower,rightBackPower,5);
         return true;
     }
-    public void resetMotors()    {
+
+    public boolean isComplete(int LFpos, int RBpos, int RFpos, int LBpos)  {
+        return((LFpos>=targetFL && RBpos>=targetBR) || (LFpos>=targetFL && RFpos>=targetFR) || (LBpos>=targetBL && RFpos>=targetFR) || (LBpos>=targetBL && RBpos >=targetBL));
+    }
+
+    public boolean resetMotors() {
         robot.leftFrontDrive.setPower(0);
         robot.rightFrontDrive.setPower(0);
         robot.leftBackDrive.setPower(0);
@@ -97,33 +127,6 @@ import com.qualcomm.robotcore.util.Range;
         robot.leftBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        return true;
     }
 }
- */
-
-/** switch (state) {
- case 0:
- cmd.drive(leftFrontPower,rightFrontPower,leftBackPower,rightBackPower, 5);
- state++;
- break;
- case 1:
- if(isComplete()){
- state++;
- }
- LFpos = robot.leftFrontDrive.getCurrentPosition();
- RFpos = robot.rightFrontDrive.getCurrentPosition();
- LBpos = robot.leftBackDrive.getCurrentPosition();
- RBpos = robot.rightBackDrive.getCurrentPosition();
- break;
- case 2:
- robot.leftFrontDrive.setPower(0);
- robot.rightFrontDrive.setPower(0);
- robot.leftBackDrive.setPower(0);
- robot.rightBackDrive.setPower(0);
- robot.leftFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
- robot.leftBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
- robot.rightFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
- robot.rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
- break;
- }
- */
