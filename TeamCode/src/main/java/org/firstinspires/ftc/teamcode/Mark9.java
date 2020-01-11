@@ -41,7 +41,7 @@ public class Mark9 extends OpMode {
         Range.clip(clawOut,0.00,1.00);
         double clawIn      = gamepad2.right_stick_y;
         Range.clip(clawIn,-1.00,0.00);
-        
+
         boolean openClaw   = gamepad2.a;
         boolean closeClaw  = gamepad2.b;
 
