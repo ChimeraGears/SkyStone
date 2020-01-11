@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class AutoCommands{
 
     public HardwareMapping robot = new HardwareMapping();
+
     public int    motorNum     = 0;
     public double ticksPerInch = 0;
     public double drive        = 0;
@@ -13,7 +14,7 @@ public class AutoCommands{
     public double strafe       = 0;
     private final static double TICKS_PER_ROTATION    = 2240;
     private final static double WHEEL_DIAMETER_INCHES = 4.0;
-    public final static double TICKS_PER_INCH        = (TICKS_PER_ROTATION)/(WHEEL_DIAMETER_INCHES*(Math.PI));
+    public final static double TICKS_PER_INCH         = (TICKS_PER_ROTATION)/(WHEEL_DIAMETER_INCHES*(Math.PI));
     public int targetFL, targetFR, targetBL, targetBR;
     public int LFpos, RFpos, LBpos, RBpos;
 public AutoCommands(){}

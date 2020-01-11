@@ -28,7 +28,7 @@ public class Navigation extends OpMode{
     }
     public void stop(){
     }
-    /*public void instruct(String targetLocation, int directionInInches){
+    /**public void instruct(String targetLocation, int directionInInches){
         if(targetLocation.equals("BluePlatform.left")){
             int newerX = 11;
             int newerY = 5;
