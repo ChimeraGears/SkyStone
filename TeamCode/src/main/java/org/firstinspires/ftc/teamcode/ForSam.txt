@@ -1,0 +1,6 @@
+Sam, this is where I (Jayson) will be telling you things that must change, and what is
+currently going on.
+
+    1. We are using files that begin with "motor" such as motorAuto.java and motorTest.java. These
+    two classes are the autonomous and telemetry-Op files, respectively. If you ever are confused about
+    something in a file, WRITE IT HERE.
