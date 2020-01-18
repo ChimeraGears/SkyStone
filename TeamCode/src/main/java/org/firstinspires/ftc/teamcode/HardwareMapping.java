@@ -14,20 +14,24 @@ public class HardwareMapping {
     public Servo     clawServo;
     public Servo collectorDrop;
     public Servo     flipBlock;
-    public Servo       upServo;  //!
+    public CRServo    upServo;  //!
     public CRServo    outServo; //!
     //public Servo WristServo;
     //public Servo LazyServo;
     public Servo HitchServo;
     public Servo blockGrabber;
+
     public DcMotor leftFrontDrive  = null;
     public DcMotor rightFrontDrive = null;
     public DcMotor leftBackDrive   = null;
     public DcMotor rightBackDrive  = null;
-    public DcMotor armMotor  = null;
-    public DcMotor collector = null;
 
+    public DcMotor armMotor  = null;
+    public DcMotor collectorLeft = null;
+    public DcMotor collectorRight = null;
     HardwareMap hwMap = null;
+
+    public DcMotor outMotor = null;
     private ElapsedTime period = new ElapsedTime();
 
     public HardwareMapping() {
@@ -38,22 +42,24 @@ public class HardwareMapping {
         hwMap = ahwMap;
 
             //SlideServo = hwMap.get(CRServo.class, "Slide");
-        armServo1 = hwMap    .servo  .get("wrist");
-        armServo2 = hwMap    .servo  .get("elbow");
-        clawServo = hwMap    .servo  .get("claw");
-        flipBlock = hwMap    .servo  .get("flip");
-        collectorDrop = hwMap.servo  .get("drop");
-        upServo   = hwMap    .servo  .get("upServo");   //!
-        outServo  = hwMap    .crservo.get("outServo");  //!
+        //armServo1 = hwMap    .servo  .get("wrist");
+        //armServo2 = hwMap    .servo  .get("elbow");
+        //clawServo = hwMap    .servo  .get("claw");
+        //flipBlock = hwMap    .servo  .get("flip");
+       // collectorDrop = hwMap.servo  .get("drop");
+        //upServo   = hwMap    .crservo  .get("upServo");   //the Servo that goes up
+        //outServo  = hwMap    .crservo.get("outServo");  //the Servo that goes out
             //WristServo = hwMap.servo.get("Wrist");
             //LazyServo = hwMap.servo.get("Lazy");
             //HitchServo = hwMap.servo.get("Hitch");
-        armMotor        = hwMap.get(DcMotor.class, "arm");
+        //armMotor        = hwMap.get(DcMotor.class, "arm");
         leftFrontDrive  = hwMap.get(DcMotor.class, "lf");
         rightFrontDrive = hwMap.get(DcMotor.class, "rf");
         leftBackDrive   = hwMap.get(DcMotor.class, "lb");
-        rightBackDrive  = hwMap.get(DcMotor.class, "rb");
-        collector       = hwMap.get(DcMotor.class, "c");
+        rightBackDrive  = hwMap.get(DcMotor.class, "motor1");
+        collectorLeft   = hwMap.get(DcMotor.class, "cl");
+        collectorRight  = hwMap.get(DcMotor.class,"cr");
+        //outMotor = hwMap.get(DcMotor.class,"outMotor");
             //blockGrabber = hwMap.servo.get("block_grabber");
             //collectorLeft = hwMap.get(DcMotor.class,"collector_left");
             //collectorRight = hwMap.get(DcMotor.class,"collector_right");

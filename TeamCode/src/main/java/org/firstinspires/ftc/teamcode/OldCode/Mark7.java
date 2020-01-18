@@ -35,7 +35,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
         robot.leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         robot.rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.armMotor.setDirection(DcMotor.Direction.REVERSE);
-        robot.collector.setDirection(DcMotor.Direction.FORWARD);
+        robot.collectorLeft.setDirection(DcMotor.Direction.FORWARD);
     }
 
     /**
@@ -50,9 +50,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
      * -- Left on right Joystick  - Rotate left
      * -- Right on right Joystick - Rotate right
      ------------------------------------------------
-     * -- a button                - Turn on collector
-     * -- b button                - Turn off collector
-     * -- right Joystick button   - Reverse collector
+     * -- a button                - Turn on collectorLeft
+     * -- b button                - Turn off collectorLeft
+     * -- right Joystick button   - Reverse collectorLeft
      ------------------------------------------------
      * -- right bumper - Turn on slow controls
      * -- left bumper  - Turn off slow controls
@@ -87,9 +87,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * -- Left on right Joystick  - Rotate left
  * -- Right on right Joystick - Rotate right
  ------------------------------------------------
- * -- a button                - Turn on collector
- * -- b button                - Turn off collector
- * -- right Joystick button   - Reverse collector
+ * -- a button                - Turn on collectorLeft
+ * -- b button                - Turn off collectorLeft
+ * -- right Joystick button   - Reverse collectorLeft
  ------------------------------------------------
  * -- right bumper - Turn on slow controls
  * -- left bumper  - Turn off slow controls
@@ -149,7 +149,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
         }
         totalPower = (doSlowControls)?slowPower:fastPower;
 
-        //This piece of code allows us to turn on, reverse, and off the collector.
+        //This piece of code allows us to turn on, reverse, and off the collectorLeft.
         if(collectorIn){
             doCollection = 2;
             collectorPower = 1.00;
@@ -255,7 +255,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
         robot.leftBackDrive.setPower(leftBackPower);
         robot.rightBackDrive.setPower(rightBackPower);
         robot.armMotor.setPower(armPower);
-        robot.collector.setPower(collectorPower);
+        robot.collectorLeft.setPower(collectorPower);
         //This is data for the drivers to see.
         telemetry.addData("Motor", "left (%.2f), right(%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
         telemetry.update();

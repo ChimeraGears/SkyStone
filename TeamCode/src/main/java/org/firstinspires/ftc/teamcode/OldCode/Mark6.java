@@ -38,7 +38,7 @@ public class Mark6 extends OpMode {
         robot.leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         robot.rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
         robot.armMotor.setDirection(DcMotor.Direction.REVERSE);
-        robot.collector.setDirection(DcMotor.Direction.FORWARD);
+        robot.collectorLeft.setDirection(DcMotor.Direction.FORWARD);
         //robot.collectorLeft.setDirection(DcMotor.Direction.REVERSE);
     }
 
@@ -63,7 +63,7 @@ public class Mark6 extends OpMode {
         } else if (speedItUp){
             doSlowControls = false;
         }
-        //This piece of code allows us to turn on and off the collector
+        //This piece of code allows us to turn on and off the collectorLeft
         if(collectorIn){
             doCollection = 2;
             collectorPower = 0.90;
@@ -147,7 +147,7 @@ public class Mark6 extends OpMode {
         robot.leftBackDrive.setPower(leftBackPower);
         robot.rightBackDrive.setPower(rightBackPower);
         robot.armMotor.setPower(armPower);
-        robot.collector.setPower(collectorPower);
+        robot.collectorLeft.setPower(collectorPower);
         //This is data for the drivers to see.
         telemetry.addData("Motor", "left (%.2f), right(%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
         telemetry.update();

@@ -9,38 +9,41 @@ import com.qualcomm.robotcore.util.Range;
 public class Mark9 extends OpMode {
     public HardwareMapping robot = new HardwareMapping();
     public double lfPower, rfPower, lbPower, rbPower;
-
+    public int zed;
     public void init(){
         robot.init(hardwareMap);
 
-        robot.leftFrontDrive. setDirection(DcMotor.Direction.REVERSE);
+        robot.leftFrontDrive .setDirection(DcMotor.Direction.REVERSE);
         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        robot.leftBackDrive.  setDirection(DcMotor.Direction.REVERSE);
-        robot.rightBackDrive. setDirection(DcMotor.Direction.FORWARD);
+        robot.leftBackDrive  .setDirection(DcMotor.Direction.REVERSE);
+        robot.rightBackDrive .setDirection(DcMotor.Direction.FORWARD);
+        robot.collectorLeft  .setDirection(DcMotor.Direction.FORWARD);
+        robot.collectorRight .setDirection(DcMotor.Direction.REVERSE);
+        robot.outMotor       .setDirection(DcMotor.Direction.REVERSE);
+        zed = 0;
     }
 
-    public void single(){
-        robot.clawServo.setPosition(0);
-        robot.clawServo.setPosition(1);
+    public void single(int i){
+        if(i == 0) {
+            robot.clawServo.setPosition(0);
+            robot.clawServo.setPosition(0);
+        }
     }
 
     public void loop(){
-        single();
-
+        single(zed);
+        zed = 1;
         boolean doMoveForward  = gamepad1.dpad_up;
         boolean doMoveBackward = gamepad1.dpad_down;
         boolean doStrafeLeft   = gamepad1.dpad_left;
         boolean doStrafeRight  = gamepad1.dpad_right;
         double doRotate        = gamepad1.right_stick_x;
         boolean doCollect      = gamepad1.a;
+        boolean outCollect     = gamepad1.b;
 
-        double liftUp      = gamepad2.left_stick_y;
-        double liftDown    = -gamepad2.left_stick_y;
+        double liftUp      = -gamepad2.left_stick_y;
 
-        double clawOut     = gamepad2.right_stick_y;
-        Range.clip(clawOut,0.00,1.00);
-        double clawIn      = gamepad2.right_stick_y;
-        Range.clip(clawIn,-1.00,0.00);
+        double clawOut     = -gamepad2.right_stick_y;
 
         boolean openClaw   = gamepad2.a;
         boolean closeClaw  = gamepad2.b;
@@ -75,14 +78,13 @@ public class Mark9 extends OpMode {
             lfPower  =  0.00;
             rbPower  =  0.00;
         }
-        //(951)-331-0925
-        if (doRotate >= 0.25 && doRotate <= 1.00)       {
+
+        if (doRotate >= 0.25 && doRotate <= 1.00)        {
             lfPower  =  0.75;
             rfPower  = -0.75;
             lbPower  =  0.75;
             rbPower  = -0.75;
         }
-
         else if (doRotate <= -0.25 && doRotate >= -1.00) {
             lfPower  = -0.75;
             rfPower  =  0.75;
@@ -90,23 +92,31 @@ public class Mark9 extends OpMode {
             rbPower  =  0.75;
         }
 
-        robot.leftFrontDrive .setPower(lfPower);
-        robot.leftBackDrive  .setPower(lbPower);
-        robot.rightFrontDrive.setPower(rfPower);
-        robot.leftBackDrive  .setPower(rbPower);
+        if(doCollect){
+            robot.collectorLeft .setPower(-1.00);
+            robot.collectorRight.setPower(-1.00);
+        }
+        else if(outCollect){
+            robot.collectorLeft .setPower(1.00);
+            robot.collectorRight.setPower(1.00);
+        }
+        else{
+            robot.collectorLeft .setPower(0.00);
+            robot.collectorRight.setPower(0.00);
+        }
 
-        if((clawOut > 0.00 || clawIn > 0.00) && !(clawOut > 0.00 && clawIn > 0.00)){
-            robot.outServo.setPower(clawOut + clawIn);
-        }
-        else {
-            robot.outServo.setPower(0);
-        }
-        robot.upServo.setPosition(liftUp + liftDown);
 
         if(closeClaw)
             robot.clawServo.setPosition(1.00);
         if(openClaw)
             robot.clawServo.setPosition(0.00);
+
+        robot.leftFrontDrive .setPower(lfPower);
+        robot.leftBackDrive  .setPower(lbPower);
+        robot.rightFrontDrive.setPower(rfPower);
+        robot.leftBackDrive  .setPower(rbPower);
+        robot.outMotor       .setPower(clawOut);
+        robot.upServo        .setPower(liftUp);
 
         telemetry.addData("Front Motors", "left front (%.2f), right front(%.2f)", lfPower, rfPower);
         telemetry.addData("Back Motors",  "left back (%.2f), right back(%.2f)",   lbPower,rbPower);
