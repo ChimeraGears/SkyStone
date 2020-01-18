@@ -1,8 +1,8 @@
-package org.firstinspires.ftc.teamcode;
-
+/*
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import org.firstinspires.ftc.teamcode.HardwareMapping;
 
 
 //Arm   - dpad.up, dpad.down
@@ -179,3 +179,5 @@ public class Mark6 extends OpMode {
         return true;
     }
 }
+
+ */

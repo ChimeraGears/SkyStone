@@ -14,10 +14,10 @@ import static java.lang.Thread.sleep;
 
 public class MacenumTest extends OpMode{
     public DcMotor armMotor = null;
-    /*public DcMotor leftFrontDrive = null;
+    public DcMotor leftFrontDrive = null;
     public DcMotor rightFrontDrive = null;
     public DcMotor leftBackDrive = null;
-    public DcMotor rightBackDrive = null;*
+    public DcMotor rightBackDrive = null;
     public Servo susan;
     public Servo claw;
 
@@ -29,20 +29,20 @@ public class MacenumTest extends OpMode{
         claw = hardwareMap.servo.get("claw");
                 //names of motors here must match their names in the phone
         armMotor = hardwareMap.get(DcMotor.class, "arm_motor");
-        /*
+
         leftFrontDrive = hardwareMap.get(DcMotor.class,"front_left");
         rightFrontDrive = hardwareMap.get(DcMotor.class,"front_right");
         leftBackDrive = hardwareMap.get(DcMotor.class,"back_left");
         rightBackDrive = hardwareMap.get(DcMotor.class,"back_right");
         //this is the part determining directions!
-        *
+
         armMotor.setDirection(DcMotor.Direction.FORWARD);
-        /*
+
         leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
-         *
+
     }
     @Override
     public void loop(){
@@ -78,7 +78,7 @@ public class MacenumTest extends OpMode{
         rightBackPower = Range.clip(drive-strafe-turn,-1.0,1.0);
         armMotorPower = Range.clip(lift+drop,-1.0,1.0);
 
-        /*leftFrontDrive.setPower(leftFrontPower);
+        leftFrontDrive.setPower(leftFrontPower);
         rightFrontDrive.setPower(rightFrontPower);
         leftBackDrive.setPower(leftBackPower);
         rightBackDrive.setPower(rightBackPower);*
