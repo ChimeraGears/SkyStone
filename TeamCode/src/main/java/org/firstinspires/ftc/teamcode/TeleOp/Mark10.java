@@ -1,11 +1,13 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name = "motorTest")
-public class motorTest extends OpMode {
+import org.firstinspires.ftc.teamcode.HardwareMapping;
+
+@TeleOp(name = "Mark10")
+public class Mark10 extends OpMode {
 
         public HardwareMapping robot = new HardwareMapping();
         public double lfPower, rfPower, lbPower, rbPower;

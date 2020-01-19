@@ -1,24 +1,32 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@Autonomous (name = "motorAuto")
-public class motorAuto extends LinearOpMode {
+import org.firstinspires.ftc.teamcode.HardwareMapping;
+
+
+@Autonomous (name = "RedSquareBlueTriangleFarPark")
+public class RedSquareBlueTriangleFarPark extends LinearOpMode {
 
     HardwareMapping robot = new HardwareMapping();
 
     public double lfPower, rfPower, lbPower, rbPower;
     public double collectorPower;
 
-    public boolean doMoveForward;
-    public boolean doMoveBackward;
-    public boolean doStrafeLeft;
-    public boolean doStrafeRight;
+    public boolean doMoveForward, doMoveBackward;
+    public boolean doStrafeLeft, doStrafeRight;
     public double  doRotate;
-    public boolean doCollection;
-    public boolean reverseCollection;
+    public boolean doCollection, reverseCollection;
+
+    public int currentX = 0, currentY = 0;
+    public int targetX, targetY;
+    public double currentAngle;
+    public int[][] digitalField = new int[48][48];
+
+    public final double TICKS_PER_INCH = 2240*4*Math.PI;
+
 
 
     @Override
@@ -41,14 +49,22 @@ public class motorAuto extends LinearOpMode {
         doCollection      = false;
         reverseCollection = false;
 
-        
+
         waitForStart();
         //main body of code
         if(isStarted())
         while(opModeIsActive()){
-
             updateDriving();
+            doMoveForward = true;
+            updateDriving();
+            sleep(1000);
+            doMoveForward = false;
+            doStrafeLeft = true;
+            updateDriving();
+            sleep(1250);
+            doStrafeLeft = false;
             idle();
+            break;
         }
 
         //Use While Loops Here for big stuff--this runs sequentially
@@ -59,7 +75,9 @@ public class motorAuto extends LinearOpMode {
         // put idle() at the end of the loop **always**
         //***After*** the while loop, put any necessary termination code
     }
+    public void updatePosition(){
 
+    }
     public void updateDriving(){
         if(doCollection){
             collectorPower = 1.00;
@@ -71,13 +89,13 @@ public class motorAuto extends LinearOpMode {
             collectorPower = 0.00;
         }
 
-        if(doMoveForward){
+        if(doMoveBackward){
             lfPower  = 0.75;
             lbPower  = 0.75;
             rfPower  = 0.75;
             rbPower  = 0.75;
         }
-        else if(doMoveBackward){
+        else if(doMoveForward){
             lfPower  = -0.75;
             lbPower  = -0.75;
             rfPower  = -0.75;
