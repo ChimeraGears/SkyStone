@@ -11,7 +11,7 @@ public class Mark10 extends OpMode {
 
         public HardwareMapping robot = new HardwareMapping();
         public double lfPower, rfPower, lbPower, rbPower;
-        public double collectorPower;
+        public double collectorPower, outMotorPower;
         public void init(){
             robot.init(hardwareMap);
 
@@ -21,6 +21,8 @@ public class Mark10 extends OpMode {
             robot.rightBackDrive .setDirection(DcMotor.Direction.FORWARD);
             robot.collectorLeft  .setDirection(DcMotor.Direction.REVERSE);
             robot.collectorRight .setDirection(DcMotor.Direction.FORWARD);
+            robot.outMotor       .setDirection(DcMotor.Direction.REVERSE);
+
         }
 
         public void loop(){
@@ -31,7 +33,9 @@ public class Mark10 extends OpMode {
             boolean doStrafeRight     = gamepad1.dpad_right;
             double  doRotate          = gamepad1.right_stick_x;
             boolean doCollection      = gamepad1.right_trigger > 0.05;
-            boolean reverseCollection = gamepad1.left_trigger > 0.05;
+            boolean reverseCollection = gamepad1.left_trigger  > 0.05;
+            boolean doMoveOut         = gamepad2.right_trigger > 0.05;
+            boolean doMoveIn          = gamepad2.left_trigger  > 0.05;
 
             if(doCollection){
                 collectorPower = 1.00;
@@ -42,14 +46,22 @@ public class Mark10 extends OpMode {
             else{
                 collectorPower = 0.00;
             }
-
-            if(doMoveForward){
+            if(doMoveIn){
+                outMotorPower = 1.00;
+            }
+            else if(doMoveOut){
+                outMotorPower = -1.00;
+            }
+            else{
+                outMotorPower = 0.00;
+            }
+            if(doMoveBackward){
                 lfPower  = 0.75;
                 lbPower  = 0.75;
                 rfPower  = 0.75;
                 rbPower  = 0.75;
             }
-            else if(doMoveBackward){
+            else if(doMoveForward){
                 lfPower  = -0.75;
                 lbPower  = -0.75;
                 rfPower  = -0.75;
@@ -93,6 +105,7 @@ public class Mark10 extends OpMode {
             robot.rightBackDrive .setPower(rbPower);
             robot.collectorLeft  .setPower(collectorPower);
             robot.collectorRight .setPower(collectorPower);
+            robot.outMotor       .setPower(outMotorPower );
             telemetry.addData("Front Motors", "left front (%.2f), right front(%.2f)", lfPower, rfPower);
             telemetry.addData("Back Motors",  "left back (%.2f), right back(%.2f)",   lbPower,rbPower);
 

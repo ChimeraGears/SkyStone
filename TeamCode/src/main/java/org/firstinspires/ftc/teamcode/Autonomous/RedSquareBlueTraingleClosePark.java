@@ -57,7 +57,7 @@ public class RedSquareBlueTraingleClosePark extends LinearOpMode {
                 updateDriving();
                 doStrafeLeft = true;
                 updateDriving();
-                sleep(1250);
+                sleep(1500);
                 doStrafeLeft = false;
                 idle();
                 break;

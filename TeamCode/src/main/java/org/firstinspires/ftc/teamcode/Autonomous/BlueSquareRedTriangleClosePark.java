@@ -53,13 +53,9 @@ public class BlueSquareRedTriangleClosePark extends LinearOpMode{
         if(isStarted())
             while(opModeIsActive()){
                 updateDriving();
-                doMoveForward = true;
-                updateDriving();
-                sleep(1000);
-                doMoveForward = false;
                 doStrafeRight = true;
                 updateDriving();
-                sleep(1250);
+                sleep(1500);
                 doStrafeRight = false;
                 idle();
                 break;

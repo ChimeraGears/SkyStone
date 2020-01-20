@@ -61,7 +61,7 @@ public class BlueSquareRedTriangleFarPark extends LinearOpMode {
                 doMoveForward = false;
                 doStrafeRight = true;
                 updateDriving();
-                sleep(1250);
+                sleep(1500);
                 doStrafeRight = false;
                 idle();
                 break;

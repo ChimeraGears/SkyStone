@@ -59,7 +59,7 @@ public class HardwareMapping {
         rightBackDrive  = hwMap.get(DcMotor.class, "motor1");
         collectorLeft   = hwMap.get(DcMotor.class, "cl");
         collectorRight  = hwMap.get(DcMotor.class,"cr");
-        //outMotor = hwMap.get(DcMotor.class,"outMotor");
+        outMotor = hwMap.get(DcMotor.class,"outMotor");
             //blockGrabber = hwMap.servo.get("block_grabber");
             //collectorLeft = hwMap.get(DcMotor.class,"collector_left");
             //collectorRight = hwMap.get(DcMotor.class,"collector_right");
