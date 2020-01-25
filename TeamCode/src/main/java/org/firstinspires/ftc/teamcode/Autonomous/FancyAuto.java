@@ -17,7 +17,6 @@ public class FancyAuto extends LinearOpMode {
     public boolean doCollection, reverseCollection;
 
     @Override
-
     public void runOpMode() throws InterruptedException {
         //160 rpm for a 40/1 motor
         //.0444444444444444 rpmls for a 40/1 motor
@@ -27,17 +26,14 @@ public class FancyAuto extends LinearOpMode {
         //4 rotations every 9 milliseconds
         //2240 ticks per 2.25 mlseconds
         //8960 ticks per 9 milliseconds
-        //
-        //
-        //
-        //    9 milliseconds per 4 rotations
-        //    8960 ticks per 9 milliseconds
-        //
-        // 2piR
-        // find inches per rotation-- x inches for
-        //    milliseconds per inch
-        //    2.25 milliseconds per 1 rotation
-        //    rotations per inch
+        //1759.3 ticks per inch
+        //   8960          5.09293469
+        //      9          8960
+        //  9 milliseconds per 5.1 inches
+        //.56588163 inches per 9 milliseconds
+        //.063 inches per millisecond
+        //.25 inches per 4 milliseconds
+        //16 milliseconds == 1 inch
 
         Auto.init(0);
         Auto.buildField();
@@ -45,13 +41,13 @@ public class FancyAuto extends LinearOpMode {
         while(opModeIsActive()){
             findPath("blue Platform");
             //this should rotate the robot to the angle it needs to go to the correct place -- may be off some
-            Auto.targetAngle = Auto.calculateAngle(Auto.calculateX(),Auto.calculateY(),Auto.calculateDistance(Auto.robotX,Auto.robotY,Auto.targetX,Auto.targetY));
+            Auto.targetAngle = Auto.calculateAngle(Auto.calculateX(), Auto.calculateY(), Auto.calculateDistance(Auto.robotX, Auto.robotY, Auto.targetX, Auto.targetY));
             updateDriving();
             doRotate = -1.00;
             //use another method to edit this -- speed calculations
-            int time = 0;
+            int targetInches = (int)Auto.targetAngle;
             updateDriving();
-            sleep(0);
+            sleep(targetInches * 16);
             Auto.updateAngle(-.1);
             doRotate = 0.00;
 

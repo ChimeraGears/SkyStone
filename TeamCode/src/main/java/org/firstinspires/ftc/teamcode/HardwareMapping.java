@@ -20,6 +20,7 @@ public class HardwareMapping {
     //public Servo LazyServo;
     public Servo HitchServo;
     public Servo blockGrabber;
+    public CRServo intakeLock; //!
 
     public DcMotor leftFrontDrive  = null;
     public DcMotor rightFrontDrive = null;
@@ -60,6 +61,7 @@ public class HardwareMapping {
         collectorLeft   = hwMap.get(DcMotor.class, "cl");
         collectorRight  = hwMap.get(DcMotor.class,"cr");
         outMotor = hwMap.get(DcMotor.class,"outMotor");
+        intakeLock = hwMap.crservo.get("intakeServo");
             //blockGrabber = hwMap.servo.get("block_grabber");
             //collectorLeft = hwMap.get(DcMotor.class,"collector_left");
             //collectorRight = hwMap.get(DcMotor.class,"collector_right");

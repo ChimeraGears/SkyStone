@@ -55,7 +55,7 @@ public class ComplicatedAutonomous {
     }
     public void updateAngle(double angle){
         robotAngle += angle;
-    };
+    }
     public void setTargets(int x, int y){
         targetX = x;
         targetY = y;
