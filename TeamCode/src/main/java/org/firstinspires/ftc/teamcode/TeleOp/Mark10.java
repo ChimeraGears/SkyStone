@@ -38,14 +38,15 @@ public class Mark10 extends OpMode {
             boolean doMoveOut         = gamepad2.right_trigger > 0.05;
             boolean doMoveIn          = gamepad2.left_trigger  > 0.05;
             boolean dointakeLock      = gamepad1.x;
+
             if(dointakeLock || doCollection){
                 lockPower = 0.75;
             } else {
                 lockPower = 0.00;
             }
+
             if(doCollection){
                 collectorPower = 1.00;
-
             }
             else if(reverseCollection){
                 collectorPower = -1.00;
@@ -53,6 +54,7 @@ public class Mark10 extends OpMode {
             else{
                 collectorPower = 0.00;
             }
+
             if(doMoveIn){
                 outMotorPower = 1.00;
             }
@@ -62,6 +64,7 @@ public class Mark10 extends OpMode {
             else{
                 outMotorPower = 0.00;
             }
+
             if(doMoveBackward){
                 lfPower  = 0.75;
                 lbPower  = 0.75;
@@ -114,7 +117,8 @@ public class Mark10 extends OpMode {
             robot.collectorRight .setPower(collectorPower);
             robot.outMotor       .setPower(outMotorPower );
 
-            robot.intakeLock    .setPower(lockPower);
+            robot.intakeLock     .setPower(lockPower);
+
             telemetry.addData("Front Motors", "left front (%.2f), right front(%.2f)", lfPower, rfPower);
             telemetry.addData("Back Motors",  "left back (%.2f), right back(%.2f)",   lbPower,rbPower);
 

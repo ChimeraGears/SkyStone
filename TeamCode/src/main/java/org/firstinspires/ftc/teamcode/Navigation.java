@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.util.Range;
 @Autonomous (name = "Mark Two Auto")
 public class Navigation extends OpMode{
     Jerry jerry = new Jerry();
-    public int Robotx = 0;
-    public int Roboty = 0;
+    public int Robotx   = 0;
+    public int Roboty   = 0;
     public int obstacle = 1;
     public int robotLocation;
     public int locationArray[][] = new int[48][48];
