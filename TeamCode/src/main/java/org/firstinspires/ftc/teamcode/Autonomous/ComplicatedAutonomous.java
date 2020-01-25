@@ -1,5 +1,9 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
+
+import org.firstinspires.ftc.teamcode.HardwareMapping;
+
 import java.util.ArrayList;
 
 public class ComplicatedAutonomous {
@@ -7,7 +11,13 @@ public class ComplicatedAutonomous {
     public int robotX, robotY;
     public int targetX, targetY;
     public int robotStart;
-    //range from 0 to 3;
+    //0-3  ^^^^
+    public ComplicatedAutonomous(){
+
+    }
+    public double robotAngle;
+    public double targetAngle;
+
     public void init(int robotPosition){
         robotStart = robotPosition;
     }
@@ -43,6 +53,9 @@ public class ComplicatedAutonomous {
         robotX = x;
         robotY = y;
     }
+    public void updateAngle(double angle){
+        robotAngle += angle;
+    };
     public void setTargets(int x, int y){
         targetX = x;
         targetY = y;
@@ -54,30 +67,34 @@ public class ComplicatedAutonomous {
             }
         }
     }
-    public void navigate(String navigateHere){
-        switch (navigateHere){
-            case "blue Platform":
-                break;
-            case "red Platform":
-                break;
-            case "blue Bridge":
-                break;
-            case "red Bridge":
-                break;
-            default:
-                break;
-        }
-    }
+
 
 
     public double calculateDistance(int currentX, int currentY, int newX, int newY){
         return  Math.sqrt((Math.pow((newX-currentX),2))+ (Math.pow((newY-currentY),2)));
+
     }
-    public double calculateAngle(int sideA, int sideB, int sideC){
+    public double calculateAngle(double sideA, double sideB, double sideC){
         return 1/(Math.cos(((Math.pow(sideA,2))+(Math.pow(sideC,2))-(Math.pow(sideB,2)))/(2*sideA*sideC)));
     }
     public int roundNum(double number){
         return (int)Math.round(number);
+    }
+
+    public boolean targetsReached(){
+        return robotX == targetX && robotY == targetY;
+    }
+    public double calculateX(){
+        if(targetX > robotX){
+            return targetX-robotX;
+        }
+        return robotX-targetX;
+    }
+    public double calculateY(){
+        if(targetY > robotY){
+            return targetY-robotY;
+        }
+        return robotY-targetY;
     }
     /*
     for(int i = 0; i < 48; i++){
