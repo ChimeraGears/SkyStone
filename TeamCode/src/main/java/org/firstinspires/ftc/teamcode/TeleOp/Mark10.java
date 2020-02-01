@@ -12,7 +12,8 @@ public class Mark10 extends OpMode {
         public HardwareMapping robot = new HardwareMapping();
         public double lfPower, rfPower, lbPower, rbPower;
         public double collectorPower, outMotorPower;
-        public double lockPower;
+        public double lockPower, upPower;
+        public double clawPosition;
         public void init(){
             robot.init(hardwareMap);
 
@@ -33,17 +34,36 @@ public class Mark10 extends OpMode {
             boolean doStrafeLeft      = gamepad1.dpad_left;
             boolean doStrafeRight     = gamepad1.dpad_right;
             double  doRotate          = gamepad1.right_stick_x;
-            boolean doCollection      = gamepad1.right_trigger > 0.05;
-            boolean reverseCollection = gamepad1.left_trigger  > 0.05;
-            boolean doMoveOut         = gamepad2.right_trigger > 0.05;
-            boolean doMoveIn          = gamepad2.left_trigger  > 0.05;
-            boolean dointakeLock      = gamepad1.x;
+            boolean doCollection      = gamepad1.right_trigger >  0.05;
+            boolean reverseCollection = gamepad1.left_trigger  >  0.05;
+            boolean doMoveOut         = gamepad2.right_trigger >  0.05;
+            boolean doMoveIn          = gamepad2.left_trigger  >  0.05;
+            boolean doMoveUp          = gamepad2.left_stick_y  >  0.05;
+            boolean doMoveDown        = gamepad2.left_stick_y  < -0.05;
+            boolean doIntakeLock      = gamepad1.x;
+            boolean useClaw           = gamepad2.b;
+            boolean quitClaw          = gamepad2.a;
 
-            if(dointakeLock || doCollection){
+            if(useClaw){
+                clawPosition = 1.00;
+            }
+            if(quitClaw){
+                clawPosition = 0.00;
+            }
+
+            if(doMoveUp){
+                upPower = 1.00;
+            } else if(doMoveDown) {
+                upPower = -1.00;
+            } else {
+                upPower = 0.00;
+            }
+            if(doIntakeLock || doCollection){
                 lockPower = 0.75;
             } else {
                 lockPower = 0.00;
             }
+
 
             if(doCollection){
                 collectorPower = 1.00;
@@ -55,17 +75,17 @@ public class Mark10 extends OpMode {
                 collectorPower = 0.00;
             }
 
-            if(doMoveIn){
+            if(doMoveIn)      {
                 outMotorPower = 1.00;
             }
             else if(doMoveOut){
                 outMotorPower = -1.00;
             }
-            else{
+            else              {
                 outMotorPower = 0.00;
             }
 
-            if(doMoveBackward){
+            if(doMoveBackward)    {
                 lfPower  = 0.75;
                 lbPower  = 0.75;
                 rfPower  = 0.75;
@@ -109,6 +129,7 @@ public class Mark10 extends OpMode {
                 rbPower  =  0.75;
             }
 
+            robot.clawServo      .setPosition(clawPosition);
             robot.leftFrontDrive .setPower(lfPower);
             robot.leftBackDrive  .setPower(lbPower);
             robot.rightFrontDrive.setPower(rfPower);
@@ -118,7 +139,8 @@ public class Mark10 extends OpMode {
             robot.outMotor       .setPower(outMotorPower );
 
             robot.intakeLock     .setPower(lockPower);
-
+            robot.upServo        .setPower(upPower  );
+            robot.upServo2       .setPower(-upPower );
             telemetry.addData("Front Motors", "left front (%.2f), right front(%.2f)", lfPower, rfPower);
             telemetry.addData("Back Motors",  "left back (%.2f), right back(%.2f)",   lbPower,rbPower);
 
@@ -130,6 +152,7 @@ public class Mark10 extends OpMode {
             robot.leftBackDrive  .setPower(0);
             robot.rightFrontDrive.setPower(0);
             robot.leftBackDrive  .setPower(0);
+
             robot.intakeLock     .setPower(0);
         }
 
