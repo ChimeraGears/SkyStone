@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.HardwareMapping;
@@ -25,6 +26,7 @@ public class Mark10 extends OpMode {
             robot.collectorRight .setDirection(DcMotor.Direction.FORWARD);
             robot.outMotor       .setDirection(DcMotor.Direction.REVERSE);
 
+            robot.upServo2       .setDirection(CRServo.Direction.REVERSE);
         }
 
         public void loop(){
@@ -52,9 +54,9 @@ public class Mark10 extends OpMode {
             }
 
             if(doMoveUp){
-                upPower = 1.00;
+                upPower = .8;
             } else if(doMoveDown) {
-                upPower = -1.00;
+                upPower = -.8;
             } else {
                 upPower = 0.00;
             }
@@ -140,7 +142,7 @@ public class Mark10 extends OpMode {
 
             robot.intakeLock     .setPower(lockPower);
             robot.upServo        .setPower(upPower  );
-            robot.upServo2       .setPower(-upPower );
+            robot.upServo2       .setPower(upPower  );
             telemetry.addData("Front Motors", "left front (%.2f), right front(%.2f)", lfPower, rfPower);
             telemetry.addData("Back Motors",  "left back (%.2f), right back(%.2f)",   lbPower,rbPower);
 
