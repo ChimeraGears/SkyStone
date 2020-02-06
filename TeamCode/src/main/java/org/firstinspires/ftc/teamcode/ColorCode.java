@@ -38,15 +38,10 @@ import java.util.List;
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
-
         parameters.vuforiaLicenseKey = "AUvVk17/////AAABmb73yPbaU0emmFq1upMCLptLYU/MpnNPfTeLNRjXmwgzA4rq3Lvrn1mbXiybydcVaFsaF14TFlGMhun5D2xtrhYMRe2MLbqsDOeEVsYIPIcrCsfRXSdr9pmpHQt1ZGMJ3gcjc4odzQqejUbrvwXTPnSi9CJrIJB2c6HB5GDZRifK9zBPyRIfz8o4Bekt0LpRck4XkJl7GBB7z8i3RBJ+iL67wZJWIzVw2gj11JJXQXUKprmdjXVzpaT2mnjQ/lTswKnpYq5oT7tyS5g7sZWEd2VcHYyztXvKXpdEZB1qdWEaAeJUkA8wBcWkE7ZiRm85YQUEAqh7dSoucJS6OofOwIAzONWAeXuAe07gWfZXU+QF";
-
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
-
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
-
         VuforiaTrackables targetsSkyStone = this.vuforia.loadTrackablesFromAsset("Skystone");
-
         VuforiaTrackable stoneTarget = targetsSkyStone.get(0);
         stoneTarget.setName("Stone Target");
         VuforiaTrackable blueRearBridge = targetsSkyStone.get(1);
