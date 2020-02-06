@@ -15,6 +15,7 @@ public class HardwareMapping {
     public Servo collectorDrop;
     public Servo     flipBlock;
     public CRServo    upServo;  //!
+    public CRServo    upServo2; //!
     public CRServo    outServo; //!
     //public Servo WristServo;
     //public Servo LazyServo;
@@ -48,7 +49,7 @@ public class HardwareMapping {
         //clawServo = hwMap    .servo  .get("claw");
         //flipBlock = hwMap    .servo  .get("flip");
         // collectorDrop = hwMap.servo  .get("drop");
-        //upServo   = hwMap    .crservo  .get("upServo");   //the Servo that goes up
+           //the Servo that goes up
         //outServo  = hwMap    .crservo.get("outServo");  //the Servo that goes out
         //WristServo = hwMap.servo.get("Wrist");
         //LazyServo = hwMap.servo.get("Lazy");
@@ -62,6 +63,9 @@ public class HardwareMapping {
         collectorRight  = hwMap.get(DcMotor.class,"cr");
         outMotor        = hwMap.get(DcMotor.class,"outMotor");
 
+        clawServo = hwMap    .servo  .get("claw");
+        upServo   = hwMap    .crservo  .get("upServo");
+        upServo2  = hwMap    .crservo  .get("upServoLeft");
         intakeLock      = hwMap.crservo.get("intakeServo");
         //blockGrabber = hwMap.servo.get("block_grabber");
         //collectorLeft = hwMap.get(DcMotor.class,"collector_left");
@@ -78,7 +82,5 @@ public class HardwareMapping {
         //leftBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
     }
-
 }

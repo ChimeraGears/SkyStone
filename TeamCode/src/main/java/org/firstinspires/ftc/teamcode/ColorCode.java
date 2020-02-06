@@ -104,15 +104,14 @@ import java.util.List;
     //color = hardwareMap.get(ColorSensor.class,"color");
     ColorSensor color = hardwareMap.colorSensor.get("color");
     public void colorMethod() {
-        while (opModeIsActive()) {
             //#FFBC00
-            if (color.red() > 20) {
+            boolean isYellow = (color.red()<= 221 || color.red() >= 234) && (color.green()<= 206 || color.green()>= 164) && (color.blue()<=175 || color.blue()>=92);
+            boolean isBlack = false;
+            if (!isYellow && isBlack){
+                // light color -- dark color (This should detect the value of yellow given certain lightings)
 
-            } else if (color.green() > 20) {
-
-            } else if (color.blue() > 20) {
-
-            } else if (color.alpha() > 20) {
+            }
+            else if (color.alpha() > 20) {
 
             } else {
                 telemetry.addData("red", color.red());
@@ -120,7 +119,5 @@ import java.util.List;
                 telemetry.addData("blue", color.blue());
                 telemetry.addData("alpha", color.alpha());
             }
-            idle();
-        }
     }
 }
