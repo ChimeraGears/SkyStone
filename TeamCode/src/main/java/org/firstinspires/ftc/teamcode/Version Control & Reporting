@@ -75,10 +75,34 @@ Mark 8 teleOp (December 21, 2019)--
     * new organizational fixes
 ------------------------------------------
 ------------------------------------------
+Mark 9 teleOp(January 6, 2020)--
+    Several Changes to the code, including optimization.
+    Features:
+    * More spacing changes
+    * Addressal of several warnings
+    * Tying up loose variables
+    * Bug fixes
+    * Clearer declaration
+------------------------------------------
+------------------------------------------
+Mark 10 teleOp(January 17, 2020)--
+    Several organizational and code-based changes.
+    Some optimization.
+    Features:
+    * Clearer power variable declaration
+    * Grouping of DCMotors and Servos
+    * More comments
+    * Updated driving controls
+    * addition of several mechanical components
+------------------------------------------
+------------------------------------------
 Hardware Mapping--
     A file that declares all the necessary properties
     of our motors, servos, and other mechanical components.
     Created for modularity.
+------------------------------------------
+------------------------------------------
+Autonomous:
 ------------------------------------------
 ------------------------------------------
 VuforiaIDTest--
@@ -86,16 +110,38 @@ VuforiaIDTest--
     Sensors are hard!
 ------------------------------------------
 ------------------------------------------
+ColorCode--
+    Our second usage of the Vuforia color sensor,
+    this time with a better foundational background.
+    Researched mostly by Sam!
+------------------------------------------
+------------------------------------------
 AutoCommands--
     A file containing the bare bones of the necessary
     commands for autonomous. In reference, it is called as
     cmd.*
 ------------------------------------------
------------------------------------------
+------------------------------------------
 AutonomousFile--
     Runnable autonomous file.
 ------------------------------------------
 ------------------------------------------
-org.firstinspires.ftc.teamcode.OldCode1.AACC--
-    A team-member's side-project, put in the same
-    project for ease of access.
+Basic Autonomous Files--
+    Consisting of four park-only autos, these work from every starting
+    position on the field consistently, and have the option of parking closer
+    to the wall or to the interior of the field, for
+    as little meshing of Autonomous' as possible.
+    Titles:
+    *BlueSquareRedTriangleClosePark
+    *BlueSquareRedTriangleFarPark
+    *RedSquareBlueTriangleClosePark
+    *RedSquareBlueTriangleFarPark
+------------------------------------------
+------------------------------------------
+Complex Autonomous Files--
+    Consisting of two classes, these autonomous codes are in-development
+    and will help to create a pathfinding mechanism for our robot.
+    Working with sensors and a digital map, the robot will use trigonometry
+    to work its way towards any obstacle.
+------------------------------------------
+------------------------------------------

@@ -1,3 +1,5 @@
+package org.firstinspires.ftc.teamcode.OldCode1;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -25,8 +27,8 @@ public class Mark9 extends OpMode {
 
     public void single(int i){
         if(i == 0) {
-            robot.clawServo.setPosition(0);
-            robot.clawServo.setPosition(0);
+            robot.clawServo.setPower(.75);
+            robot.clawServo.setPower(-.75);
         }
     }
 
@@ -107,9 +109,9 @@ public class Mark9 extends OpMode {
 
 
         if(closeClaw)
-            robot.clawServo.setPosition(1.00);
+            robot.clawServo.setPower(.75);
         if(openClaw)
-            robot.clawServo.setPosition(0.00);
+            robot.clawServo.setPower(-.75);
 
         robot.leftFrontDrive .setPower(lfPower);
         robot.leftBackDrive  .setPower(lbPower);
