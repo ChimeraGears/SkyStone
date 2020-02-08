@@ -117,10 +117,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
             boolean isBlack = false;
             if (!isYellow && isBlack){
                 // light color -- dark color (This should detect the value of yellow given certain lightings)
-                robot.leftFrontDrive .setPower(); //PROBABLY NEED TO MOVE FOREWARD THEN LEFT/RIGHT TO GET CAMERA ANGLED AT THE BLOCKS
-                robot.rightFrontDrive.setPower();
-                robot.leftBackDrive  .setPower();
-                robot.rightBackDrive .setPower();
+                robot.leftFrontDrive .setPower(0.00); //PROBABLY NEED TO MOVE FOREWARD THEN LEFT/RIGHT TO GET CAMERA ANGLED AT THE BLOCKS
+                robot.rightFrontDrive.setPower(0.00);
+                robot.leftBackDrive  .setPower(0.00);
+                robot.rightBackDrive .setPower(0.00);
                 //TALK TO JAYSON ABOUT HOW WE ARE GOING TO MOVE THE ROBOT... WHERE IT STARTS AND IF CODE NEEDS TO BE DUPLICATED BASED ON WHERE WE START
             } else {
                 telemetry.addData("red", color.red());
