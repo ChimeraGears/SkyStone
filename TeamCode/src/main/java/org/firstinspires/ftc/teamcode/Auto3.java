@@ -14,6 +14,7 @@ public class Auto3 extends OpMode {
     private final static double TICKS_PER_ROTATION    = 2240;
     private final static double WHEEL_DIAMETER_INCHES = 4.0;
     public final static double TICKS_PER_INCH         = (TICKS_PER_ROTATION)/(WHEEL_DIAMETER_INCHES*(Math.PI));
+
     int targetFL = 0;
     int targetFR = 0;
     int targetBL = 0;

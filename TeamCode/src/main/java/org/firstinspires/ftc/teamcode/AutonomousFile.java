@@ -6,6 +6,15 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 */
+/*
+
+Robot is 17 and 3/4th of an inch
+43.5 inches to the blocks from the wall
+//25.75 inches to bricks
+//4598.21428571 ticks to get to the bricks
+
+
+*/
 //@Autonomous (name="Autonomous File 1")
 /*public class AutonomousFile extends OpMode {
 

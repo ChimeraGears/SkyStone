@@ -20,7 +20,6 @@ public class FancyAuto extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         //160 rpm for a 40/1 motor
         //.0444444444444444 rpmls for a 40/1 motor
-
         //2.250000000000002 to make it to 1 rotation
         //1 rotations every 2.25 milliseconds
         //4 rotations every 9 milliseconds
