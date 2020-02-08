@@ -24,6 +24,13 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
+
 @TeleOp (name= "colorCode", group = "a")
  @Disabled
  public class ColorCode extends LinearOpMode {
@@ -103,16 +110,18 @@ import java.util.List;
 
     //color = hardwareMap.get(ColorSensor.class,"color");
     ColorSensor color = hardwareMap.colorSensor.get("color");
+    HardwareMapping robot = new HardwareMapping();
     public void colorMethod() {
             //#FFBC00
             boolean isYellow = (color.red()<= 221 || color.red() >= 234) && (color.green()<= 206 || color.green()>= 164) && (color.blue()<=175 || color.blue()>=92);
             boolean isBlack = false;
             if (!isYellow && isBlack){
                 // light color -- dark color (This should detect the value of yellow given certain lightings)
-
-            }
-            else if (color.alpha() > 20) {
-
+                robot.leftFrontDrive .setPower(); //PROBABLY NEED TO MOVE FOREWARD THEN LEFT/RIGHT TO GET CAMERA ANGLED AT THE BLOCKS
+                robot.rightFrontDrive.setPower();
+                robot.leftBackDrive  .setPower();
+                robot.rightBackDrive .setPower();
+                //TALK TO JAYSON ABOUT HOW WE ARE GOING TO MOVE THE ROBOT... WHERE IT STARTS AND IF CODE NEEDS TO BE DUPLICATED BASED ON WHERE WE START
             } else {
                 telemetry.addData("red", color.red());
                 telemetry.addData("green", color.red());
