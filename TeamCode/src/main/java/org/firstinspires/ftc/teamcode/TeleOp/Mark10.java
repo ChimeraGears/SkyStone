@@ -73,6 +73,7 @@ public class Mark10 extends OpMode {
             }
             else if(reverseCollection){
                 collectorPower = -1.00;
+                lockPower = -.80;
             }
             else{
                 collectorPower = 0.00;
