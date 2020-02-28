@@ -145,3 +145,7 @@ Complex Autonomous Files--
     to work its way towards any obstacle.
 ------------------------------------------
 ------------------------------------------
+QuickVargs.java--
+    This file allows for quick usage of a java-specific feature, called Var-args.
+    These arguments allow for more dynamic programming, and this class allows
+    for several to be used at once.

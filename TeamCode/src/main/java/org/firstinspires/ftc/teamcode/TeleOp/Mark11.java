@@ -27,6 +27,7 @@ public class Mark11 extends OpMode{
 
         robot.clawServo      .setDirection(CRServo.Direction.REVERSE);
     }
+
     public void loop(){
         boolean doMoveForward  = gamepad1.left_stick_y < -0.05;
         boolean doMoveBackward = gamepad1.left_stick_y > 0.05;
@@ -92,9 +93,8 @@ public class Mark11 extends OpMode{
 
     }
     public void stop(){
-
-
     }
+
     private void setPowers(double power, CRServo ... crServos){
         for(CRServo c: crServos){
             c.setPower(power);
