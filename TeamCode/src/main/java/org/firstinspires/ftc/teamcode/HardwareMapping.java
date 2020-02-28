@@ -21,6 +21,10 @@ public class HardwareMapping {
 
     public DcMotor collectorLeft  = null;
     public DcMotor collectorRight = null;
+
+    public DcMotor leftDrive = null;
+    public DcMotor rightDrive = null;
+
     HardwareMap hwMap = null;
 
     public DcMotor outMotor = null;
@@ -45,5 +49,8 @@ public class HardwareMapping {
         upServo    = hwMap    .crservo.get("upServo");
         upServo2   = hwMap    .crservo.get("upServoLeft");
         intakeLock = hwMap    .crservo.get("intakeServo");
+
+        leftDrive = hwMap.get(DcMotor.class,"left motor");
+        rightDrive = hwMap.get(DcMotor.class,"right motor");
     }
 }

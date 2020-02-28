@@ -42,7 +42,7 @@ public class Auto3 extends OpMode {
         int runOnce = 0;
         while(runOnce == 0) {
             robot.collectorDrop.setPosition(1.00);
-            robot.clawServo.setPosition(1.00);
+            //robot.clawServo.setPosition(1.00);
             runOnce = 1;
         }
     }

@@ -1,12 +1,16 @@
+package org.firstinspires.ftc.teamcode.OldCode1;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.teamcode.HardwareMapping;
 
+/*
 //@TeleOp(name="Mark 7")
 //12.1211 inches per rotation--JB
 //2240 ticks per rotation
-/**public class Mark7 extends OpMode {
+public class Mark7 extends OpMode {
     public HardwareMapping robot = new HardwareMapping();
     //We had a lot of difficulty in making power controls that worked,
     //and realized that if we made them global they would actually
@@ -276,4 +280,5 @@ import com.qualcomm.robotcore.hardware.DcMotor;
         robot.flipBlock.setPosition(1.00);
     }
 }
-*/
+
+ */

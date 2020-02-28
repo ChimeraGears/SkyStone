@@ -15,8 +15,9 @@ public class Mark10 extends OpMode {
         public double collectorPower, outMotorPower;
         public double lockPower, upPower, clawPower;
         public void init(){
+            //Initialize Our hardware map
             robot.init(hardwareMap);
-
+            //Declare which side of our robot is which
             robot.leftFrontDrive .setDirection(DcMotor.Direction.REVERSE);
             robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
             robot.leftBackDrive  .setDirection(DcMotor.Direction.REVERSE);
@@ -26,7 +27,7 @@ public class Mark10 extends OpMode {
             robot.outMotor       .setDirection(DcMotor.Direction.REVERSE);
 
             robot.upServo2       .setDirection(CRServo.Direction.REVERSE);
-
+            //
             robot.clawServo      .setDirection(CRServo.Direction.REVERSE);
         }
 
@@ -48,10 +49,10 @@ public class Mark10 extends OpMode {
             boolean quitClaw          = gamepad2.a;
 
             if(useClaw){
-                clawPower = 0.70;
+                clawPower = 0.80;
             }
             if(quitClaw){
-                clawPower = -0.70;
+                clawPower = -0.80;
             }
 
             if(doMoveUp){

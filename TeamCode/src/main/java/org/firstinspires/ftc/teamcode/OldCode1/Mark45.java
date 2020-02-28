@@ -1,6 +1,11 @@
 package org.firstinspires.ftc.teamcode.OldCode1;
+
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
+import org.firstinspires.ftc.teamcode.HardwareMapping;
 /*
-public class MeetZeroTeleOp extends OpMode{
+public class Mark45 extends OpMode {
 
     HardwareMapping robot = new HardwareMapping();
     SleepFunction sleep = new SleepFunction();
@@ -41,14 +46,14 @@ public class MeetZeroTeleOp extends OpMode{
         rightFrontPower = Range.clip(drive+strafe-turn,-1.0,1.0);
         rightBackPower = Range.clip(drive-strafe-turn,-1.0,1.0);
 
-        /*
+
         Arm - dpad.up, dpad.down
         Lazy - dpad.right, dpad.left
         Hitch    - left_trigger, right_trigger
         Slide - left_bumper, right_bumper
         Claw - x, b
         Wrist - y, a
-         *
+
         robot.leftFrontDrive.setPower(leftFrontPower);
         robot.rightFrontDrive.setPower(rightFrontPower);
         robot.leftBackDrive.setPower(leftBackPower);
@@ -69,4 +74,4 @@ public class MeetZeroTeleOp extends OpMode{
     }
 
 }
-*/
+ */

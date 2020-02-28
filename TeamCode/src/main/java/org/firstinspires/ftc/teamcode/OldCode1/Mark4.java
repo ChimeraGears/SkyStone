@@ -81,7 +81,7 @@ public class MacenumTest extends OpMode{
         leftFrontDrive.setPower(leftFrontPower);
         rightFrontDrive.setPower(rightFrontPower);
         leftBackDrive.setPower(leftBackPower);
-        rightBackDrive.setPower(rightBackPower);*
+        rightBackDrive.setPower(rightBackPower);
         armMotor.setPower(armMotorPower);
 
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);

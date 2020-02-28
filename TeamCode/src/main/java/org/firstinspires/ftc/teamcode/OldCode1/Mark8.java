@@ -61,7 +61,7 @@ public class Mark8 extends OpMode{
          ------------------------------------------------
          * -- right bumper - Turn on slow controls
          * -- left bumper  - Turn off slow controls
-
+        *
         boolean moveForward  = gamepad1.dpad_up;
         boolean moveBackward = gamepad1.dpad_down;
         boolean strafeLeft   = gamepad1.dpad_left;
@@ -238,4 +238,5 @@ public class Mark8 extends OpMode{
         robot.flipBlock.setPosition(1.00);
     }
 }
- **/
+
+**/

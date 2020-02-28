@@ -71,7 +71,7 @@ public class Mark2 extends OpMode {
         Wrist - y, a
         *
 
-
+        /**
         if (gamepad2.a)
         {
             robot.clawServo.setPosition(REV_MAX);
@@ -82,7 +82,7 @@ public class Mark2 extends OpMode {
             robot.clawServo.setPosition(REV_MIN);
         }
 
-        /*if (gamepad1.dpad_right)
+        if (gamepad1.dpad_right)
         {
             robot.LazyServo.setPosition(REV_MAX);
         }
@@ -147,7 +147,7 @@ public class Mark2 extends OpMode {
         {
             robot.armServo1.setPosition(0);
         }
-        /*
+        /**
         if (gamepad2.dpad_up)
         {
             robot.SlideServo.setPower(.75);
@@ -178,7 +178,4 @@ public class Mark2 extends OpMode {
         robot.HitchServo.setPosition(REV_HOME);
     }
 }
-
-*
-
- */
+*/
