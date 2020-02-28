@@ -6,11 +6,13 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.HardwareMapping;
+import org.firstinspires.ftc.teamcode.QuickVargs;
 
 @TeleOp(name = "Mark11")
 public class Mark11 extends OpMode{
 
     public HardwareMapping robot = new HardwareMapping();
+    public QuickVargs v = new QuickVargs();
     private double maxPower = 0.80;
 
     public void init(){
