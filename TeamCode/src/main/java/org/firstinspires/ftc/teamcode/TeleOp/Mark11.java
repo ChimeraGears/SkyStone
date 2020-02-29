@@ -17,9 +17,10 @@ public class Mark11 extends OpMode{
 
     public void init(){
         robot.init(hardwareMap);
-        robot.leftDrive .setDirection(DcMotor.Direction.REVERSE);
-        robot.rightDrive.setDirection(DcMotor.Direction.FORWARD);
-
+        robot.leftDrive[0].setDirection(DcMotor.Direction.REVERSE);
+        robot.leftDrive[1].setDirection(DcMotor.Direction.REVERSE);
+        robot.rightDrive[0].setDirection(DcMotor.Direction.FORWARD);
+        robot.rightDrive[1].setDirection(DcMotor.Direction.FORWARD);
         robot.collectorLeft  .setDirection(DcMotor.Direction.REVERSE);
         robot.collectorRight .setDirection(DcMotor.Direction.FORWARD);
 
@@ -88,14 +89,16 @@ public class Mark11 extends OpMode{
             setPowers(-0.80,robot.clawServo);
         }
 
-        telemetry.addData("Left Side", "left (%b)", robot.leftDrive.getPower() != 0);
-        telemetry.addData("Right Side",  "right (%b)", robot.rightDrive.getPower() != 0);
+        telemetry.addData("Left Side", "left (%b)", robot.leftDrive[0].getPower() != 0);
+        telemetry.addData("Right Side",  "right (%b)", robot.rightDrive[1].getPower() != 0);
 
         telemetry.update();
 
     }
     public void stop(){
     }
+
+
 
     private void setPowers(double power, CRServo ... crServos){
         for(CRServo c: crServos){
@@ -120,8 +123,58 @@ public class Mark11 extends OpMode{
             d.setPower(power);
         }
     }
+    private void setPowers(double power, DcMotor[] dcMotors1,DcMotor[] dcMotors2){
+        DcMotor[] dcMotors = new DcMotor[dcMotors1.length-1 + dcMotors2.length-1];
+        int i = 0;
+        for(DcMotor d: dcMotors){
+            for(DcMotor dc: dcMotors1){
+                if(i % 2 == 0) {
+                    d = dc;
+                    i++;
+                }
+            }
+            i = 1;
+            for(DcMotor dc: dcMotors2){
+                if(i % 2 != 0){
+                    d = dc;
+                    i++;
+                }
+            }
+            d.setPower(power);
+        }
+    }
     private void setPowers(double power1, double power2, DcMotor ... dcMotors){
         int i = 0;
+        for(DcMotor d: dcMotors){
+            if(i % 2 == 0) {
+                d.setPower(power1);
+                i++;
+            }
+            if(i % 2 != 0){
+                d.setPower(power2);
+                i--;
+            }
+        }
+    }
+    private void setPowers(double power1, double power2, DcMotor[] dcMotors1,DcMotor[] dcMotors2){
+        int i = 0;
+        DcMotor[] dcMotors = new DcMotor[dcMotors1.length-1 + dcMotors2.length-1];
+        for(DcMotor d: dcMotors){
+            for(DcMotor dc: dcMotors1){
+                if(i % 2 == 0) {
+                    d = dc;
+                    i++;
+                }
+            }
+            i = 1;
+            for(DcMotor dc: dcMotors2){
+                if(i % 2 != 0){
+                    d = dc;
+                    i++;
+                }
+            }
+        }
+        i = 0;
         for(DcMotor d: dcMotors){
             if(i % 2 == 0) {
                 d.setPower(power1);
