@@ -1,18 +1,16 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-
-import org.firstinspires.ftc.teamcode.HardwareMapping;
-
-import java.util.ArrayList;
-
-public class ComplicatedAutonomous {
+public class MyNavigator {
     public int[][] digitalMap = new int[48][48];
     public int robotX, robotY;
     public int targetX, targetY;
     public int robotStart;
-    //0-3  ^^^^
-    public ComplicatedAutonomous(){
+    //0-3 ^^^
+    public final int NINETY = 925;
+    public final int QUARTER = 925/2;
+    public final int UNIT = 200;
+
+    public MyNavigator(){
 
     }
     public double robotAngle;
@@ -21,8 +19,8 @@ public class ComplicatedAutonomous {
     public void init(int robotPosition){
         robotStart = robotPosition;
         buildField();
-
     }
+
     private void buildField(){
         fillArea(0 ,47,0 ,47,digitalMap,0); //Flush Array
         fillArea(0 ,11,13,18,digitalMap,1); //Blue Platform
@@ -51,17 +49,19 @@ public class ComplicatedAutonomous {
             fillArea(29,34,42,47,digitalMap,1); //Bottom Right Robot Start
         }
     }
+
     public void updatePosition(int x, int y){
-        robotX = x;
-        robotY = y;
+        robotX += x;
+        robotY += y;
     }
     public void updateAngle(double angle){
         robotAngle += angle;
     }
-    public void setTargets(int x, int y){
+    public void setTargets(int x, int y) {
         targetX = x;
         targetY = y;
     }
+
     private void fillArea(int startArray, int endArray, int startIndex, int endIndex, int[][] Array, int fillWith){
         for(int i = startArray; i < endArray; i++){
             for(int j = startIndex; j < endIndex; j++){
@@ -69,8 +69,6 @@ public class ComplicatedAutonomous {
             }
         }
     }
-
-
 
     public double calculateDistance(int currentX, int currentY, int newX, int newY){
         return  Math.sqrt((Math.pow((newX-currentX),2))+ (Math.pow((newY-currentY),2)));
@@ -98,11 +96,5 @@ public class ComplicatedAutonomous {
         }
         return robotY-targetY;
     }
-    /**
-    for(int i = 0; i < 48; i++){
-            for(int j = 0; j < 48; j++){
-                digitalMap[i][j] = 0;
-            }
-        }
-        */
+
 }

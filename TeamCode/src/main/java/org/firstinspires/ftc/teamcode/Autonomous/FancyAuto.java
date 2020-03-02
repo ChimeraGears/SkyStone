@@ -35,7 +35,6 @@ public class FancyAuto extends LinearOpMode {
         //16 milliseconds == 1 inch
 
         Auto.init(0);
-        Auto.buildField();
 
         while(opModeIsActive()){
             findPath("blue Platform");

@@ -4,19 +4,18 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 
-
-@Autonomous (name = "RedSquareBlueTriangleFarPark")
-public class RedSquareBlueTriangleFarPark extends LinearOpMode {
-
+@Autonomous (name = "DriveLeftClose")
+public class DriveLeftClose extends LinearOpMode {
     HardwareMapping robot = new HardwareMapping();
 
     public double lfPower, rfPower, lbPower, rbPower;
     public double collectorPower;
 
     public boolean doMoveForward, doMoveBackward;
-    public boolean doStrafeLeft, doStrafeRight;
     public double  doRotate;
     public boolean doCollection, reverseCollection;
 
@@ -43,8 +42,6 @@ public class RedSquareBlueTriangleFarPark extends LinearOpMode {
 
         doMoveForward     = false;
         doMoveBackward    = false;
-        doStrafeLeft      = false;
-        doStrafeRight     = false;
         doRotate          = 0.00;
         doCollection      = false;
         reverseCollection = false;
@@ -53,19 +50,30 @@ public class RedSquareBlueTriangleFarPark extends LinearOpMode {
         waitForStart();
         //main body of code
         if(isStarted())
-        while(opModeIsActive()){
-            updateDriving();
-            doMoveForward = true;
-            updateDriving();
-            sleep(1000);
-            doMoveForward = false;
-            doStrafeLeft = true;
-            updateDriving();
-            sleep(1500);
-            doStrafeLeft = false;
-            idle();
-            break;
-        }
+            while(opModeIsActive()){
+                //get away from wall
+                doMoveForward = true;
+                updateDriving();
+                sleep(200);
+                doMoveForward = false;
+                updateDriving();
+
+                //rotate 90 degrees
+                doRotate = -1.00;
+                updateDriving();
+                sleep(925);
+                doRotate = 0.00;
+                updateDriving();
+
+                //park under bridge
+                doMoveForward = true;
+                updateDriving();
+                sleep(750);
+                doMoveForward = false;
+                updateDriving();
+                idle();
+                break;
+            }
 
         //Use While Loops Here for big stuff--this runs sequentially
         //Sleep(millis) works here
@@ -99,18 +107,6 @@ public class RedSquareBlueTriangleFarPark extends LinearOpMode {
             lfPower  = -0.75;
             lbPower  = -0.75;
             rfPower  = -0.75;
-            rbPower  = -0.75;
-        }
-        else if(doStrafeRight){
-            rfPower  = -0.75;
-            lbPower  = -0.75;
-            lfPower  =  0.75;
-            rbPower  =  0.75;
-        }
-        else if(doStrafeLeft){
-            rfPower  =  0.75;
-            lbPower  =  0.75;
-            lfPower  = -0.75;
             rbPower  = -0.75;
         }
         else {

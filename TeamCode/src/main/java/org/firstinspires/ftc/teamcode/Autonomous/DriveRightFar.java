@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 
 
-@Autonomous (name = "BlueSquareRedTriangleFarPark")
-public class BlueSquareRedTriangleFarPark extends LinearOpMode {
+@Autonomous (name = "DriveRightFar")
+public class DriveRightFar extends LinearOpMode {
 
     HardwareMapping robot = new HardwareMapping();
 
@@ -55,14 +55,25 @@ public class BlueSquareRedTriangleFarPark extends LinearOpMode {
         if(isStarted())
             while(opModeIsActive()){
                 updateDriving();
+
                 doMoveForward = true;
                 updateDriving();
-                sleep(1000);
+                sleep(1200);
                 doMoveForward = false;
-                doStrafeRight = true;
                 updateDriving();
-                sleep(1500);
-                doStrafeRight = false;
+
+                doRotate = 1.00;
+                updateDriving();
+                sleep(925);
+                doRotate = 0.00;
+                updateDriving();
+
+                doMoveForward = true;
+                updateDriving();
+                sleep(750);
+                doMoveForward = false;
+                updateDriving();
+
                 idle();
                 break;
             }
@@ -99,18 +110,6 @@ public class BlueSquareRedTriangleFarPark extends LinearOpMode {
             lfPower  = -0.75;
             lbPower  = -0.75;
             rfPower  = -0.75;
-            rbPower  = -0.75;
-        }
-        else if(doStrafeRight){
-            rfPower  = -0.75;
-            lbPower  = -0.75;
-            lfPower  =  0.75;
-            rbPower  =  0.75;
-        }
-        else if(doStrafeLeft){
-            rfPower  =  0.75;
-            lbPower  =  0.75;
-            lfPower  = -0.75;
             rbPower  = -0.75;
         }
         else {

@@ -6,15 +6,16 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 
-@Autonomous (name = "BlueSquareRedTriangleClosePark")
-public class BlueSquareRedTriangleClosePark extends LinearOpMode{
+
+@Autonomous (name = "DriveLeftFar")
+public class DriveLeftFar extends LinearOpMode {
+
     HardwareMapping robot = new HardwareMapping();
 
     public double lfPower, rfPower, lbPower, rbPower;
     public double collectorPower;
 
     public boolean doMoveForward, doMoveBackward;
-    public boolean doStrafeLeft, doStrafeRight;
     public double  doRotate;
     public boolean doCollection, reverseCollection;
 
@@ -41,25 +42,38 @@ public class BlueSquareRedTriangleClosePark extends LinearOpMode{
 
         doMoveForward     = false;
         doMoveBackward    = false;
-        doStrafeLeft      = false;
-        doStrafeRight     = false;
         doRotate          = 0.00;
         doCollection      = false;
         reverseCollection = false;
 
 
+
         waitForStart();
         //main body of code
         if(isStarted())
-            while(opModeIsActive()){
-                updateDriving();
-                doStrafeRight = true;
-                updateDriving();
-                sleep(1500);
-                doStrafeRight = false;
-                idle();
-                break;
-            }
+        while(opModeIsActive()){
+            doMoveForward = true;
+            updateDriving();
+            sleep(1200);
+            doMoveForward = false;
+            updateDriving();
+
+            //rotate 90 degrees
+            doRotate = -1.00;
+            updateDriving();
+            sleep(925);
+            doRotate = 0.00;
+            updateDriving();
+
+            //park under bridge
+            doMoveForward = true;
+            updateDriving();
+            sleep(750);
+            doMoveForward = false;
+            updateDriving();
+            idle();
+            break;
+        }
 
         //Use While Loops Here for big stuff--this runs sequentially
         //Sleep(millis) works here
@@ -69,7 +83,7 @@ public class BlueSquareRedTriangleClosePark extends LinearOpMode{
         // put idle() at the end of the loop **always**
         //***After*** the while loop, put any necessary termination code
     }
-    public void updatePosition(){
+    public void updatePosition(long units, int angle){
 
     }
     public void updateDriving(){
@@ -93,18 +107,6 @@ public class BlueSquareRedTriangleClosePark extends LinearOpMode{
             lfPower  = -0.75;
             lbPower  = -0.75;
             rfPower  = -0.75;
-            rbPower  = -0.75;
-        }
-        else if(doStrafeRight){
-            rfPower  = -0.75;
-            lbPower  = -0.75;
-            lfPower  =  0.75;
-            rbPower  =  0.75;
-        }
-        else if(doStrafeLeft){
-            rfPower  =  0.75;
-            lbPower  =  0.75;
-            lfPower  = -0.75;
             rbPower  = -0.75;
         }
         else {

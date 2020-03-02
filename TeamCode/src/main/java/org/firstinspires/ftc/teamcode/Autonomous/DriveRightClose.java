@@ -4,12 +4,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 
-@Autonomous (name = "RedSquareBlueTriangleClosePark")
-public class RedSquareBlueTraingleClosePark extends LinearOpMode {
+@Autonomous (name = "DriveRightClose")
+public class DriveRightClose extends LinearOpMode{
     HardwareMapping robot = new HardwareMapping();
 
     public double lfPower, rfPower, lbPower, rbPower;
@@ -43,8 +41,6 @@ public class RedSquareBlueTraingleClosePark extends LinearOpMode {
 
         doMoveForward     = false;
         doMoveBackward    = false;
-        doStrafeLeft      = false;
-        doStrafeRight     = false;
         doRotate          = 0.00;
         doCollection      = false;
         reverseCollection = false;
@@ -55,10 +51,25 @@ public class RedSquareBlueTraingleClosePark extends LinearOpMode {
         if(isStarted())
             while(opModeIsActive()){
                 updateDriving();
-                doStrafeLeft = true;
+
+                doMoveForward = true;
                 updateDriving();
-                sleep(1500);
-                doStrafeLeft = false;
+                sleep(200);
+                doMoveForward = false;
+                updateDriving();
+
+                doRotate = 1.00;
+                updateDriving();
+                sleep(925);
+                doRotate = 0.00;
+                updateDriving();
+
+                doMoveForward = true;
+                updateDriving();
+                sleep(750);
+                doMoveForward = false;
+                updateDriving();
+
                 idle();
                 break;
             }
@@ -97,25 +108,12 @@ public class RedSquareBlueTraingleClosePark extends LinearOpMode {
             rfPower  = -0.75;
             rbPower  = -0.75;
         }
-        else if(doStrafeRight){
-            rfPower  = -0.75;
-            lbPower  = -0.75;
-            lfPower  =  0.75;
-            rbPower  =  0.75;
-        }
-        else if(doStrafeLeft){
-            rfPower  =  0.75;
-            lbPower  =  0.75;
-            lfPower  = -0.75;
-            rbPower  = -0.75;
-        }
         else {
             rfPower  =  0.00;
             lbPower  =  0.00;
             lfPower  =  0.00;
             rbPower  =  0.00;
         }
-
         if (doRotate >= 0.25 && doRotate <= 1.00)        {
             lfPower  =  0.75;
             rfPower  = -0.75;
