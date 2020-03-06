@@ -31,6 +31,7 @@ public class Mark11 extends OpMode {
             robot.upServo2       .setDirection(CRServo.Direction.REVERSE);
 
             robot.clawServo      .setDirection(CRServo.Direction.REVERSE);
+            robot.secondIntake   .setDirection(CRServo.Direction.REVERSE);
         }
 
         public void loop(){
@@ -40,19 +41,35 @@ public class Mark11 extends OpMode {
             double  doRotate          = gamepad1.right_stick_x;
             boolean doCollection      = gamepad1.right_trigger >  0.05;
             boolean reverseCollection = gamepad1.left_trigger  >  0.05;
+            boolean doIntakeLock      = gamepad2.x;
+            boolean stopIntakeLock    = gamepad2.b;
+
+            boolean spitBlock         = gamepad2.right_bumper;
+            boolean slurpBlock        = gamepad2.left_bumper;
             boolean doMoveOut         = gamepad2.right_trigger >  0.05;
             boolean doMoveIn          = gamepad2.left_trigger  >  0.05;
             boolean doMoveUp          = gamepad2.left_stick_y  >  0.05;
             boolean doMoveDown        = gamepad2.left_stick_y  < -0.05;
-            boolean doIntakeLock      = gamepad1.x;
+
             boolean useClaw           = gamepad2.b;
             boolean quitClaw          = gamepad2.a;
+
+
+            if(spitBlock){
+                robot.secondIntake.setPower(0.80);
+            }
+            else if(slurpBlock){
+                robot.secondIntake.setPower(-0.80);
+            }
 
             if(useClaw){
                 clawPower = 0.80;
             }
             if(quitClaw){
                 clawPower = -0.80;
+            }
+            else{
+                clawPower = 0.00;
             }
 
             if(doMoveUp){
@@ -62,15 +79,20 @@ public class Mark11 extends OpMode {
             } else {
                 upPower = 0.00;
             }
-            if(doIntakeLock || doCollection){
+            if(doIntakeLock){
                 lockPower = 0.75;
-            } else {
-                lockPower = 0.00;
+                robot.secondIntake.setPower(0.80);
+            } else if (stopIntakeLock){
+                lockPower = -0.75;
+                robot.secondIntake.setPower(-0.80);
+            }else{
+                lockPower = 0;
+                robot.secondIntake.setPower(0.00);
             }
-
 
             if(doCollection){
                 collectorPower = 1.00;
+                lockPower = 0.80;
             }
             else if(reverseCollection){
                 collectorPower = -1.00;
@@ -160,5 +182,4 @@ public class Mark11 extends OpMode {
          }
          return x;
          }*/
-
 }

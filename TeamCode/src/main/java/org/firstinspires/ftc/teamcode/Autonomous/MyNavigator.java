@@ -6,9 +6,9 @@ public class MyNavigator {
     public int targetX, targetY;
     public int robotStart;
     //0-3 ^^^
-    public final int NINETY = 925;
+    public final int NINETY = 915;
     public final int QUARTER = 925/2;
-    public final int UNIT = 200;
+    public final int UNIT = 275;
 
     public MyNavigator(){
 

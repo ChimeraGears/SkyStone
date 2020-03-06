@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.HardwareMapping;
 
@@ -19,55 +21,68 @@ public class TesterAuto extends LinearOpMode {
     public double  doRotate;
     public boolean doCollection, reverseCollection;
 
+    public boolean doIntake;
+    public boolean feedThrough;
+
      public void runOpMode() throws InterruptedException{
-         cmd.init(0);
+         robot.init(hardwareMap);
+         cmd.init(2);
+
+         //Declare which side of our robot is which
+         robot.leftFrontDrive .setDirection(DcMotor.Direction.REVERSE);
+         robot.rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+         robot.leftBackDrive  .setDirection(DcMotor.Direction.REVERSE);
+         robot.rightBackDrive .setDirection(DcMotor.Direction.FORWARD);
+         robot.collectorLeft  .setDirection(DcMotor.Direction.REVERSE);
+         robot.collectorRight .setDirection(DcMotor.Direction.FORWARD);
+         robot.outMotor       .setDirection(DcMotor.Direction.REVERSE);
+
+         robot.upServo2       .setDirection(CRServo.Direction.REVERSE);
+
+         robot.clawServo      .setDirection(CRServo.Direction.REVERSE);
+
+
 
          waitForStart();
 
          while(opModeIsActive()){
              //Initialize Drive:
-             updateDriving();
              //Command:
              doMoveForward = true;
              //Begin execution:
              updateDriving();
              //Execution Time* in Milliseconds (seconds/1000):
-             sleep(cmd.UNIT * 4); //Drive 8 inches forward
-             cmd.updatePosition(cmd.UNIT * 4,0); //positive for up, negative for down - 4 units forward
+             sleep(cmd.UNIT); //Drive 8 inches forward
+             cmd.updatePosition(1,0); //positive for up, negative for down - 1 unit forward
              //Stop Execution Command:
              doMoveForward = false;
 
-             updateDriving();
              //Command:
              doRotate = 1.00;
              //Begin execution:
              updateDriving();
              //Execution Time* in Milliseconds (seconds/1000):
-             sleep(cmd.NINETY * 1); //Drive 8 inches forward
-             cmd.updatePosition(cmd.NINETY * 1,0); //positive for up, negative for down - 4 units forward
+             sleep(cmd.NINETY*1); //Drive 8 inches forward
+             cmd.updateAngle(90); //positive for up, negative for down - 90 degrees(to the right)
              //Stop Execution Command:
-             doMoveForward = false;
+             doRotate = 0.00;
 
-             updateDriving();
              //Command:
              doRotate = -1.00;
              //Begin execution:
              updateDriving();
              //Execution Time* in Milliseconds (seconds/1000):
              sleep(cmd.NINETY * 1); //Drive 8 inches forward
-             cmd.updatePosition(cmd.NINETY * 1,0); //positive for up, negative for down - 4 units forward
+             cmd.updateAngle(-90); //positive for up, negative for down - 90 degrees(to the left)
              //Stop Execution Command:
-             doMoveForward = false;
-
-
+             doRotate = 0.00;
+             updateDriving();
 
              idle();
              break;
              //*Constants from the MyNavigator class (QUARTER, NINETY, UNIT, etc) can be used in place.
              // They are each written in terms of milliseconds (at full power)
          }
-
-
      }
     public void updateDriving(){
         if(doCollection){

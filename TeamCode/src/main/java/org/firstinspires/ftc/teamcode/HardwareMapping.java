@@ -13,7 +13,7 @@ public class HardwareMapping {
     public CRServo    upServo;
     public CRServo    upServo2;
     public CRServo intakeLock;
-
+    public CRServo secondIntake;
     public DcMotor leftFrontDrive  = null;
     public DcMotor rightFrontDrive = null;
     public DcMotor leftBackDrive   = null;
@@ -49,6 +49,7 @@ public class HardwareMapping {
         upServo    = hwMap    .crservo.get("upServo");
         upServo2   = hwMap    .crservo.get("upServoLeft");
         intakeLock = hwMap    .crservo.get("intakeServo");
+        secondIntake = hwMap  .crservo.get("intakeServo2");
 
         leftDrive = new DcMotor[2];
         leftDrive[0] = leftFrontDrive;
